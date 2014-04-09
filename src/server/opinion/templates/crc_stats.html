@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<head>
+	<meta name='viewport' content='user-scalable=no, width=device-width,initial-scale=1, maximum-scale=1' />
+	<script type='text/javascript'>
+		window.userhist1_url="{{url_root}}/media/mobile/img/dailyupdate/{{uid}}_1.png"
+		window.userhist2_url="{{url_root}}/media/mobile/img/dailyupdate/{{uid}}_2.png"
+		window.show_hist1={{show_hist1}}
+		window.show_hist2={{show_hist2}}	
+		window.id={{uid}}
+    </script>
+</head>
+<style>
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+<link rel="stylesheet" href="{{url_root}}/media/mobile/css/stats.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<script type='text/javascript' src='{{url_root}}/media/mobile/jquery-mobile/jquery-1.10.2.min.js'></script>
+<script>console.log(window.id);</script>
+
+<div class="home-btn-dialog-box">
+    <img width="30px;" class='back-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_back_bttn.png">
+    <a href="{{url_root}}/?refer={{entrycode}}"><img width="30px;" id="home-btn" class='home-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_home_bttn.png"></a>
+    <img width="30px;" id="help-btn" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
+</div>
+
+<div class="title-header">
+    <img width="270px;" src="{{url_root}}/media/mobile/img/cafe/CRC_stat_title_03.png"><br>
+    <img width="210px;" src="{{url_root}}/media/mobile/img/cafe/CRC_stat_title_02.png">
+</div>
+<br>
+<center>
+{%if level8%}
+<div class="stats-section">
+Thank you for suggesting an issue for the next California Report Card!
+<br><br>
+<span style="font-weight:bold;">{{numberRater}} Californians have graded your suggestion so far and your grades are plotted below.<br><br></span>
+
+<span style="font-weight:bold;">Your participant score is {{score}}.</span><br>
+You can increase your score anytime by returning to grade more suggestions by other participants: <a href="{{url_root}}/?refer={{entrycode}}" target="_blank">My California Report Card Cafe</a>.<br><br>
+
+<span style="font-weight:bold">Since you joined on {{LastVisit}}, {{newUser}} new participants have entered grades.</span><br><br>
+
+Your participation score grows as you grade the issues others have suggested (100 points for each up to 10,000 points), and based on how others grade the issue you suggested (up to 30,000 points).<br><br>
+
+See bottom of this page for more info on the Participation Score and to register for the Public Forum on 20 March <a href="http://bit.ly/1ii67bm" target="_blank">http://bit.ly/1ii67bm</a><br><br>
+
+Participants with the highest scores will be eligible to be invited to meet with Lt. Gov. Gavin Newsom, Professor Ken Goldberg, and the CRC team at UC Berkeley on 20 March 2014 to discuss the data and lessons learned from version 1.0 and the most important issues for version 2.0.
+</div>
+{%endif%}
+
+<br>
+<hr>
+
+
+<div class="stats-section-title">
+    <div class="stats-label-big">
+        YOUR SUGGESTION FOR VERSION 2.0 OF THE CRC:
+    </div>
+</div>
+<br>
+{% if left_comment %}
+<div class="stats-section-title">
+    <div class="issue-text">
+        <span style="font-size:14px; font-weight:bold; color:#662E09;"><b>{{comment}}</b></span>
+    </div>
+</div>
+{% else %}
+  
+  <div class="stats-section-title">
+	   <span class="fine-print">You haven't suggested an issue. Please visit the report card and suggest an issue</span>
+  </div>
+
+{% endif %}
+
+<br>
+<hr>
+
+    <!--<div class="stats-section">
+    Data as of <strong>{{date}}</strong><br>
+</div> -->
+
+<br>
+<div class="stats-section-title">
+    <div class="stats-label-big">
+        GRADES ASSIGNED TO YOUR SUGGESTION
+    </div>
+</div>
+
+{% if level8 %}
+   {% if left_comment %}
+     <br>
+     <div class="stats-section-title" id="userhist">
+
+         <center>
+         <div class="responsive-div-1">
+             <div style="text-align:left;font-weight:bold;min-height:30px;">"How important is this issue for the next Report Card?"</div>
+             <div class="stat-img" id="userhist1"></div><br>
+         </div>
+
+         <div class="responsive-div-2">
+            <div style="text-align:left;font-weight:bold;min-height:30px;">"How would you grade California on this issue?"</div>
+             <div class="stat-img" id="userhist2"></div><br>
+         </div>
+         </center>
+     
+     </div>
+
+   {% else %}
+      <br>
+      <div class="stats-section-title">
+	  <span class="fine-print">You haven't suggested an issue. Please visit the report card and suggest an issue</span>
+      </div>
+   {% endif %}
+
+{% else %}
+  <div class="stats-section-title">
+	   <span class="fine-print">Please visit the report card, suggest an issue, and leave your email to see how others grade your idea</span>
+  </div>
+{% endif %}
+
+<br>
+<hr>
+
+<div class="stats-section-title">
+    <div class="stats-label-big">
+        GRADES ASSIGNED TO THE STATE OF CALIFORNIA
+    </div>
+
+    <span style="font-size:12px;">The median grade is marked in brown</span><br><br>
+
+    {% for median in medians %}
+
+    <div class="responsive-img-box-{{median.id}}">
+        <div style="text-align:left;font-weight:bold;min-height:30px;">Issue {{median.id}}: {{median.statement}}</div>
+
+        <div class="stat-img" id="{{median.id}}">
+
+
+        </div>
+        {% autoescape off %}
+        <script>
+			$.get('{{url_root}}/media/mobile/img/dailyupdate/{{median.statement}}.png')
+			.done(function() {
+            var img = $('<img/>');
+            img.attr('src', '{{url_root}}/media/mobile/img/dailyupdate/{{median.statement}}.png');
+            img.appendTo('#{{median.id}}');
+            })
+            .fail(function() {
+            $( "#{{median.id}}" ).html( "<br><span style=' font-size:14px;color: #f5ebde;'>We will present histograms soon</span><br/><br>" );
+            document.getElementById( "#{{median.id}}" ).style.height="20px";
+            })
+        </script>
+        {% endautoescape %}
+
+    </div>
+    {% endfor %}
+</div>
+<br>
+<hr>
+
+
+<div class="stats-section-title" id="geodistribution">
+    <div class="stats-label-big">
+        GEOGRAPHIC DISTRIBUTION OF MEDIAN GRADES ASSIGNED
+    </div><br>
+    <span style="font-size:16px; font-weight:bold">Select an issue:</span> <br>
+    <select id="CA_selector" onchange="changeData(this)" >
+	{% for median in medians %}
+	<option value="{{median.id}}">{{median.id}}. {{ median.statement}}</option>
+	{% endfor %}
+    </select><br/><br>
+
+    <script>
+        $.get("{{url_root}}/media/mobile/js/geostat.js")
+            .fail(function() { 
+            $( "#geodistribution" ).html( "<div class='stats-label-big'>GEOGRAPHIC DISTRIBUTION <br/> OF MEDIAN GRADES ASSIGNED</div><br><br><span style=' font-size:14px;color: #f5ebde;'>We will present geographical distribution soon</span><br/><br>" );
+            document.getElementById( "#geodistribution" ).style.height="40px";
+            })
+    </script>
+<center><div id="map"></div></center>
+
+</div>
+<br>
+<hr>
+<div class="stat-section-title" id="geopercapita">
+     <div class="stats-label-big">
+        PARTICIPANTS PER 10000 POPULATION BY COUNTY
+    </div><br>
+    <script>
+        $.get("{{url_root}}/media/mobile/js/geostat_population.js")
+            .fail(function() { 
+            $( "#geopercapita" ).html( "<div class='stats-label-big'>PARTICIPANTS PER  <br/> 10000 POPULATION</div><br><br><span style=' font-size:14px;color: #f5ebde;'>We will present geographical participantion soon</span><br/><br>" );
+            document.getElementById( "#geodistribution" ).style.height="40px";
+            })
+    </script>
+    <div id="map_capita"></div>
+</div>
+
+<br>
+<hr>
+<div class="stats-section">
+<strong>Thanks for participating!</strong> <br><br>
+Please consider joining us for the Public Forum on 20 March <a href="http://bit.ly/1ii67bm" target="_blank">http://bit.ly/1ii67bm</a><br><br>
+
+Participants with the highest scores will be eligible to be invited to meet with Lt. Gov. Gavin Newsom, Professor Ken Goldberg, and the CRC team at UC Berkeley on 20 March 2014 to discuss the data and lessons learned from version 1.0 and the most important issues for version 2.0.
+</div>
+<br>
+<span style="font-style:Italic;">For more information:</span>
+<a href="http://californiareportcard.org/" target="_blank">californiareportcard.org/</a>
+
+	</center>
+<script type='text/javascript' src='{{url_root}}/media/mobile/js/geostat.js'></script>  
+<script type='text/javascript' src='{{url_root}}/media/mobile/js/map.js'></script>  
+<script type='text/javascript' src='{{url_root}}/media/mobile/js/crcstats.js'></script>
+<script type='text/javascript' src='{{url_root}}/media/mobile/js/geostat_population.js'></script>  
+<script type='text/javascript' src='{{url_root}}/media/mobile/js/map_capita.js'></script>  
+</body>
+</html>

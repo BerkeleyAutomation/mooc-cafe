@@ -1,0 +1,227 @@
+body{
+    font-family: verdana, sans-serif;
+    background-color: #76b9b7;
+    color: #4f300b;
+    font-size:14px;
+    
+	
+    }
+
+.title-header{
+   position:relative;
+   text-align: center;
+}
+
+.home-btn-dialog-box{
+    padding-top: 8px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#home-btn{
+   position:relative;
+   left: 15px;
+}
+
+#help-btn{
+position:relative;
+   left: 30px;
+}
+
+strong{
+font-weight:bold;
+}
+
+hr{
+width: 80%;
+max-width:800px;
+}
+
+.stats-section{
+   font-size:16px;
+   width: 95%;
+
+max-width:800px;
+   text-align:left;
+}
+
+.stats-section-title{
+  width: 95%;
+  max-width:800px;
+  text-align:center;
+  }
+
+    .responsive-div-1{
+    }
+
+     .responsive-img-box-1
+      {
+      }
+
+@media screen and (min-width: 700px) {
+  .responsive-div-1{
+    float: left;
+    width: 50%;
+  }
+
+  .responsive-img-box-1
+  {
+      float: left;
+      width: 50%;
+  }
+
+  .responsive-img-box-2
+    {
+        width: 50%;
+        float: right;
+    }
+
+  .responsive-img-box-3
+    {
+        clear: both;
+        float: left;
+        width: 50%;
+    }
+
+      .responsive-img-box-4
+        {
+            width: 50%;
+            float: right;
+        }
+
+
+    .responsive-img-box-5
+        {
+            clear: both;
+            float: left;
+            width: 50%;
+        }
+
+      .responsive-img-box-6
+         {
+             width: 50%;
+             float: right;
+         }
+}
+
+.stats-label-big{
+                   font-size: 20px;
+                   font-family: verdana, sans-serif;
+                   color: #4f300b;
+                   font-weight: bold;
+                   text-align:center;
+               }
+
+.stat-img{
+text-align:left;
+}
+
+.issue-text{
+
+width: 100%;
+  text-align:left;
+
+}
+
+img{
+
+max-width:320px;
+}
+img.back-btn-dialog {
+width:30px;
+}
+img.home-btn-dialog{
+width:30px;
+}
+
+img.help-btn-dialog{
+width:30px;
+}
+
+#map {
+		
+		height: 390px;
+		position:relative;
+		left:0px;
+
+max-width:320px;
+	 }
+#map_capita {
+		
+		height: 390px;
+		position:relative;
+		left:0px;
+
+max-width:320px;
+	 }
+
+.info {
+	padding: 6px 8px;
+	font: 14px/16px verdana, sans-serif;
+	background: white;
+	background: rgba(255,255,255,0.8);
+	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+	border-radius: 5px;
+	color: #333
+     }
+
+.fine-print {
+    font-size: 14px;
+    color: #f5ebde;
+
+max-width:320px;
+}
+
+#CA_selector{
+font-size:16px;
+max-width:320px;
+}
+
+a:link {
+   text-decoration:underline;
+   color: #4f300b;
+}
+a:visited {
+   text-decoration:underline;
+   color: #4f300b;
+}
+
+.info h4 {
+		margin: 0 0 2px;
+		color: #34637c;
+	
+		}
+.info{
+color: #34637c;
+font-size:14px;
+}
+
+.legend {
+		text-align: left;
+		line-height: 18px;
+		color: #34637c;;
+}
+
+
+.legend i {
+		width: 18px;
+		height: 14px;
+		float: left;
+		margin-right: 8px;
+		opacity: 0.7;
+		}
+
+.leaflet-popup-close-button {
+        display:none;
+    }
+
+    .leaflet-label-overlay {
+        line-height:0px;
+        margin-top: 0px;
+        position:relative;
+        height:10px;
+        width:80px;
+        color:#170e03;
+        font-family:verdana, sans-serif;
+        font-size:12px;
+    }
