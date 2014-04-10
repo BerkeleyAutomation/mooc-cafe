@@ -536,7 +536,7 @@ table.pretty caption {
 	float: right;
 	width: 25%;
 	position: relative;
-	top: -45px;
+	top: -100px;
 	left: -9px;
 	}
 
@@ -548,6 +548,8 @@ table.pretty caption {
 	color: #4e300f;
 	font-size: 15px;
 	text-shadow: none;
+	position: relative;
+	top: -60px;
 	}
 
 	.byline{
