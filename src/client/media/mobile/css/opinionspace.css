@@ -23,7 +23,7 @@ html {
 .top-bar{
     display:none;
     width: 100%;
-    background-color: rgba(255, 255, 255,0.0);
+    background-color: #76b9b6;
 }
 
 .slider-agree-labels{
@@ -80,10 +80,9 @@ html {
 
 #entered-comment{
 	display:inline;
-	color: #FFFFFF;
-	background-color: rgba(0, 0, 0,0.3);
+	color: #000000;
 	text-shadow: none;
-	width: 100% !important;
+	width: 95% !important;
 	height: 200px !important;
 	font-size: 16px;
 	font-family: verdana, sans-serif;
@@ -223,7 +222,7 @@ table.pretty caption {
 		left:0px;
         position: fixed;
         z-index: 999;
-        background-color: #3f8b44;
+        background-color: rgba(245, 235, 223,0.7);
 	}
 
 	.ui-slider-input {
@@ -258,8 +257,8 @@ table.pretty caption {
 
 
 	strong {
-		font-weight: bolder;
-		color: #FFFFCC;
+		
+		color: #444444;
 	}
 	strong.go-back {
 		color: #54D6F6;
@@ -301,8 +300,9 @@ table.pretty caption {
 
 	.instructions{
 		/*position: absolute;*/
-		color: #FFFFFF;
+		background-color: #74b9b7;
 		font-family: verdana, sans-serif;
+		left: 0px;
 		z-index: 999;
 		text-shadow: none;
 		font-size: 17px !important;
@@ -316,7 +316,7 @@ table.pretty caption {
 
 	.instructions2{
     		/*position: absolute;*/
-    		color: #FFFFFF;
+    		background-color: #74b9b7 !important;
     		font-family: verdana, sans-serif;
     		left: 0px;
     		z-index: 999;
@@ -332,7 +332,7 @@ table.pretty caption {
 
     .instructions3{
         		/*position: absolute;*/
-        		color: #FFFFFF;
+        		background-color: #74b9b7 !important;
         		font-family: verdana, sans-serif;
         		left: 0px;
         		z-index: 999;
@@ -463,10 +463,9 @@ table.pretty caption {
 	}
 	
 	.regforminput{
-		font-size: 32px !important;
+		font-size: 28px !important;
 		margin: 0px !important;
 		padding-top: 0px !important;
-		font-weight: bold;
 	}
 
 	.reg_form{
@@ -499,8 +498,7 @@ table.pretty caption {
 		width: 100%;
 		height: 100%;
 		/*background-color: #FAEBCD;*/
-		/*background: #76b9b6;*/
-		background-image:url('../img/cafe/golden_gate_bridge_foggy.jpg');
+		background: #76b9b6;
 		z-index: 999;
 		overflow-y: auto;
 		overflow-x: hidden;
@@ -517,9 +515,8 @@ table.pretty caption {
     		right: 0;
     		width: 100%;
     		height: 100%;
-    		color: white;
     		/*background-color: #FAEBCD;*/
-    		background-image:url('../img/cafe/golden_gate_bridge_foggy.jpg');
+    		background: #76b9b6;
     		z-index: 997;
     		overflow-y: auto;
     		overflow-x: hidden;
@@ -530,7 +527,7 @@ table.pretty caption {
 
 	.slider-padding{
 	    clear: both;
-	    padding-bottom: 40px;
+	    padding-bottom: 12px;
 	}
 
 
@@ -543,49 +540,14 @@ table.pretty caption {
 	left: -9px;
 	}
 
-	.landing-img-title{
-	color: #FFFFFF;
-	font-size: 40px;
-	text-shadow: none;
-	font-weight: bold;
-	}
-
 	.landing-img-txt{
-	color: #FFFFFF;
-	font-size: 16px;
+	float: left;
+	width: 65%;
+	line-height: 18px;
+	padding-left: 10px;
+	color: #4e300f;
+	font-size: 15px;
 	text-shadow: none;
-	text-align: left;
-	}
-
-	.button-div {
-		background-color: rgba(255, 255, 255,0.15);
-		border:1px solid #FFFFFF;
-		border-radius:25px;
-		width: 170px;
-		font-weight: normal;
-		font-size: 18px;
-		line-height: 36px;
-		text-align: center;
-		color: #FFFFFF;
-		margin-bottom: 5px;
-		text-shadow: none;
-		/*position: absolute;
-		bottom: 20px;*/
-	}
-
-		.button-skip {
-		background-color: rgba(255, 255, 255,0.15);
-		border:1px solid #FFFFFF;
-		border-radius:16px;
-		width: 70px;
-		font-weight: normal;
-		font-size: 12px;
-		line-height: 14px;
-		text-align: center;
-		color: #FFFFFF;
-		text-shadow: none;
-		/*position: absolute;
-		bottom: 20px;*/
 	}
 
 	.byline{
@@ -636,30 +598,6 @@ table.pretty caption {
 		background-color: rgba(255,255,255,.7);
 	}
 
-	.slider-grade-val{
-		border:1px solid #FFFFFF;
-		border-radius:22px;
-		line-height: 45px;
-		font-size: 20px;
-		text-align: center;
-		width: 45px;
-		float:left;
-		margin-right: 2px;
-		margin-left: 2px;
-		margin-bottom: 5px;
-		margin-top: 5px;
-	}
-
-	.manual-slide{
-		line-height: 55px;
-		font-size: 20px;
-		width: 30px;
-		border:1px solid #FFFFFF;
-		padding-top:5px;
-		border-radius:10px;
-		background-color: rgba(200,200,200,.5);
-	}
-
 	.sliders, .reg-sliders{
 		text-align: left;
 		text-shadow: none;
@@ -668,7 +606,7 @@ table.pretty caption {
 		line-height: 17px;
 		
 		padding-bottom: 3px;
-		color: #FFFFFF;
+		color: #4e300f;
 		/*background-color: rgba(200,200,200,0.3);*/
 	}
 
@@ -725,7 +663,7 @@ table.pretty caption {
 		right: 0;
 		width: 100%;
 		height: 100%;
-		background-image:url('../img/cafe/golden_gate_bridge_foggy.jpg');
+		background: #76b9b6;
 		overflow: auto;
 		z-index: 999;
 	}
@@ -737,10 +675,9 @@ table.pretty caption {
 		right: 0;
 		width: 100%;
 		height: 100%;
-		background-image:url('../img/cafe/golden_gate_bridge_foggy.jpg');
 		/*background-image:url('../img/cafe/cafe_bg.jpg');*/
 		/*background-color: #FAEBCD;*/
-		/*background: #76b9b6; Old browsers */
+		background: #76b9b6; /* Old browsers */
 		overflow: auto;
 		z-index: 999;
 	}
@@ -789,19 +726,21 @@ table.pretty caption {
 .basic-header {
 	font-family: verdana, sans-serif;
 	text-shadow: none;
-	text-align: left !important;
-	color: #FFFFFF;
-	font-size: 28px;
-	padding-left: 10px;
-	line-height: 32px;
+	text-align: center !important;
+	color: #4e300f;
+	font-size: 23px;
+	line-height: 26px;
+	padding-bottom: 10px;
+	padding-top: 8px;
+	font-weight: bold;
 }
 
 .basic-header2 {
 	font-family: verdana, sans-serif;
     	text-shadow: none;
-    	text-align: left !important;
-    	color: #FFFFFF;
-    	font-size: 18px;
+    	text-align: center !important;
+    	color: #4e300f;
+    	font-size: 23px;
     	line-height: 25px;
     	padding-bottom: 10px;
     	padding-top: 8px;
@@ -822,7 +761,7 @@ font-size: 18px;
 padding-left: 7px;
 padding-right: 7px;
 font-family: verdana, sans-serif;
-color: #FFFFFF;
+color: #4f300b;
 line-height:20px;
 }
 
@@ -885,24 +824,24 @@ padding-right: 7px;
 .comment-admin-text-a{
     font-size: 13px !important;
     line-height: 11px;
-    color: #ffffff !important;
+    color: #4e300f !important;
     font-family: verdana, sans-serif;
 }
 
 .comment-admin-text-b{
     font-size: 14px !important;
     line-height: 14px;
-    color: #ffffff !important;
+    color: #4e300f !important;
     font-family: verdana, sans-serif;
 }
 
 .answer {
-	background-color: rgba(0,0,0,.2) !important;
-	width: 100% !important;
+	background-color: #396d6b;
+	width: 95% !important;
 	min-height: 150px !important;
 	font-size: 16px !important;
 	font-family: verdana, sans-serif;
-	color: #ffffff;
+	color: #f5ebdf;
 	
 	text-shadow: none !important;
 }
@@ -939,11 +878,11 @@ padding-right: 7px;
 }
 
 .home-btn-dialog-box {
-    padding-top: 5px;
-    padding-bottom: 3px;
+    padding-top: 15px;
+    padding-bottom: 5px;
     letter-spacing: 2px;
     text-align: center;
-    background-color: #3f8b44;
+    background-color: #76b9b6;
 }
 
 .home-btn-dialog-box .ui-btn-inner{
@@ -962,7 +901,7 @@ padding-right: 7px;
 	/*background-color: #E7E1D8;*/
 	/*background: url('../img/cafe/cafe_notebook.png') repeat-y;*/
 	text-shadow: none;
-	color: #ffffff;
+	color: #f5ebdf;
 	padding-top: 7px;
 }
 
@@ -1020,7 +959,7 @@ padding-right: 7px;
 }
 
 .dialog-style{
-	background-image:url('../img/cafe/golden_gate_bridge_foggy.jpg');
+	background: #76b9b6;
 	width: 100%;
 	position: absolute;
 	top:0;
@@ -1040,11 +979,12 @@ padding-right: 7px;
 	position: relative;
         vertical-align: middle;
         font-family: verdana, sans-serif;
-	color: #FFFFFF;
+	color: #4e300f;
+	background: #76b9b6;
 	height: 100%;
 	text-decoration: none;
 	text-shadow: none;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 20px;
 	max-width: 95%;
 
@@ -1153,7 +1093,7 @@ padding-right: 7px;
    .rate-username{
 	 font-size: 13px;
 	 font-family: verdana, sans-serif;
-	 color: #ffffff;
+	 color: #4e300f;
 	 text-align: center !important;
 	 position: relative;
 	 top: -5px;
@@ -1240,6 +1180,7 @@ padding-right: 7px;
 
 .responsive-max-width{
         max-width: 500px;
+        margin: auto;
 }
 /*.loading {
 	display: block;
