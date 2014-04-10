@@ -441,16 +441,16 @@ $(document).ready(function() {
 
     $('.comment-submit-btn').click(function() {
         window.comment = $('#entered-comment').val();
+        rate.initMenubar();
         $('.comment-input').hide();
-        $('.dialog-continue').show();
-        $('.scorebox').hide();
-        $('.menubar').hide();
+                window.prev_state = 'comment';
+                window.cur_state = 'map';
+                $('.dialog-continue').hide();
+                window.your_mug.transition().duration(2000).style("opacity", "0.4");
         window.prev_state = 'comment';
         window.cur_state = 'continue';
-        utils.showLoading('');
         rate.logUserEvent(6,'comment submitted');
         rate.sendComment($('#entered-comment').val());
-        utils.hideLoading('');
         //if ($('#regemail').val()){
 	//		accounts.sendEmail($('#regemail').val());
 	//	}

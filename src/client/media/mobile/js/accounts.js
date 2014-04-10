@@ -807,6 +807,7 @@ $(document).ready(function() {
         window.prev_state = 'logout';
 
         $('.logout').show();
+        $('.menubar').hide();
         e.preventDefault();
         e.stopPropagation();
         window.history.pushState("", "", '/mobile');
