@@ -82,10 +82,10 @@ def geostats(request):
             geo_data['features'][len(geo_data['features'])-1]['properties']["s"+str(s.id)]=numpy.median(s_grade)
             geo_data['features'][len(geo_data['features'])-1]['properties']['PARTICIPANTS']=len(s_grade)
 
-    with open('geostat.js', 'w') as outfile:
-         outfile.write('var geostat=')
-         json.dump(geo_data, outfile)
-         outfile.write(';')
+    #with open('geostat.js', 'w') as outfile:
+    #     outfile.write('var geostat=')
+    #     json.dump(geo_data, outfile)
+    #     outfile.write(';')
 
 
 def issues_hist(request):
