@@ -445,10 +445,7 @@ $(document).ready(function() {
         $('.comment-input').hide();
                 window.prev_state = 'comment';
                 window.cur_state = 'map';
-                $('.dialog-continue').hide();
                 window.your_mug.transition().duration(2000).style("opacity", "0.4");
-        window.prev_state = 'comment';
-        window.cur_state = 'continue';
         rate.logUserEvent(6,'comment submitted');
         rate.sendComment($('#entered-comment').val());
         //if ($('#regemail').val()){
@@ -458,12 +455,11 @@ $(document).ready(function() {
     });
     
     $('.comment-cancel-btn').click(function() {
-          $('.comment-input').hide();
-          $('.dialog-continue').show();
-          $('.scorebox').hide();
-          $('.menubar').hide();
-          window.prev_state = 'comment';
-          window.cur_state = 'continue';
+        rate.initMenubar();
+        $('.comment-input').hide();
+                window.prev_state = 'comment';
+                window.cur_state = 'map';
+                rate.logUserEvent(6,'comment cancelled');
         //$('.scorebox').show();
     });
 
