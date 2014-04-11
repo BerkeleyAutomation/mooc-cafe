@@ -106,7 +106,11 @@ def mobile(request,entry_code=None):
     medians = {}
     statement_labels = {};
     for s in statements:
-        medians[str(s.id)] = StatementMedians.objects.filter(statement = s)[0].rating
+        if StatementMedians.objects.all().count() > 0:
+            medians[str(s.id)] = StatementMedians.objects.filter(statement = s)[0].rating
+        else:
+            medians[str(s.id)] = 0
+
         if medians[str(s.id)] <= 1e-5:
             medians[str(s.id)] = 0
         statement_labels[str(s.id)] = s.statement
@@ -1276,7 +1280,7 @@ def os_show(request, os_id, disc_stmt_id = None):
 	#.values_list('id', 'statement', 'short_version'))
 	
     for s in statements_objects:
-        statements.append((s.id,s.statement,s.short_version,numpy.median(UserRating.objects.filter(opinion_space_statement=s,is_current=True).values_list('rating'))))
+        statements.append((s.id,s.statement,s.short_version))
 
 	# Get all discussion statements for the selected Opinion Space
     current_disc_stmt = None
