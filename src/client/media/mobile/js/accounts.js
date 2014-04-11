@@ -487,7 +487,7 @@ $(document).ready(function() {
 
     $('.first-time-btn').click(function() {
         //accounts.firstTime();
-        window.history.pushState("", "", '#');
+	// window.history.pushState("", "", '#');
         accounts.hideAll();
         $('.endsliders').show();
         window.cur_state = 'grade';
