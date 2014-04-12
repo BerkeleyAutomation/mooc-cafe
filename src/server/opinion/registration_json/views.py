@@ -266,7 +266,7 @@ def register(request, success_url=None,
 			# Create EntryCode
 			entrycode = hashlib.sha224(request_post_copy['username']).hexdigest()[0:7]
 			print entrycode
-			ECobject=EntryCode(username=request.user.username,code=entrycode, first_login=False)
+			ECobject=EntryCode(username=request_post_copy['username'],code=entrycode, first_login=False)
 			ECobject.save()
 			# If this was a visitor, connect to a user
 			connect_visitor_to_user(request, new_user.id)
