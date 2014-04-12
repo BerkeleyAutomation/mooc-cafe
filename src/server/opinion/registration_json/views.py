@@ -42,6 +42,7 @@ import time
 import opinion.settings
 import md5
 import hashlib
+from django.http import QueryDict
 
 def handle_facebook_register_or_login(request):
 	return HttpResponse(facebook_register(request, True))
