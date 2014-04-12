@@ -360,7 +360,13 @@ $(document).ready(function() {
             "password1": $('#regpassword1').val(),
             "password2": $('#regpassword1').val(),
             "email": $('#regemail').val(),
-            "zipcode" : ($('#regzip').val() == '')?'-1':$('#regzip').val()
+            "zipcode" : ($('#regzip').val() == '')?'-1':$('#regzip').val(),
+            "country": $('#regcountry').val(),
+            "gender": $('#reggender').val(),
+            "age" : ($('#regage').val()== '')?'-1':$('#regage').val(),
+            "trainingYears" : $('#regtrain').val(),
+            "reason": ($('#regreason').val()=='')?'-1':$('#regreason').val()
+            
         };
 
         var loginData = {
