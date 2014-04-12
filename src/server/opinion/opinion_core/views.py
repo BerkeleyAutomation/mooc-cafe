@@ -96,6 +96,16 @@ def return_zipcode(request):
 
 @cache_control(no_cache=True)
 def mobile(request,entry_code=None):
+    if entry_code!=None:
+       user = authenticate(entrycode=entry_code)
+       if user!=None:
+          login(request,user)
+          if 'refresh_times' in request.session:
+             request.session['refresh_times']=1 #entry code user refresh re-enter    
+          else:
+             request.session['refresh_times']=0 #first time entry code user return
+       else:
+          entry_code=None 
     create_visitor(request)
     os = get_os(1)
     disc_stmt = get_disc_stmt(os, 1)
