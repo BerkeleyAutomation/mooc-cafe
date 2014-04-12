@@ -41,7 +41,7 @@ import re
 import time
 import opinion.settings
 import md5
-#import hashlib
+import hashlib
 
 def handle_facebook_register_or_login(request):
 	return HttpResponse(facebook_register(request, True))
@@ -193,6 +193,7 @@ def register(request, success_url=None,
 	argument.
 	
 	"""
+	
 	request.session['first_time_data'] = '' #clear the first_time cookie based logs
 	if request.method == 'POST':
 		request_post_copy = request.POST.copy()
@@ -203,7 +204,14 @@ def register(request, success_url=None,
 		request_post_copy['username'] = formatted_username.lower() # Username saved as lowercase
 
 		form = form_class(data=request_post_copy, files=request.FILES)
-		demog = UserDemographicsForm(data=request_post_copy)
+		data_demog={'username': request_post_copy['username'], 'password':request_post_copy['username'],'password1':request_post_copy['username'],'password2':request_post_copy['username'],'email':request_post_copy['username'],'zipcode':request_post_copy['username']}
+		
+		demog_qdict = QueryDict('')
+		demog_qdict = demog_qdict.copy()
+		demog_qdict.update(data_demog)
+		
+		demog = UserDemographicsForm(data=demog_qdict)
+		
 		if form.is_valid() and demog.is_valid():
 			new_user = form.save(profile_callback=profile_callback)
 			
@@ -226,7 +234,7 @@ def register(request, success_url=None,
 			# Save demographics
 			request_post_copy_again = request_post_copy.copy()
 			request_post_copy_again['user'] = new_user.id
-			demog = UserDemographicsForm(data=request_post_copy_again)
+			demog = UserDemographicsForm(data=demog_qdict)
 			demog.save()
 
 			# Create a zip code log entry for this user
@@ -235,6 +243,31 @@ def register(request, success_url=None,
 				c = ZipCodeLog(user=new_user, location=z[0])
 				c.save()
 			
+			#save additional informaiton of this user in UserDate
+			#if the user didn't type age or reason, the value will be -1
+			if request_post_copy.has_key('country'):
+				country=UserData(user=new_user,key='country',value=request_post_copy['country'])
+				country.save()
+
+			if request_post_copy.has_key('gender'):
+				gender=UserData(user=new_user,key='gender',value=request_post_copy['gender'])
+				gender.save()
+
+			if request_post_copy.has_key('age'):
+				age=UserData(user=new_user,key='age',value=request_post_copy['age'])
+				age.save()
+			
+			if request_post_copy.has_key('trainingYears'):
+				trainingYears=UserData(user=new_user,key='trainingYears',value=request_post_copy['trainingYears'])
+				trainingYears.save()
+			if request_post_copy.has_key('reason'):
+				reason=UserData(user=new_user,key='reason',value=request_post_copy['reason'])
+				reason.save()
+			# Create EntryCode
+			entrycode = hashlib.sha224(request_post_copy['username']).hexdigest()[0:7]
+			print entrycode
+			ECobject=EntryCode(username=request.user.username,code=entrycode, first_login=False)
+			ECobject.save()
 			# If this was a visitor, connect to a user
 			connect_visitor_to_user(request, new_user.id)
 			
@@ -252,7 +285,6 @@ def register(request, success_url=None,
 			return json_result({'form_errors': errors_to_dict(form.errors)})
 	else:
 		return json_error('Invalid request.')
-
 ## This was taken from django.contrib.auth.forms, and then extended to support a max_length of 75
 
 class AuthenticationFormLargeUsername(AuthenticationForm):
