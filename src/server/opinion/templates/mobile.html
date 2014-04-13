@@ -217,36 +217,27 @@
       <div class="home-btn-dialog-box landing-navigation" style="display: none;">
           <img width="30px;" class='back-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_back_bttn.png">
       </div>
-
-      <center>
+    <center>
+    <div style="width: 95%; max-width: 800px;">
+        <center>
           <img src="{{url_root}}/media/mobile/img/cafe/cafe-title-cropped.png" style="padding-top: 5px;border: none;width: 250px;" />
           <!--<div style="color: #FFFFFF; position: relative; top:-170px;font-size:24px;font-family: cursive; ">CS 169.1X<br/>Report Card</div>-->
       </center>
 
-    <div class="responsive-max-width">
         <div class='landing-desc'>
 
             <div style="clear: both;"></div>
-
-            <div>
                 <div class="landing-img-txt">
-                        <div style="width: 140px;line-height: 24px;">
-                            <button type='submit' data-theme='a' class='first-time-btn'><font style="font-size: 14px;">BEGIN</font></button>
+                        <div class="begin-bounding">
+                            <button type='submit' data-theme='a' class='first-time-btn'><font class="begin-font">BEGIN</font></button>
                         </div>
                     Please join {{num_users}} others who are providing ongoing feedback about EdX CS169.1x: Software as a Service.
-                    <a href="#" class="help-btn-dialog" style="font-size: 15px;color: #4e300f;">About</a>
+                    <a href="#" class="help-btn-dialog" style="font-size: 18px;color: #4e300f;">About</a>
                     <!--{{client_settings.WELCOME_PAGE_TEXT1}}-->
                 </div>
                 <div class="landing-img-div"><img src="{{url_root}}/media/mobile/img/cafe/spoon-and-pencil-draft.png" style="width: 83px;"/></div>
             </div>
-        </div>
     </div>
-
-      <center>
-      <!--<div class="landing-disclaimer">
-          {{client_settings.WELCOME_PAGE_TEXT2}}.<br/>
-          Developed by the CITRIS Data & Democracy Initiative and the Office of the Lt. Gov of California.<br>
-      </div>-->
       </center>
 
   </div>
@@ -269,7 +260,7 @@
         </div>
       </center>
 
-      <div class='reportcard default-left-padding responsive-max-width'>
+      <div class='reportcard default-left-padding'>
 
 
           <center>
@@ -696,7 +687,7 @@
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
       <img class="header-img-topic center" src="{{ url_root }}/media/mobile/img/cafe/CRC_join.png"/>
-
+      <center>
       <div class='dialog-text1 dialog-text-style default-left-padding'>
           {{ client_settings.DISCUSSION_DIALOG_TEXT1 }}
           <center>
@@ -706,6 +697,7 @@
               </div>
           </center>
       </div>
+    </center>
   </div>
 
   <div class='comment-input'>

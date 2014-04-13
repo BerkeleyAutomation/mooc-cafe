@@ -393,7 +393,8 @@ table.pretty caption {
 	}
 
 	.title-table {
-	    width:299px;
+		width: 95%;
+		max-width: 600px;
 	    background-color: #396d6b;
 	    border: solid 0px #76b9b6;
 	    color: #f5ebdf;
@@ -406,7 +407,8 @@ table.pretty caption {
     	}
 
     .grade-table {
-    	    width: 299px;
+    	    width: 95%;
+			max-width: 600px;
     	    background-color: #76b9b6;
     	    /*cbe2e2*/
     	    border: solid 0px #f5ebdf;
@@ -462,10 +464,15 @@ table.pretty caption {
 		font-weight:normal;
 	}
 	
+	@media (max-width: 767px) {
 	.regforminput{
-		font-size: 28px !important;
-		margin: 0px !important;
-		padding-top: 0px !important;
+		font-size: 24px;
+		margin: 0px;
+		padding-top: 0px;
+	}
+}
+	.regforminput{
+		font-size: 16px;
 	}
 
 	.reg_form{
@@ -531,6 +538,50 @@ table.pretty caption {
 	}
 
 
+	.landing-img-txt{
+	float: left;
+	width: 40%;
+	line-height: 18px;
+	padding-left: 10px;
+	color: #4e300f;
+	font-size: 17px;
+	text-shadow: none;
+	position: relative;
+	top: -10px;
+	left: 40px;
+	}
+
+	.landing-img-div{
+	text-align: left;
+	float: right;
+	width: 40%;
+	position: relative;
+	top: -80px;
+	}
+
+	.begin-font{
+		font-size: 20px;
+	}
+
+	.begin-bounding{
+		width: 210px;
+		line-height: 32px;
+	}
+
+	@media (max-width: 700px) {
+	.landing-img-txt{
+	float: left;
+	width: 65%;
+	line-height: 18px;
+	padding-left: 10px;
+	color: #4e300f;
+	font-size: 15px;
+	text-shadow: none;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	}
+
 	.landing-img-div{
 	text-align: right;
 	float: right;
@@ -540,14 +591,15 @@ table.pretty caption {
 	left: -9px;
 	}
 
-	.landing-img-txt{
-	float: left;
-	width: 65%;
-	line-height: 18px;
-	padding-left: 10px;
-	color: #4e300f;
-	font-size: 15px;
-	text-shadow: none;
+	.begin-font{
+		font-size: 14px;
+	}
+
+	.begin-bounding{
+		width: 140px;
+		line-height: 24px;
+	}
+
 	}
 
 	.byline{
@@ -718,7 +770,6 @@ table.pretty caption {
     font-size: 16px;
     line-height: 20px;
     width: 95%;
-    max-width: 400px;
     color: #4e300f;
     padding-left: 7px;
 }
@@ -911,11 +962,22 @@ padding-right: 7px;
 
 .slider-question {
 	width: 90%;
+	font-size: 18px;
+	line-height: 18px;
+	padding-left: 10px;
+	padding-right: 5px;
+	padding-top: 8px;
+}
+
+@media (max-width: 767px) {
+.slider-question {
+	width: 90%;
 	font-size: 14px;
 	line-height: 14px;
 	padding-left: 10px;
 	padding-right: 5px;
 	padding-top: 8px;
+}
 }
 
 .rated, .rated-thanks {
@@ -977,8 +1039,8 @@ padding-right: 7px;
 
 .dialog-text-style {
 	position: relative;
-        vertical-align: middle;
         font-family: verdana, sans-serif;
+    text-align: left;
 	color: #4e300f;
 	background: #76b9b6;
 	height: 100%;
@@ -986,7 +1048,8 @@ padding-right: 7px;
 	text-shadow: none;
 	font-size: 16px;
 	line-height: 20px;
-	max-width: 95%;
+	width: 90%;
+	max-width: 700px;
 
 }
 
@@ -1157,9 +1220,9 @@ padding-right: 7px;
     padding-bottom: 10px;
     position:relative;
     left: -10px;
-    width:106%;
-    max-width:400px;
-    max-height:170px;
+    width:100%;
+    max-width:600px;
+    max-height:50%;
     padding-top:8px;
 }
 
