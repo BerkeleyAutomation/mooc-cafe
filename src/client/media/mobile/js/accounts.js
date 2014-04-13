@@ -862,6 +862,7 @@ $(document).ready(function() {
                $('.scorebox').show();
            }
         window.no_menubar = false;
+        accounts.initLoggedInFeatures();
 	});
 
     window.onpopstate = function(event) {
