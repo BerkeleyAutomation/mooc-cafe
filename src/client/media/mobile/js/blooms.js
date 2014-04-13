@@ -496,8 +496,15 @@ var _blooms = blooms = (function($, d3, console) {
 
     function alreadyAuthenticated() {
         //TOFIX utils.showLoading("Loading...");
+        if (window.conf.RETURN_USER_FIRST_TIME){
+			accounts.hideAll();
+			$('.welcome-back').show();
+			populateBlooms();
+        }
+	else{
         populateBlooms();
         accounts.initLoggedInFeatures();
+	}
         //TOFIX utils.hideLoading();
         //accounts.getNeighborStat();
         /*if(window.conf.RETURN_USER_FIRST_TIME){
