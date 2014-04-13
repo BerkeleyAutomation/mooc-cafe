@@ -429,6 +429,13 @@ $(document).ready(function() {
             for (var i = 1; i <= window.num_sliders; i++) {
                 rate.sendSlider(window.sliders[i], i);
             }
+            if (window.conf.RETURN_USER_FIRST_TIME){
+                   accounts.hideAll();
+                   $('.top-bar').show();
+                   $('.menubar').show();
+                   window.cur_state = 'map';
+                   window.prev_state = 'grade';
+		}
 
             /*if(!window.no_menubar)
             {
