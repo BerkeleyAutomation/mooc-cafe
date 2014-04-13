@@ -534,7 +534,10 @@ table.pretty caption {
 
 	.slider-padding{
 	    clear: both;
-	    padding-bottom: 12px;
+	    height: 30px;
+	}
+	.rating-slider{
+		padding-bottom: 10px;
 	}
 
 
@@ -651,15 +654,37 @@ table.pretty caption {
 	}
 
 	.sliders, .reg-sliders{
-		text-align: left;
+		text-align: center;
 		text-shadow: none;
-		width: 95%;
+		max-width: 700px;
+		width: 100%;
+		font-size: 22px;
+		line-height: 17px;
+		
+		padding-bottom: 20px;
+		color: #4e300f;
+		/*background-color: rgba(200,200,200,0.3);*/
+	}
+
+	@media (max-width: 700px) {
+
+			.sliders{
+		text-align: center;
+		text-shadow: none;
+		max-width: 700px;
+		width: 100%;
 		font-size: 16px;
 		line-height: 17px;
 		
 		padding-bottom: 3px;
 		color: #4e300f;
 		/*background-color: rgba(200,200,200,0.3);*/
+		}
+			.slider-padding{
+	    clear: both;
+	    padding-bottom: 10px;
+	    height: 10px;
+		}
 	}
 
 	.registerpanel{
@@ -867,6 +892,7 @@ padding-right: 7px;
 }
 
 .comment-admin-text {
+	width: 100%;
     text-align: center;
     position: relative;
     top: -10px;
@@ -889,6 +915,7 @@ padding-right: 7px;
 .answer {
 	background-color: #396d6b;
 	width: 95% !important;
+	max-width: 700px;
 	min-height: 150px !important;
 	font-size: 16px !important;
 	font-family: verdana, sans-serif;
@@ -954,6 +981,7 @@ padding-right: 7px;
 	text-shadow: none;
 	color: #f5ebdf;
 	padding-top: 7px;
+	width: 100%;
 }
 
 .rate-warp {
@@ -1160,6 +1188,7 @@ padding-right: 7px;
 	 text-align: center !important;
 	 position: relative;
 	 top: -5px;
+	 left: -15px;
 	 
    }
 
