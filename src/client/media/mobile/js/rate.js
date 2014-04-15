@@ -450,12 +450,10 @@ $(document).ready(function() {
         window.comment = $('#entered-comment').val();
         rate.initMenubar();
         $('.comment-input').hide();
+        $('.dialog-continue').show();
                 window.prev_state = 'comment';
-                window.cur_state = 'map';
-                window.your_mug.transition().duration(2000).style("opacity", "0.4");
-        rate.logUserEvent(6,'comment submitted');
-        rate.sendComment($('#entered-comment').val());
-        //if ($('#regemail').val()){
+                window.cur_state = 'continue';
+                
 	//		accounts.sendEmail($('#regemail').val());
 	//	}
         //accounts.showRegister();

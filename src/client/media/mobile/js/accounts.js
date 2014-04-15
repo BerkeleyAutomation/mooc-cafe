@@ -751,19 +751,11 @@ $(document).ready(function() {
 
     $('.dialog-continue-ready').click(function() {
             rate.logUserEvent(8,'dialog 3');
-            
-            //$('.scorebox').show();
-            if ($('#regemail').val()){
-                    accounts.sendEmail($('#regemail').val());
-           	}
-           	else
-           	{
            	    rate.initMenubar();
            	    window.prev_state = 'continue';
            	    window.cur_state = 'map';
            	    $('.dialog-continue').hide();
            	    window.your_mug.transition().duration(2000).style("opacity", "0.4");
-           	}
         });
 
         $('.dialog-email-ready').click(function() {
