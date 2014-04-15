@@ -422,7 +422,7 @@ var _blooms = blooms = (function($, d3, console) {
                          try{
                              blooms.addYourMug();
 
-                             if(window.refer == "")
+                             if(window.comment  != "")
                                 {
                                     window.your_mug.transition().duration(100).style("opacity", "1");
                                 }
