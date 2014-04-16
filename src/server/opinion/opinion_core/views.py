@@ -99,8 +99,11 @@ def return_visit_time(request,entrycode):
        return 1
     else:
        if request.user.is_authenticated():  #valid entry code user
-           visittime=UserData.objects.get(user=request.user,key='visitTimes').value
-           return int(visittime)
+           user_visit=UserData.objects.filter(user=request.user,key='visitTimes')
+           if len(user_visit)>0:
+              return int(user_visit[0].value)
+           else:
+              return 1
        else: 
            return 1
 
@@ -115,7 +118,7 @@ def mobile(request,entry_code=None):
           else:
              request.session['refresh_times']=0 #first time entry code user return
              user_visit=UserData.objects.filter(user=user,key='visitTimes')
-             if len(user_visit)!=0:
+             if len(user_visit)>0:
                 user_visit[0].value=str(int(user_visit[0].value)+1)
                 user_visit[0].save()
        else:
