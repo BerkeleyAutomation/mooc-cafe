@@ -478,7 +478,7 @@ var _blooms = blooms = (function($, d3, console) {
         .attr("width", "90") //if this changes, change the margin above
         .attr("height", "90")
         .attr("opacity", function(d) {
-            return 0;
+            return 1.0;
         })
         .on('click', function(d) {
             if(window.refer == ""){
