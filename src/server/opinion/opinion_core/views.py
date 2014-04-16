@@ -94,6 +94,16 @@ def return_zipcode(request):
     else:
        return '0'
 
+def return_visit_time(request,entrycode):
+    if entrycode==None:
+       return 1
+    else:
+       if request.user.is_authenticated():  #valid entry code user
+           visittime=UserData.objects.get(user=request.user,key='visitTimes').value
+           return int(visittime)
+       else: 
+           return 1
+
 @cache_control(no_cache=True)
 def mobile(request,entry_code=None):
     if entry_code!=None:
@@ -104,6 +114,10 @@ def mobile(request,entry_code=None):
              request.session['refresh_times']=1 #entry code user refresh re-enter    
           else:
              request.session['refresh_times']=0 #first time entry code user return
+             user_visit=UserData.objects.filter(user=user,key='visitTimes')
+             if len(user_visit)!=0:
+                user_visit[0].value=str(int(user_visit[0].value)+1)
+                user_visit[0].save()
        else:
           entry_code=None 
     create_visitor(request)
@@ -136,6 +150,7 @@ def mobile(request,entry_code=None):
     return render_to_response('mobile.html', context_instance = RequestContext(request, {'url_root' : settings.URL_ROOT,
                                                                                          'return_user_first_time':str(return_user_first_time(request,entry_code)).lower(),
                                                                                          'zipcode': str(return_zipcode(request)),
+                                                                                         'visit_time': str(return_visit_time(request,entry_code)),
 											 'loggedIn' : str(request.user.is_authenticated()).lower(),
 											 'change_prompt' : str(request.user.is_authenticated()).lower(),
 											 'client_data': mobile_client_data(request),
