@@ -358,7 +358,7 @@ var rate = (function($, d3, console) {
             dataType: 'json',
             url: window.url_root + "/os/savecommentrating/1/" + rating.cid + "/",
             data: {
-                "rating": rating.r2 / 100.0
+                "rating": 50.0 / 100.0
             },
             success: function(data) {
                 if (data.hasOwnProperty('success')) {
