@@ -269,6 +269,9 @@ def register(request, success_url=None,
 			print entrycode
 			ECobject=EntryCode(username=request_post_copy['username'],code=entrycode, first_login=False)
 			ECobject.save()
+			# Create visit times
+			visittimes=UserData(user=new_user,key='visitTimes',value=str(1))
+			visittimes.save()
 			# If this was a visitor, connect to a user
 			connect_visitor_to_user(request, new_user.id)
 			
