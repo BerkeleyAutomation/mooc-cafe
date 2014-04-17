@@ -500,6 +500,8 @@ var _blooms = blooms = (function($, d3, console) {
 			accounts.hideAll();
 			$('.endsliders').show();
             $('.entry-logout').show();
+            window.cur_state = 'grade';
+            window.prev_state = 'grade';
 			populateBlooms();
         }
 	else{
