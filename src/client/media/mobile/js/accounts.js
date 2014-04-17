@@ -512,15 +512,23 @@ $(document).ready(function() {
            accounts.hideAll();
            window.prev_state = window.cur_state;
            window.cur_state = 'home';
-           if (window.authenticated){
-              $('.landing').show();
+
+           if(window.entry_code){
+              $('.endsliders').show();
               $('.menubar').hide();
               $('.scorebox').hide();
            }
            else{
+            if (window.authenticated){
               $('.landing').show();
               $('.menubar').hide();
-           }
+              $('.scorebox').hide();
+            }
+            else{
+              $('.landing').show();
+              $('.menubar').hide();
+            }
+            }
         });
 
 
