@@ -496,9 +496,9 @@ var _blooms = blooms = (function($, d3, console) {
 
     function alreadyAuthenticated() {
         //TOFIX utils.showLoading("Loading...");
-        if (window.conf.RETURN_USER_FIRST_TIME){
+        if (window.entry_code){
 			accounts.hideAll();
-			$('.welcome-back').show();
+			$('.endsliders').show();
 			populateBlooms();
         }
 	else{
