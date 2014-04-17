@@ -499,6 +499,7 @@ var _blooms = blooms = (function($, d3, console) {
         if (window.entry_code){
 			accounts.hideAll();
 			$('.endsliders').show();
+            $('.entry-logout').show();
 			populateBlooms();
         }
 	else{

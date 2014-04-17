@@ -513,7 +513,7 @@ $(document).ready(function() {
            window.prev_state = window.cur_state;
            window.cur_state = 'home';
 
-           if(window.entry_code){
+           if(window.entry_code && window.authenticated){
               $('.endsliders').show();
               $('.menubar').hide();
               $('.scorebox').hide();
