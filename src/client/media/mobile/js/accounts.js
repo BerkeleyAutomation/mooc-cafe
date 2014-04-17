@@ -865,7 +865,7 @@ $(document).ready(function() {
         accounts.initLoggedInFeatures();
 	});
 
-    window.onpopstate = function(event) {
-        backButtonHandler();
-    };
+    //window.onpopstate = function(event) {
+      //  backButtonHandler();
+    //};
 });

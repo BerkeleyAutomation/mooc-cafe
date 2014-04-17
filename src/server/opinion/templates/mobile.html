@@ -720,7 +720,7 @@
 
       <center>
           <div class='comment-panel'>
-              <div class="basic-sub-sub-header" style="text-align:left;">{{topic}}<br/></div>
+              <center><div class="basic-sub-sub-header">{{topic}}<br/></div></center>
               <textarea name='answer' id='entered-comment'></textarea>
               <div class="standard-btn-div">
                   <button type='submit' data-theme='b' class='comment-submit-btn'><font style="font-size: 16px;">Post</font></button>
@@ -969,11 +969,13 @@
           &nbsp;
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">{{client_settings.ABOUT_PAGE_HEADER}}</div>
 	  <center>{{num_users}} participants so far.</center><br/>
 	  {% autoescape off %}{{client_settings.ABOUT_PAGE_TEXT }}{% endautoescape %}
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-alt dialog-style' style="z-index:999">
@@ -998,6 +1000,7 @@
           &nbsp;
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           M-Cafe allows visitors to grade different aspects of this MOOC. Drag the slider handles to assign grades (click the skip button for aspects of the course you don't want to assign a grade). <br/> The letter grades are standard in the American education system. The table below provides an explanation of the meaning of letter grades. 
@@ -1026,6 +1029,7 @@
           <em>Q:</em> Why do the sliders require dragging?  If I tap on A, it should go there.<br/>
           <em>A:</em> We decided to remove the tap feature since as you slide down to see more aspects you may accidentally tap the sliders.<br/><br/>
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-median dialog-style' style="z-index:999">
@@ -1036,6 +1040,7 @@
           &nbsp;
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           <em>Q:</em>  After I enter each grade, the Median Grade based on input from all previous participants is revealed.
@@ -1044,6 +1049,7 @@
           <em>A:</em> Revealing the Median values is intended to provide instant feedback in contrast to traditional polls and surveys. We realize this may have a biasing effect:
           some may adjust their grade to be closer to the average resulting in a form of regression toward the mean. We believe this will be rare, but track all of the intermediate grades.
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-zipcode dialog-style' style="z-index:999">
@@ -1054,11 +1060,13 @@
           &nbsp;
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           <em>Q:</em> Why do I need to answer these questions?<br/>
           <em>A:</em> You only need to answer these questions once, and they will allow us to better understand the demographics of this MOOC. We promise to keep your email private, and we will not share it with third parties.
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-dialog dialog-style' style="z-index:999">
@@ -1069,11 +1077,13 @@
           &nbsp;
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           You are invited to enter an online “cafe” where you can propose specifics way in which this course be enhanced.
           You’ll be asked to grade other participants’ suggestions. Each participant’s suggestion is represented by a mug on the table.
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-map1 dialog-style' style="z-index:999">
@@ -1084,6 +1094,7 @@
           &nbsp;
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           <em>Q:</em> What should I do on this page?<br/>
@@ -1102,6 +1113,7 @@
           The selection of which participants’ mugs to display is random but biased toward newer mugs, those that have received fewer ratings.
           Specifically, the likelihood of displaying a mug is based on its standard error = stdev / sqrt(k) where k is the number of times it has been graded so far, and stdev is the variance of those grades. Over time, this ensures that the confidence, or error-bar on the estimated grade for each mug, tends to be the same length for all mugs. Each time you finish grading a set of mugs, the table will be refreshed with more mugs.<br/><br/>
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-map2 dialog-style' style="z-index:999">
@@ -1112,6 +1124,7 @@
           &nbsp;
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           You can continue grading more mugs and whenever you’re ready, just click on your mug (with the blue coaster) to leave a idea of your own.<br/><br/>
@@ -1123,6 +1136,7 @@
           If you and another participant assigned very similar grades, your mugs will be close together.
           Mugs that are distant from yours belong to participants who graded very differently than you.
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-map3 dialog-style' style="z-index:999">
@@ -1133,10 +1147,12 @@
           &nbsp;
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           You can either log out now and return anytime using the unique link we emailed you. Or you are welcome to continue grading participants’ ideas.
       </div>
+    </center>
   </div>
 
 
@@ -1148,10 +1164,12 @@
           &nbsp;
           <img width="30px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           Please propose a specific way in which this course be enhanced to make it more valuable for you.  Click Save when you’re done.
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-rate dialog-style' style="z-index:999">
