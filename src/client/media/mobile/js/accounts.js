@@ -321,7 +321,7 @@ var accounts = (function($, d3, console) {
 
 $(document).ready(function() {
     $('#reg_form').submit(function(e) {
-        $('#register').find('.ui-btn-active').removeClass('ui-btn-active ui-focus');
+		$('#register').find('.ui-btn-active').removeClass('ui-btn-active ui-focus');
         e.preventDefault();
         e.stopPropagation();
 
@@ -331,7 +331,21 @@ $(document).ready(function() {
             $('.dialog').show();
             return;
         }
-
+		$.ajax({
+			async:false,
+            type: "POST",
+            dataType: 'json',
+            url: window.url_root + "/checkemail/",
+            data: {'username':$('#regusername').val()},
+            success: function(data) {
+                if (data.registered==true) {
+					
+                    //console.log("data was sent!")
+                    window.location.href=window.url_root+"/mobile/"+data.entrycode+"/";
+                }
+                else{
+                    
+                  
         rate.logUserEvent(9,'register');
 
         if (window.registration_in_progress) {
@@ -440,15 +454,19 @@ $(document).ready(function() {
                             } catch(err) { }
 
                         }
-                    }
-                },
-                error: function() {
-                    console.log("ERROR posting registration request. Abort!");
-                },
-            });
-        //});
-    });
+                       }
+                     },
+                      error: function() {
+                      console.log("ERROR posting registration request. Abort!");
+                   },
+               });
+                     
 
+                }
+            }
+        });
+        
+    });
     $('#login_form').submit(function(e) {
         e.preventDefault();
         e.stopPropagation();
