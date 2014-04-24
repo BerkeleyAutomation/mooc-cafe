@@ -48,6 +48,7 @@ from django.core.validators import validate_email
 from django.core.exceptions import *
 import smtplib
 
+from django.http import HttpResponse
 os.environ['MPLCONFIGDIR'] = "/tmp"
 import matplotlib
 matplotlib.use('Agg')
@@ -106,6 +107,26 @@ def return_visit_time(request,entrycode):
               return 1
        else: 
            return 1
+
+def checkemail(request):
+    username=request.REQUEST.get('username','')
+    user=User.objects.filter(username=username)
+    
+    if len(user)>0:
+       entrycode=EntryCode.objects.filter(username=username)
+       if len(entrycode)>0:
+          data={}
+          data['entrycode']=entrycode[0].code
+          data['registered']=True
+          return HttpResponse(json.dumps(data),content_type="application/json")
+       else:
+          data={} 
+          data['registered']=False
+          return HttpResponse(json.dumps(data),content_type="application/json")
+    else:
+       data={} 
+       data['registered']=False
+       return HttpResponse(json.dumps(data),content_type="application/json")
 
 @cache_control(no_cache=True)
 def mobile(request,entry_code=None):
