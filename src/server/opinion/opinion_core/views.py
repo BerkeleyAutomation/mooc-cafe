@@ -149,6 +149,7 @@ def mobile(request,entry_code=None):
     disc_stmt = get_disc_stmt(os, 1)
     active_users = list(User.objects.filter(is_active=True)) #forces eval so lazy eval doesn't act too smart!!!
     referrallink = request.GET.get('refer','')
+    repeatuser = request.GET.get('repeat','false')
 
     statements = OpinionSpaceStatement.objects.all().order_by('id')
     medians = {}
@@ -187,6 +188,7 @@ def mobile(request,entry_code=None):
 											 'init_score': len(get_fully_rated_responses(request, disc_stmt)),
 											 'random_username': random_username,
 											 'random_password': random_password,
+                       'repeat': repeatuser,
 											 'num_users': num_users,
                                              'statement_labels': json.dumps(statement_labels),
 											 'medians': json.dumps(medians)}))

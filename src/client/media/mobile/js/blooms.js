@@ -498,11 +498,23 @@ var _blooms = blooms = (function($, d3, console) {
         //TOFIX utils.showLoading("Loading...");
         if (window.entry_code){
 			accounts.hideAll();
-			$('.endsliders').show();
-            $('.entry-logout').show();
-            window.cur_state = 'grade';
-            window.prev_state = 'grade';
+
+            if (window.repeat)
+            {
+                $('.dialog').show();
+                window.cur_state = 'dialog';
+                window.prev_state = 'zip';
+            }
+            else{
+                
+                $('.endsliders').show();
+                $('.entry-logout').show();
+                window.cur_state = 'grade';
+                window.prev_state = 'grade';
+            }
+
 			populateBlooms();
+            $('.top-bar').show();
         }
 	else{
         populateBlooms();

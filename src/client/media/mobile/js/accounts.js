@@ -341,7 +341,7 @@ $(document).ready(function() {
                 if (data.registered==true) {
 					
                     //console.log("data was sent!")
-                    window.location.href=window.url_root+"/mobile/"+data.entrycode+"/";
+                    window.location.href=window.url_root+"/mobile/"+data.entrycode+"/?repeat=true";
                 }
                 else{
                     
