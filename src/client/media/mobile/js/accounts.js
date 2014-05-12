@@ -165,7 +165,7 @@ var accounts = (function($, d3, console) {
         document.getElementById('tr-1grade'+id).style.backgroundColor='#f5ebdf';
         document.getElementById('tr-2grade'+id).style.backgroundColor='#f5ebdf';
         document.getElementById('skip-img'+id).src = window.url_root + '/media/mobile/img/cafe/skip.png';
-        document.getElementById('skip-img'+id).style.width = '50px';
+        document.getElementById('skip-img'+id).style.width = '75px';
         window.skipped[id-1] = false;
         rate.logUserEvent(11,window.visitTime+' visit '+'slider_set ' + id + ' ' + 'grade');
     }
@@ -177,7 +177,7 @@ var accounts = (function($, d3, console) {
     document.getElementById('tr-1grade'+id).style.backgroundColor='#BFBFBF';
     document.getElementById('tr-2grade'+id).style.backgroundColor='#BFBFBF';
     document.getElementById('skip-img'+id).src = window.url_root + '/media/mobile/img/cafe/grade.png';
-    document.getElementById('skip-img'+id).style.width = '50px';
+    document.getElementById('skip-img'+id).style.width = '75px';
     window.skipped[id-1] = true;
     rate.logUserEvent(11,window.visitTime+' visit '+'slider_set ' + id + ' ' + 'skip');
     }
@@ -320,7 +320,7 @@ var accounts = (function($, d3, console) {
 })($, d3, console);
 
 $(document).ready(function() {
-    $('#reg_form').submit(function(e) {
+    $('#registerb').click(function(e) {
 		$('#register').find('.ui-btn-active').removeClass('ui-btn-active ui-focus');
         e.preventDefault();
         e.stopPropagation();
@@ -516,9 +516,34 @@ $(document).ready(function() {
         $('.endsliders').show();
         window.cur_state = 'grade';
         rate.logUserEvent(7,'first time');
+        $('.begin-btn').css("background-color","rgba(198, 184, 192, 0.3)");
         //$('.top-bar').show();
         //rate.initScore();
     });
+
+    $('.begin-btn').on("mouseover",function() {
+            $('.begin-btn').css("background-color","rgba(198, 184, 192, 0.6)");
+        }
+
+        )
+
+        $('.begin-btn').on("mouseout",function() {
+            $('.begin-btn').css("background-color","rgba(198, 184, 192, 0.3)");
+        }
+
+        )
+
+        $('.begin-btn2').on("mouseover",function() {
+            $('.begin-btn2').css("background-color","rgba(198, 184, 192, 0.6)");
+        }
+
+        )
+
+        $('.begin-btn2').on("mouseout",function() {
+            $('.begin-btn2').css("background-color","rgba(198, 184, 192, 0.3)");
+        }
+
+        )
 
     $('.login-btn').click(function() {
         accounts.showLogin();

@@ -354,7 +354,7 @@ var _blooms = blooms = (function($, d3, console) {
             $('#d3 .loading').hide();
 
              var force = d3.layout.force()
-                 .charge(-600)
+                 .charge(-3000)
                  .size([width, height]);
 
             window.force = force;
@@ -380,8 +380,8 @@ var _blooms = blooms = (function($, d3, console) {
                 console.log({'uid': d.uid,'x':d.x,'y':d.y,'cx': canvasx(d.x),'cy': canvasy(d.y)});
                 return window.url_root + "/media/mobile/img/cafe/cafe" + Math.floor((Math.random()*6)).toString() + ".png";
             })
-            .attr("width", "80") //if this changes, change the margin above
-            .attr("height", "80")
+            .attr("width", "150") //if this changes, change the margin above
+            .attr("height", "150")
             .attr("opacity", function(d) {
                         return "1";
                 })
@@ -445,7 +445,7 @@ var _blooms = blooms = (function($, d3, console) {
                                 })
                                 });
 
-                                for (var i = 0; i < 100; ++i) force.tick();
+                                for (var i = 0; i < 1000; ++i) force.tick();
                                 force.stop();
 
                                 });
@@ -475,8 +475,8 @@ var _blooms = blooms = (function($, d3, console) {
         .datum(function(d) {
             return window.your_mug_data;
         })
-        .attr("width", "90") //if this changes, change the margin above
-        .attr("height", "90")
+        .attr("width", "150") //if this changes, change the margin above
+        .attr("height", "150")
         .attr("opacity", function(d) {
             return 1.0;
         })
