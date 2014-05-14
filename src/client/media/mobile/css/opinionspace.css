@@ -353,6 +353,7 @@ table.pretty caption {
 		color: #ffffff;
 		text-shadow: none;
 		height: 100%;
+		width: 95%;
 		
 
 	}
@@ -1118,16 +1119,18 @@ padding-right: 7px;
     color: #ffffff;
     text-decoration: none;
     text-shadow: none;
-    font-size: 20px;
-    line-height: 18px;
+    font-size: 32px;
+    line-height: 32px;
 }
 
 .dialog-text-style-noflow em {
-    color: #f5ebdf;
+    color: #ffffff;
     text-decoration: none;
     text-shadow: none;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -1188,10 +1191,7 @@ padding-right: 7px;
    }
 
    .flag-style{
-    position: fixed;
-    top: 180px;
-    left: 20px;
-    font-size: 14px;
+    font-size: 28px;
     color: #FF0000;
    }
 

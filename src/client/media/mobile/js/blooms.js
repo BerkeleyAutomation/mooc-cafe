@@ -354,7 +354,7 @@ var _blooms = blooms = (function($, d3, console) {
             $('#d3 .loading').hide();
 
              var force = d3.layout.force()
-                 .charge(-3000)
+                 .charge(-2000)
                  .size([width, height]);
 
             window.force = force;

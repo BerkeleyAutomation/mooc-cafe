@@ -259,7 +259,7 @@
         <div class="rc-sub-header">
             Adjust the sliders to grade the following aspects of the course:
         </div>
-      </center>
+      
 
       <div class='reportcard'>
 
@@ -334,6 +334,7 @@
 
           </center>
       </div>
+      </center>
   </div>
 
   <div class = 'register' id='register'>
@@ -693,7 +694,7 @@
           <img width="45px;" style="opacity: 0.75;" src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
       <center>
-      <img class="header-img-topic" src="{{ url_root }}/media/mobile/img/cafe/CRC_join.png"/>
+      <div class="basic-header">Join the Discussion</div>
     </center>
       <center>
       <div class='dialog-text1 dialog-text-style default-left-padding'>
@@ -767,12 +768,10 @@
       </div>
 
     <center>
+          <div id="flag" class="flag-style"></div>
        <textarea id='commentInput' class='answer' readonly="true"></textarea>
        <span class="rate-username"></span>
     </center>
-
-
-    <div id="flag" class="flag-style"></div>
 
     <div class="answerwrapper">
     <center>
@@ -834,7 +833,7 @@
         <center>
 
         <div class='default-left-padding' style="width: 95%; max-width: 700px; font-size: 24px;line-height: 24px;padding-top: 10px; text-shadow: none; color: #ffffff;">
-            {{client_settings.LOGOUT_DIALOG_TEXT}}<br/><br/>
+            You are invited to enter an online "cafe" where you can propose specific ways in which this course can be enhanced. You can grade other participant’s suggestions. Each participant’s suggestion is represented by a mug on the table.<br/><br/>
         </div>
 
       </center>
@@ -961,7 +960,7 @@
     <div class='dialog-text-style default-left-padding'>
       <div class="basic-header" style="width:100%;">{{client_settings.AVG_EXPLAIN_HEADER}}</div>
      <center>
-      <img src="{{ url_root }}/media/mobile/img/cafe/avggrade.png" class="center" style="width:300px;padding-top:3px;"><br>
+      <!--<img src="{{ url_root }}/media/mobile/img/cafe/avggrade.png" class="center" style="width:300px;padding-top:3px;"><br>-->
      </center>
         Based on the grades from {{num_users}} participants so far, {{client_settings.AVG_EXPLAIN_TEXT}}
     </div>
@@ -1010,7 +1009,7 @@
       <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
-          M-Cafe allows visitors to grade different aspects of this MOOC. Drag the slider handles to assign grades (click the skip button for aspects of the course you don't want to assign a grade). <br/> 
+          M-Cafe allows visitors to grade different aspects of this MOOC. Drag the slider handles to assign grades (click the skip button for aspects of the course you don't want to assign a grade). <br/> <br/> 
 
           <em>Q:</em> Do I have to grade all 5 aspects of the MOOC?<br/>
           <em>A:</em> No, just click the skip button for aspects where you don't want to assign a grade.<br/><br/>
@@ -1057,7 +1056,7 @@
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           Your email address will be protected and not shared with anyone; it will only be used to create and send you a unique link for access to the system.  The aim of this study is to enhance student enagement and provide ongoing feedback and suggestions to the instructors as the course progresses.
-          <br/>
+          <br/><br/>
           <em>Q:</em> Why do I need to answer these questions?<br/>
           <em>A:</em> You only need to answer these questions once, and they will allow us to better understand the demographics of this MOOC. We promise to keep your email private, and we will not share it with third parties.
       </div>
