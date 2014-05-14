@@ -160,7 +160,7 @@
  var medians = {{ medians|safe }};
 
  function score_to_grade(score1) {
-    var score = score1;
+    var score = 100-score1;
   
     if (score == 100)
         return '0';
@@ -199,7 +199,7 @@
  function update_score(statement) {
    $('#g' + statement).css('opacity', 1);
    console.log(medians[statement]);
-   $('#o' + statement).html(score_to_grade(medians[statement]*100))
+   $('#o' + statement).html(score_to_grade(100-medians[statement]*100))
    window.sliders[statement] = $('#s' + statement).val();
    document.getElementById('tr'+statement).style.backgroundColor = "rgba(255, 255, 0, 0.8)";
    finishedStatements[statement-1]= 1;
