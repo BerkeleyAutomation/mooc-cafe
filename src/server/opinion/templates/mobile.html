@@ -160,7 +160,7 @@
  var medians = {{ medians|safe }};
 
  function score_to_grade(score1) {
-    var score = 100 - score1;
+    var score = score1;
   
     if (score == 100)
         return '0';
@@ -295,6 +295,7 @@
                               <!--<script>var sid={{statement.id}}-1;var total={{statements|length}};document.write(total-sid);</script>-->
                               {{statement.id}}. {{ statement.statement }}
                           </div>
+
                           {% else %}
                           {% endifnotequal %}
                       </td>
@@ -313,6 +314,12 @@
                       <td colspan="3" class="slider-row" style="border: none;">
                           {% ifnotequal statement.statement '' %}
                           <div id="s{{statement.id}}" data-statement="{{statement.id}}" class="endslider-slider{{statement.id}} statement-slider" style=""></div>
+                          <div id="textbox" style="width: 100%;">
+                         <div style="display:inline-block;text-align: left; width: 20%;">(Very Low)</div>
+                         <div style="width: 57.5%;display:inline-block;"></div>
+                         <div style="display:inline-block;text-align: right; width: 20%;">(Very High)</div>
+                        </div>
+                        <div style="clear: both;"></div>
                           {% else %}
                           <div style='display:none;'>
                               <br><div id="s{{statement.id}}" data-statement="{{statement.id}}"  class="endslider-slider"></div>
