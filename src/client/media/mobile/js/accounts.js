@@ -375,10 +375,10 @@ $(document).ready(function() {
             "password2": $('#regpassword1').val(),
             "email": $('#regemail').val(),
             "zipcode" : ($('#regzip').val() == '')?'-1':$('#regzip').val(),
-            "country": $('#regcountry').val(),
-            "gender": $('#reggender').val(),
+            "country": ($('#regcountry').val()=='')?'-1':$('#regcountry').val(),
+            "gender": ($('#reggender').val()=='')?'-1':$('#reggender').val(),
             "age" : ($('#regage').val()== '')?'-1':$('#regage').val(),
-            "trainingYears" : $('#regtrain').val(),
+            "trainingYears" : ($('#regtrain').val()=='')?'-1':$('#regtrain').val(),
             "reason": ($('#regreason').val()=='')?'-1':$('#regreason').val()
             
         };
