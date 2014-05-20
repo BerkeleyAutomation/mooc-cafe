@@ -451,6 +451,7 @@ $(document).ready(function() {
     $('.comment-submit-btn').click(function() {
         window.comment = $('#entered-comment').val();
         rate.initMenubar();
+        rate.sendComment(window.comment);
         $('.comment-input').hide();
         $('.dialog-continue').show();
                 window.prev_state = 'comment';
