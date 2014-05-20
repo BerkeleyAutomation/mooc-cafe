@@ -197,7 +197,7 @@ class CommentAgreement(Model):
     created = DateTimeField(auto_now_add = True, db_index = True)
     
     def __unicode__(self):
-        return unicode(self.rating)
+        return unicode(self.agreement)
     
     class Meta:
         db_table = 'comment_agreement'
