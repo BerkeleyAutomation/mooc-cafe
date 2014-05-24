@@ -5,6 +5,33 @@
 var _blooms = blooms = (function($, d3, console) {
     // Enable strict javascript interpretation
     "use strict";
+
+    var Environment = {
+    //mobile or desktop compatible event name, to be used with '.on' function
+    TOUCH_DOWN_EVENT_NAME: 'mousedown touchstart',
+    TOUCH_UP_EVENT_NAME: 'mouseup touchend',
+    TOUCH_MOVE_EVENT_NAME: 'mousemove touchmove',
+    TOUCH_DOUBLE_TAB_EVENT_NAME: 'dblclick dbltap',
+
+    isAndroid: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    isBlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    isIOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    isOpera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    isWindows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    isMobile: function() {
+        return (Environment.isAndroid() || Environment.isBlackBerry() || Environment.isIOS() || Environment.isOpera() || Environment.isWindows());
+    }
+    };
     
     /** Creates global variable window.visuals to determine blooms colors and sizes.
      *  Copied from the flash version. */
@@ -299,6 +326,12 @@ var _blooms = blooms = (function($, d3, console) {
         // set up loading sign
         $('svg').remove();
         $('#d3 .loading').show();
+
+        var bloomSize = "150";
+        if(Environment.isMobile()){
+            bloomSize = "80";
+        }
+
         // remove an svg if there already is one
 
         // define the margins
@@ -380,8 +413,8 @@ var _blooms = blooms = (function($, d3, console) {
                 console.log({'uid': d.uid,'x':d.x,'y':d.y,'cx': canvasx(d.x),'cy': canvasy(d.y)});
                 return window.url_root + "/media/mobile/img/cafe/cafe" + Math.floor((Math.random()*6)).toString() + ".png";
             })
-            .attr("width", "150") //if this changes, change the margin above
-            .attr("height", "150")
+            .attr("width", bloomSize) //if this changes, change the margin above
+            .attr("height", bloomSize)
             .attr("opacity", function(d) {
                         return "1";
                 })
@@ -438,10 +471,22 @@ var _blooms = blooms = (function($, d3, console) {
 
                    force.on("tick", function() {
                     mugs.attr('x', function(d) {
-                                    return Math.min(Math.max(d.x,margin.left),width);
+                                    var trimmedx = Math.min(Math.max(d.x,margin.left),width);
+                                    var trimmedy = Math.min(Math.max(d.y,margin.bottom),height);
+                                    if (Math.abs(trimmedx-width/2) < 75 && Math.abs(trimmedy-height/2) < 75)
+                                    {
+                                        trimmedx = width/2 + 150;
+                                    }
+                                    return trimmedx;
                                 })
                                 .attr('y', function(d) {
-                                    return Math.min(Math.max(d.y,margin.bottom),height);
+                                    var trimmedx = Math.min(Math.max(d.x,margin.left),width);
+                                    var trimmedy = Math.min(Math.max(d.y,margin.bottom),height);
+                                    if (Math.abs(trimmedx-width/2) < 75 && Math.abs(trimmedy-height/2) < 75)
+                                    {
+                                        trimmedy = width/2 + 150;
+                                    }
+                                    return trimmedy;
                                 })
                                 });
 
@@ -461,6 +506,11 @@ var _blooms = blooms = (function($, d3, console) {
 
     /** Adds `yourMug` to the canvas as a hidden object. Change the opacity to make it appear */
     function addYourMug() {
+        var bloomSize = "150";
+        if(Environment.isMobile()){
+            bloomSize = "80";
+        }
+
         window.your_mug = window.coffeetable_svg.append('svg:image')
         .attr("xlink:href", function(d) {
                     return window.url_root + "/media/mobile/img/cafe/cafeCurUser.png";
@@ -475,8 +525,8 @@ var _blooms = blooms = (function($, d3, console) {
         .datum(function(d) {
             return window.your_mug_data;
         })
-        .attr("width", "150") //if this changes, change the margin above
-        .attr("height", "150")
+        .attr("width", bloomSize) //if this changes, change the margin above
+        .attr("height", bloomSize)
         .attr("opacity", function(d) {
             return 1.0;
         })
@@ -508,7 +558,7 @@ var _blooms = blooms = (function($, d3, console) {
             else{
                 
                 $('.endsliders').show();
-                $('.entry-logout').show();
+                //$('.entry-logout').show();
                 window.cur_state = 'grade';
                 window.prev_state = 'grade';
             }

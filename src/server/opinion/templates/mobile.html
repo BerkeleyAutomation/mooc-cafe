@@ -127,7 +127,7 @@
   });
 
   // give the statement sliders some color
-  var _grades = {'0' : 0, '1' : 10, '2': 20, '3': 30, '4': 40, '5': 50, '6': 60, '7': 70, '8': 80, '9': 90, '10' : 98 };
+  var _grades = {'0' : 0, '1' : 10, '2': 20, '3': 30, '4': 40, '5': 50, '6': 60, '7': 70, '8': 80, '9': 89, '10' : 97 };
   $.map( _grades, function(position, letter) {
     var span = '<span class="grade-labels" style="left:'+position+'%;">'+letter+'</span>';
     $('.statement-slider > .noUi-base').append( span );
@@ -222,18 +222,17 @@
     <center>
     <div style="width: 95%; max-width: 800px;">
         <center>
-          <img src="{{url_root}}/media/mobile/img/cafe/cafe-title-cropped.png" style="padding-top: 5px;border: none;width: 300px;margin-right: 10px;" />
-          <img src="{{url_root}}/media/mobile/img/cafe/spoon-and-pencil-draft.png" style="width: 100px;"/><br/>
+          <img src="{{url_root}}/media/mobile/img/cafe/cafe-title-cropped-2.png" style="padding-top: 5px;border: none;max-width: 100%;width: 400px;margin-right: 10px;" />
+          <!--<img src="{{url_root}}/media/mobile/img/cafe/spoon-and-pencil-draft.png" style="width: 100px;"/><br/>-->
           <!--<div style="color: #FFFFFF; position: relative; top:-170px;font-size:24px;font-family: cursive; ">CS 169.1X<br/>Report Card</div>-->
-          <div class="landing-img-txt" style="padding-bottom: 10px;">
+          <div class="landing-img-txt" style="padding-bottom: 10px;max-width: 100%; padding-right: 10px;">
             <!--Please join <strong>{{num_users}}</strong> others who are providing ongoing feedback about EdX CS169.1x: Software as a Service. Your ongoing feedback will help us improve this course.<br/>-->
 
-            Intro Video <a href="http://youtu.be/zDC1G5uwWH4">http://youtu.be/zDC1G5uwWH4</a><br/><br/>
+            <center><a href="http://youtu.be/zDC1G5uwWH4" target="_blank">Introduction</a> &nbsp;
+            <a href="about:blank" target="_blank">Tutorial</a></center><br/>
 
-M-CAFE is a platform that facilitates student feedback and suggestions to the instructors on how CS169x can be improved as the course progresses. 
-Students will periodically be asked to spend a few minutes and enter their feedback into M-CAFE. 
-
-<a href="#" class="help-btn-dialog" style="font-size: 28px;color: #ffffff;">About</a><br/>            
+M-CAFE is a platform that facilitates student feedback and suggestions to the instructors on how CS169.2x can be improved as the course progresses. 
+Students will periodically be asked to spend a few minutes and enter their feedback into M-CAFE.            
           </div>
 
           <div class='begin-btn first-time-btn'><font class="begin-font">Begin</font></div>
@@ -241,7 +240,7 @@ Students will periodically be asked to spend a few minutes and enter their feedb
 
           <br/><br/>
            <font style="font-size: 14px;line-height: 18px;text-shadow:none;color: #CCCCCC;">Information gathered through M-CAFE will be confidential. 
-Students' names will not be displayed through M-CAFE. For any questions, comments, or concerns send an email to <a href="mailto:cafe.mooc@gmail.com">cafe.mooc@gmail.com</a> (NOT the course staff) and please do not post your M-CAFE related questions to the course discussion forum.</font>
+Students' names will not be displayed through M-CAFE. For any questions, comments, or concerns send an email to <a href="mailto:cafe.mooc@gmail.com">cafe.mooc@gmail.com</a> (NOT the course staff) and please do not post your M-CAFE related questions to the course discussion forum. <br/> <a href="#" class="help-btn-dialog">About</a></font>
 
           <!--<div class="begin-bounding">
                  <button type='submit' data-theme='a' class='first-time-btn'></button>
@@ -260,8 +259,8 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
           <img width="45px;" class='home-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_home_bttn.png">
           &nbsp;
           <img width="45px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
-          &nbsp;
-          <img width="45px;" class='logout-btn entry-logout' style="display: none;" src="{{url_root}}/media/mobile/img/cafe/CRC_logout_bttn.png">
+          <!--&nbsp;
+          <img width="45px;" class='logout-btn entry-logout' style="display: none;" src="{{url_root}}/media/mobile/img/cafe/CRC_logout_bttn.png">-->
       </div>
 
       <div class="basic-header">{{client_settings.REPORT_CARD_HEADER}}</div>
@@ -289,7 +288,7 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
                       </td>
 
                       <td class="title-table-label2">
-                          <a href="#" onclick="$('.endsliders').hide();$('.dialog-avggrade').show();window.prev_state='grade';window.cur_state='median';" style="color: #f5ebdf !important;">Median Grade</a>
+                          <a href="#" onclick="$('.endsliders').hide();$('.dialog-avggrade').show();window.prev_state='grade';window.cur_state='median';" style="color: #f5ebdf !important;">Median<br/>Grade</a>
                       </td>
 
                   </tr>
@@ -328,7 +327,7 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
                           <div id="textbox" style="width: 100%;">
                          <div style="display:inline-block;text-align: left; width: 20%;">(Very Low)</div>
                          <div style="width: 57.5%;display:inline-block;"></div>
-                         <div style="display:inline-block;text-align: right; width: 20%;">(Very High)</div>
+                         <div style="display:inline-block;text-align: right; width: 20%;position:relative; left: 10px;">(Very High)</div>
                         </div>
                         <div style="clear: both;"></div>
                           {% else %}
@@ -683,7 +682,7 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
               <input type='hidden' value='{{ url_root }}' name='url'>
 
               <div data-role="fieldcontain" style="display: none;">
-                  <input type ='tel' id='regzip' name='regzip' class='regforminput' value="00000" placeholder="Zip Code" onblur="$('#reg_form').submit();">
+                  <input type ='tel' id='regzip' name='regzip' class='regforminput' value="00000" placeholder="Zip Code">
                   <div class='alert-error' id='zipcode-error' style='display:none;'></div>
               </div>
 
@@ -737,12 +736,16 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
           <div class='comment-panel'>
               <center><div class="basic-sub-sub-header">{{topic}}<br/></div></center>
               <textarea name='answer' id='entered-comment'></textarea>
-              <div class="standard-btn-div">
+              
+              <div class="standard-btn-div" style="position:relative; left: -15px;">
                   <!--<button type='submit' data-theme='b' class='comment-submit-btn'><font style="font-size: 16px;">Post</font></button>
                   <button type='submit' data-theme='b' class='comment-cancel-btn'><font style="font-size: 16px;">Later</font></button>-->
+                  <center>
                   <div class='begin-btn comment-submit-btn'><font class="begin-font">Post</font></div>
                   <div class='begin-btn2 comment-cancel-btn'><font class="begin-font">Later</font></div>
+                  </center>
               </div>
+            
           </div>
       </center>
   </div>
@@ -1010,10 +1013,12 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
           &nbsp;
           <img width="45px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
-          To learn more about this project, its history, related projects, and the team that built it, visit <a href="http://californiareportcard.org/" target="_blank" style="color: #4e300f;">californiareportcard.org</a>.<br/>
+          To learn more about this project, its history, related projects, and the team that built it, visit <a href="http://opinion.berkeley.edu/" target="_blank" style="color: #ffffff;">opinion.berkeley.edu</a>.<br/>
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-grade dialog-style' style="z-index:999">
@@ -1139,7 +1144,7 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
       <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
-          You can continue grading more mugs and whenever you’re ready, just click on your mug (with the blue coaster) to leave a idea of your own.<br/><br/>
+          You can continue grading more mugs and whenever you’re ready, just click on your mug (with the blue coaster) to leave an idea of your own.<br/><br/>
 
           <em>Q:</em> Why is my mug located at this position on the table?<br/>
           <em>A:</em> The placement of each participant's mug is based on how he or she graded the first 5 questions.
@@ -1179,7 +1184,7 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
       <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
-          Please propose a specific way in which this course be enhanced to make it more valuable for you.  Click Post when you’re done.
+          Please propose a specific way in which this course can be enhanced to make it more valuable for you.  Click Post when you’re done.
       </div>
     </center>
   </div>
@@ -1192,6 +1197,7 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
           &nbsp;
           <img width="45px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
           <em>Q:</em> How do I grade a suggestion?<br/>
@@ -1199,6 +1205,7 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
           You can skip to another one or mark this suggestion as irrelevant or inaccurate
           (click again to undo).  Otherwise, drag the two slider handles to assign grades.<br/><br/>
       </div>
+    </center>
   </div>
 
   <div class='dialog-help-continue dialog-style' style="z-index:999">
@@ -1224,10 +1231,12 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
           &nbsp;
           <img width="45px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
       </div>
+      <center>
       <div class='dialog-text-style-noflow small-left-padding'>
           <div class="basic-header">Help</div>
-          To learn more about this project, its history, related projects, and the team that built it, visit <a href="http://opinion.berkeley.edu/" target="_blank" style="color: #4e300f;">opinion.berkeley.edu</a>.
+          To learn more about this project, its history, related projects, and the team that built it, visit <a href="http://opinion.berkeley.edu/" target="_blank" style="color: #ffffff;">opinion.berkeley.edu</a>.
       </div>
+    </center>
   </div>
 
 <!--
