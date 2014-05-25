@@ -397,6 +397,19 @@ table.pretty caption {
 		background-color: rgba(198, 184, 192, 0.3);
 	}
 
+	.returning-btn{
+		border: solid 3px #ffffff;
+		width: 200px;
+		border-radius: 15px;
+		padding-top: 10px;
+		margin-top: 10px;
+		text-shadow: none;
+		height: 40px;
+		color: #ffffff;
+		cursor: pointer;
+		background-color: rgba(198, 184, 192, 0.3);
+	}
+
 
 	.begin-btn2{
 		border: solid 3px #ffffff;

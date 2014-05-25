@@ -235,7 +235,8 @@ M-CAFE is a platform that facilitates student feedback and suggestions to the in
 Students will periodically be asked to spend a few minutes and enter their feedback into M-CAFE.            
           </div>
 
-          <div class='begin-btn first-time-btn'><font class="begin-font">Begin</font></div>
+          <div class='begin-btn first-time-btn' style="display: inline-block;margin-right: 10px;"><font class="begin-font">Begin</font></div>
+          <div class='returning-btn return-btn' style="display: inline-block;"><font class="begin-font">Returning</font></div>
 
 
           <br/><br/>
@@ -972,6 +973,25 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
              <button type='submit' data-theme='b' class='dialog-email-ready' ><font style="font-size: 16px;">Continue Grading</font></button>
          </div>
      </div>
+  </div>
+
+   <div class='login dialog-style'>
+     <div class="home-btn-dialog-box">
+         <img width="45px;" class='back-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_back_bttn.png">
+         &nbsp;
+         <img width="45px;" class='home-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_home_bttn.png">
+         &nbsp;
+         <img width="45px;" class='help-btn-dialog' src="{{url_root}}/media/mobile/img/cafe/CRC_help_bttn.png">
+     </div>
+
+     <center>
+     <div class='dialog-text-style default-left-padding'>
+         If you have already registered your email with M-Cafe, please enter it here. You will be able to update your evaluations, add a new suggestion, and read/rate other participants.<br/>
+         <input type="text" class="login-email" id="login-email" value='' placeholder="Email" data-theme='b' style="color: #000000 !important; font-size: 24px !important;"/>
+         <div class='alert-error' id='login-error' style='display:none;width: 100%;'></div><br/>
+         <center><div class='begin-btn exec-login' style="text-align:center;"><font class="begin-font">Login</font></div></center>
+     </div>
+   </center>
   </div>
 
   <div class='dialog-avggrade dialog-style'>

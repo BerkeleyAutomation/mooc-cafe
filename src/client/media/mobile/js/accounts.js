@@ -509,6 +509,29 @@ $(document).ready(function() {
 
     });
 
+ $('.exec-login').click(function() {
+    $.ajax({
+            async:false,
+            type: "POST",
+            dataType: 'json',
+            url: window.url_root + "/checkemail/",
+            data: {'username':$('#login-email').val()},
+            success: function(data) {
+                if (data.registered==true) {
+                    
+                    //console.log("data was sent!")
+                    window.location.href=window.url_root+"/mobile/"+data.entrycode+"/";
+                }
+                else
+                {
+                    $('#login-error').text("The email address you provided is not registered with M-Cafe.");
+                    $("#login-error").show();
+                }
+
+            }
+        });
+    });
+
     $('.first-time-btn').click(function() {
         //accounts.firstTime();
 	// window.history.pushState("", "", '#');
@@ -889,6 +912,11 @@ $(document).ready(function() {
 
     $('.logout-login-again').click(function() {
         $('.logout').hide();
+        $('.login').show();
+    });
+
+    $('.return-btn').click(function() {
+        accounts.hideAll();
         $('.login').show();
     });
     
