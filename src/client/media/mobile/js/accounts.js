@@ -277,6 +277,7 @@ var accounts = (function($, d3, console) {
 	    $('.register').hide();
 	    $('.landing').hide();
         $('.endsliders').hide();
+        $('.login').hide();
         $('.dialog').hide();
         $('.dialog-avggrade').hide();
         $('.dialog-about').hide();
@@ -510,6 +511,8 @@ $(document).ready(function() {
     });
 
  $('.exec-login').click(function() {
+    window.prev_state = 'home';
+    window.cur_state = 'login';
     $.ajax({
             async:false,
             type: "POST",
@@ -650,6 +653,11 @@ $(document).ready(function() {
                    window.prev_state = 'continue';
                    $('.dialog-email').show();
                 }
+                else if (window.prev_state == 'login')
+                {
+                   window.prev_state = 'home';
+                   $('.login').show();
+                }
                 else if (window.prev_state.indexOf('help') != -1)
                 {
                     $('.dialog-help-alt').show();
@@ -678,7 +686,7 @@ $(document).ready(function() {
                                  accounts.hideAll();
                                  window.prev_state = window.cur_state;
                                  window.cur_state = 'help-' + window.cur_state;
-                                 if (window.cur_state == 'help-home')
+                                 if (window.cur_state == 'help-home' || window.cur_state == 'help-login')
                                  {
                                     $('.dialog-about').show();
                                  }
