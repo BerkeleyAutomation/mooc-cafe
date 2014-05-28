@@ -560,7 +560,7 @@ var _blooms = blooms = (function($, d3, console) {
                 $('.endsliders').show();
                 //$('.entry-logout').show();
                 window.cur_state = 'grade';
-                window.prev_state = 'map';
+                window.prev_state = 'home';
             }
 
 			populateBlooms();
