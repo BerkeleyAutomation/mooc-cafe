@@ -553,14 +553,14 @@ var _blooms = blooms = (function($, d3, console) {
             {
                 $('.dialog').show();
                 window.cur_state = 'dialog';
-                window.prev_state = 'zip';
+                window.prev_state = 'grade';
             }
             else{
                 
                 $('.endsliders').show();
                 //$('.entry-logout').show();
                 window.cur_state = 'grade';
-                window.prev_state = 'grade';
+                window.prev_state = 'map';
             }
 
 			populateBlooms();
