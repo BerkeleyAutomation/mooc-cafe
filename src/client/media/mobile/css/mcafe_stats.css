@@ -3,10 +3,6 @@ svg {margin-left:auto; margin-right: auto;}
   fill: steelblue;
 }
 
-.bar:hover {
-  fill: brown;
-}
-
 .axis {
   font: 14px sans-serif;
 }
