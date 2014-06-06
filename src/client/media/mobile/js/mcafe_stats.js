@@ -23,7 +23,7 @@ function gender(){
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + Math.min(width,height) / 2 + ")");
 
-    d3.csv("../media/mobile/stats_data/gender.csv", function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/gender.csv", function(error, data) {
        var total= d3.sum(data, function(d){return d.number;});
        
        data.forEach(function(d) {
@@ -77,7 +77,7 @@ function issue1()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv("../media/mobile/stats_data/issue1.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue1.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -150,7 +150,7 @@ function issue2()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv("../media/mobile/stats_data/issue2.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue2.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -223,7 +223,7 @@ function issue3()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv("../media/mobile/stats_data/issue3.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue3.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -296,7 +296,7 @@ function issue4()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv("../media/mobile/stats_data/issue4.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue4.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -369,7 +369,7 @@ function issue5()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv("../media/mobile/stats_data/issue5.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue5.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -441,7 +441,7 @@ function college()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv("../media/mobile/stats_data/college.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/college.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.year; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -514,7 +514,7 @@ function age()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv("../media/mobile/stats_data/age.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/age.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.age; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -586,7 +586,7 @@ function map(){
                            }
                 });
     
-    d3.csv("../media/mobile/stats_data/country_student.csv", function(error, csvdata1) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/country_student.csv", function(error, csvdata1) {
            
            globalcsvdata1 = csvdata1;
            
@@ -597,7 +597,6 @@ function map(){
            delete  globalcsvdata1[i].ISO;
            delete  globalcsvdata1[i] ;
            }
-           console.log(globalcsvdata1);
            map.updateChoropleth(globalcsvdata1);
            
            }
