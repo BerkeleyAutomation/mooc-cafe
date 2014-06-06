@@ -52,7 +52,7 @@ function gender(){
 
 function issue1()
 {
-    var margin = {top: 20, right: 20, bottom: 10, left: 40},
+    var margin = {top: 20, right: 10, bottom: 10, left: 60},
     width = 710 - margin.left - margin.right,
     height = 420 - margin.top - margin.bottom;
     
@@ -69,7 +69,7 @@ function issue1()
     var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10, "%");
+    .ticks(10);
     
     var svg = d3.select("#issue1bar").append("svg")
     .attr("width", '100%')
@@ -79,12 +79,19 @@ function issue1()
     
     d3.csv("../media/mobile/stats_data/issue1.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
-           y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+           y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
            svg.append("g")
            .attr("class", "x axis")
            .attr("transform", "translate(0," + height + ")")
-           .call(xAxis);
+           .call(xAxis)
+           .append("text")
+           .attr("x",width-10)
+           .attr("y", 30)
+           .attr("dy", "0.7em")
+           .style("font-size","18px")
+           .style("text-anchor", "end")
+           .text("Grade");
            
            svg.append("g")
            .attr("class", "y axis")
@@ -94,7 +101,8 @@ function issue1()
            .attr("y", 6)
            .attr("dy", ".71em")
            .style("text-anchor", "end")
-           .text("Frequency");
+           .style("font-size","18px")
+           .text("Number of students");
            
            svg.selectAll(".bar")
            .data(data)
@@ -102,13 +110,13 @@ function issue1()
            .attr("class", "bar")
            .attr("x", function(d) { return x(d.score); })
            .attr("width", x.rangeBand())
-           .attr("y", function(d) { return y(d.frequency); })
-           .attr("height", function(d) { return height - y(d.frequency); });
+           .attr("y", function(d) { return y(d.total); })
+           .attr("height", function(d) { return height - y(d.total); });
            
            });
     
     function type(d) {
-        d.frequency = +d.frequency;
+        d.total = +d.total;
         return d;
     }
     
@@ -117,7 +125,7 @@ function issue1()
 
 function issue2()
 {
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    var margin = {top: 20, right: 10, bottom: 10, left: 60},
     width = 710 - margin.left - margin.right,
     height = 420 - margin.top - margin.bottom;
     
@@ -134,7 +142,7 @@ function issue2()
     var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10, "%");
+    .ticks(10);
     
     var svg = d3.select("#issue2bar").append("svg")
     .attr("width", '100%')
@@ -144,12 +152,19 @@ function issue2()
     
     d3.csv("../media/mobile/stats_data/issue2.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
-           y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+           y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
            svg.append("g")
            .attr("class", "x axis")
            .attr("transform", "translate(0," + height + ")")
-           .call(xAxis);
+           .call(xAxis)
+           .append("text")
+           .attr("x",width-10)
+           .attr("y", 30)
+           .attr("dy", "0.7em")
+           .style("font-size","18px")
+           .style("text-anchor", "end")
+           .text("Grade");
            
            svg.append("g")
            .attr("class", "y axis")
@@ -159,7 +174,8 @@ function issue2()
            .attr("y", 6)
            .attr("dy", ".71em")
            .style("text-anchor", "end")
-           .text("Frequency");
+           .style("font-size","18px")
+           .text("Number of students");
            
            svg.selectAll(".bar")
            .data(data)
@@ -167,13 +183,13 @@ function issue2()
            .attr("class", "bar")
            .attr("x", function(d) { return x(d.score); })
            .attr("width", x.rangeBand())
-           .attr("y", function(d) { return y(d.frequency); })
-           .attr("height", function(d) { return height - y(d.frequency); });
+           .attr("y", function(d) { return y(d.total); })
+           .attr("height", function(d) { return height - y(d.total); });
            
            });
     
     function type(d) {
-        d.frequency = +d.frequency;
+        d.total = +d.total;
         return d;
     }
     
@@ -182,7 +198,7 @@ function issue2()
 
 function issue3()
 {
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    var margin = {top: 20, right: 10, bottom: 10, left: 60},
     width = 710 - margin.left - margin.right,
     height = 420 - margin.top - margin.bottom;
     
@@ -199,7 +215,7 @@ function issue3()
     var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10, "%");
+    .ticks(10);
     
     var svg = d3.select("#issue3bar").append("svg")
     .attr("width", '100%')
@@ -209,12 +225,19 @@ function issue3()
     
     d3.csv("../media/mobile/stats_data/issue3.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
-           y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+           y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
            svg.append("g")
            .attr("class", "x axis")
            .attr("transform", "translate(0," + height + ")")
-           .call(xAxis);
+           .call(xAxis)
+           .append("text")
+           .attr("x",width-10)
+           .attr("y", 30)
+           .attr("dy", "0.7em")
+           .style("font-size","18px")
+           .style("text-anchor", "end")
+           .text("Grade");
            
            svg.append("g")
            .attr("class", "y axis")
@@ -224,7 +247,8 @@ function issue3()
            .attr("y", 6)
            .attr("dy", ".71em")
            .style("text-anchor", "end")
-           .text("Frequency");
+           .style("font-size","18px")
+           .text("Number of students");
            
            svg.selectAll(".bar")
            .data(data)
@@ -232,13 +256,13 @@ function issue3()
            .attr("class", "bar")
            .attr("x", function(d) { return x(d.score); })
            .attr("width", x.rangeBand())
-           .attr("y", function(d) { return y(d.frequency); })
-           .attr("height", function(d) { return height - y(d.frequency); });
+           .attr("y", function(d) { return y(d.total); })
+           .attr("height", function(d) { return height - y(d.total); });
            
            });
     
     function type(d) {
-        d.frequency = +d.frequency;
+        d.total = +d.total;
         return d;
     }
     
@@ -247,7 +271,7 @@ function issue3()
 
 function issue4()
 {
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    var margin = {top: 20, right: 10, bottom: 10, left: 60},
     width = 710 - margin.left - margin.right,
     height = 420 - margin.top - margin.bottom;
     
@@ -264,7 +288,7 @@ function issue4()
     var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10, "%");
+    .ticks(10);
     
     var svg = d3.select("#issue4bar").append("svg")
     .attr("width", '100%')
@@ -274,12 +298,19 @@ function issue4()
     
     d3.csv("../media/mobile/stats_data/issue4.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
-           y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+           y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
            svg.append("g")
            .attr("class", "x axis")
            .attr("transform", "translate(0," + height + ")")
-           .call(xAxis);
+           .call(xAxis)
+           .append("text")
+           .attr("x",width-10)
+           .attr("y", 30)
+           .attr("dy", "0.7em")
+           .style("font-size","18px")
+           .style("text-anchor", "end")
+           .text("Grade");
            
            svg.append("g")
            .attr("class", "y axis")
@@ -289,7 +320,8 @@ function issue4()
            .attr("y", 6)
            .attr("dy", ".71em")
            .style("text-anchor", "end")
-           .text("Frequency");
+           .style("font-size","18px")
+           .text("Number of students");
            
            svg.selectAll(".bar")
            .data(data)
@@ -297,13 +329,13 @@ function issue4()
            .attr("class", "bar")
            .attr("x", function(d) { return x(d.score); })
            .attr("width", x.rangeBand())
-           .attr("y", function(d) { return y(d.frequency); })
-           .attr("height", function(d) { return height - y(d.frequency); });
+           .attr("y", function(d) { return y(d.total); })
+           .attr("height", function(d) { return height - y(d.total); });
            
            });
     
     function type(d) {
-        d.frequency = +d.frequency;
+        d.total = +d.total;
         return d;
     }
     
@@ -312,7 +344,7 @@ function issue4()
 
 function issue5()
 {
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    var margin = {top: 20, right: 10, bottom: 10, left: 60},
     width = 710 - margin.left - margin.right,
     height = 420 - margin.top - margin.bottom;
     
@@ -329,7 +361,7 @@ function issue5()
     var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10, "%");
+    .ticks(10);
     
     var svg = d3.select("#issue5bar").append("svg")
     .attr("width", '100%')
@@ -339,12 +371,19 @@ function issue5()
     
     d3.csv("../media/mobile/stats_data/issue5.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
-           y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+           y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
            svg.append("g")
            .attr("class", "x axis")
            .attr("transform", "translate(0," + height + ")")
-           .call(xAxis);
+           .call(xAxis)
+           .append("text")
+           .attr("x",width-10)
+           .attr("y", 30)
+           .attr("dy", "0.7em")
+           .style("font-size","18px")
+           .style("text-anchor", "end")
+           .text("Grade");
            
            svg.append("g")
            .attr("class", "y axis")
@@ -354,7 +393,8 @@ function issue5()
            .attr("y", 6)
            .attr("dy", ".71em")
            .style("text-anchor", "end")
-           .text("Frequency");
+           .style("font-size","18px")
+           .text("Number of students");
            
            svg.selectAll(".bar")
            .data(data)
@@ -362,13 +402,13 @@ function issue5()
            .attr("class", "bar")
            .attr("x", function(d) { return x(d.score); })
            .attr("width", x.rangeBand())
-           .attr("y", function(d) { return y(d.frequency); })
-           .attr("height", function(d) { return height - y(d.frequency); });
+           .attr("y", function(d) { return y(d.total); })
+           .attr("height", function(d) { return height - y(d.total); });
            
            });
     
     function type(d) {
-        d.frequency = +d.frequency;
+        d.total = +d.total;
         return d;
     }
     
@@ -376,7 +416,7 @@ function issue5()
 
 function college()
 {
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    var margin = {top: 20, right: 10, bottom: 10, left: 60},
     width = 710 - margin.left - margin.right,
     height = 420 - margin.top - margin.bottom;
     
@@ -393,7 +433,7 @@ function college()
     var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10, "%");
+    .ticks(10);
     
     var svg = d3.select("#college").append("svg")
     .attr("width", '100%')
@@ -403,12 +443,19 @@ function college()
     
     d3.csv("../media/mobile/stats_data/college.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.year; }));
-           y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+           y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
            svg.append("g")
            .attr("class", "x axis")
            .attr("transform", "translate(0," + height + ")")
-           .call(xAxis);
+           .call(xAxis)
+           .append("text")
+           .attr("x",width-10)
+           .attr("y", 30)
+           .attr("dy", "0.7em")
+           .style("font-size","18px")
+           .style("text-anchor", "end")
+           .text("Prior years of college-level training");
            
            svg.append("g")
            .attr("class", "y axis")
@@ -417,8 +464,9 @@ function college()
            .attr("transform", "rotate(-90)")
            .attr("y", 6)
            .attr("dy", ".71em")
+           .style("font-size","18px")
            .style("text-anchor", "end")
-           .text("Frequency");
+           .text("Number of students");
            
            svg.selectAll(".bar")
            .data(data)
@@ -426,13 +474,13 @@ function college()
            .attr("class", "bar")
            .attr("x", function(d) { return x(d.year); })
            .attr("width", x.rangeBand())
-           .attr("y", function(d) { return y(d.frequency); })
-           .attr("height", function(d) { return height - y(d.frequency); });
+           .attr("y", function(d) { return y(d.total); })
+           .attr("height", function(d) { return height - y(d.total); });
            
            });
     
     function type(d) {
-        d.frequency = +d.frequency;
+        d.total = +d.total;
         return d;
     }
     
@@ -441,7 +489,7 @@ function college()
 
 function age()
 {
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    var margin = {top: 20, right: 10, bottom: 10, left: 60},
     width = 710 - margin.left - margin.right,
     height = 420 - margin.top - margin.bottom;
     
@@ -458,7 +506,7 @@ function age()
     var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10, "%");
+    .ticks(10);
     
     var svg = d3.select("#age").append("svg")
     .attr("width", '100%')
@@ -468,12 +516,20 @@ function age()
     
     d3.csv("../media/mobile/stats_data/age.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.age; }));
-           y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+           y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
            svg.append("g")
            .attr("class", "x axis")
            .attr("transform", "translate(0," + height + ")")
-           .call(xAxis);
+           .call(xAxis)
+           .append("text")
+           .attr("x",width-10)
+           .attr("y", 30)
+           .attr("dy", "0.7em")
+           .style("font-size","18px")
+           .style("text-anchor", "end")
+           .text("Age");
+
            
            svg.append("g")
            .attr("class", "y axis")
@@ -481,23 +537,25 @@ function age()
            .append("text")
            .attr("transform", "rotate(-90)")
            .attr("y", 6)
-           .attr("dy", ".71em")
+           .attr("dy", ".91em")
            .style("text-anchor", "end")
-           .text("Frequency");
+           .style("font-size","18px")
+           .text("Number of Students");
            
+
            svg.selectAll(".bar")
            .data(data)
            .enter().append("rect")
            .attr("class", "bar")
            .attr("x", function(d) { return x(d.age); })
            .attr("width", x.rangeBand())
-           .attr("y", function(d) { return y(d.frequency); })
-           .attr("height", function(d) { return height - y(d.frequency); });
+           .attr("y", function(d) { return y(d.total); })
+           .attr("height", function(d) { return height - y(d.total); });
            
            });
     
     function type(d) {
-        d.frequency = +d.frequency;
+        d.total = +d.total;
         return d;
     }
     
