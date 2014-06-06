@@ -561,6 +561,53 @@ function age()
     
 }
 
+function map(){
+    
+    var map  = new Datamap({
+                element: document.getElementById("map"),
+                projection: 'mercator',
+                fills: {
+                defaultFill: '#C0C0C0',
+                '1-50': '#feedde',
+                '51-100': '#fdd0a2',
+                '101-500': '#fdae6b',
+                '501-1000': '#fd8d3c',
+                '1001-5000': '#e6550d',
+                '5001-10000': '#a63603'
+                },
+                data:{},
+                           geographyConfig: {
+                           highlightBorderColor: '#bada55',
+                           popupTemplate: function(geography, data) {
+                           return '<div class="hoverinfo">' + geography.properties.name +'<br> Number of students: ' +  data.total +' '
+                           },
+                           highlightOnHover: false,
+                           
+                           }
+                });
+    
+    d3.csv("../media/mobile/stats_data/country_student.csv", function(error, csvdata1) {
+           
+           globalcsvdata1 = csvdata1;
+           
+           for (var i=0;i<csvdata1.length;i++)
+           {
+           globalcsvdata1[ globalcsvdata1[i].ISO] = globalcsvdata1[i] ;
+           
+           delete  globalcsvdata1[i].ISO;
+           delete  globalcsvdata1[i] ;
+           }
+           console.log(globalcsvdata1);
+           map.updateChoropleth(globalcsvdata1);
+           
+           }
+           
+           );
+    map.legend();
+
+}
+
+
 issue1();
 issue2();
 issue3();
@@ -569,4 +616,4 @@ issue5();
 gender();
 college();
 age();
-
+map();
