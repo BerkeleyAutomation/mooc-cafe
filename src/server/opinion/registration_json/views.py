@@ -475,14 +475,15 @@ def logout(request, next_page=None, template_name='registration/logged_out.html'
 		TEMP_DEBUG_FILE.write("\nLogin:" + str(datetime.datetime.now()) + "\n")
 	visitor_id = request.session.get('visitor_id', False)
 	from django.contrib.auth import logout
-		
+
 	create_user_event_log(request, {"log_type": LogUserEvents.logout})
 
 	application_close_helper(request)
 
 	logout(request)
-	if visitor_id:
-		request.session['visitor_id'] = visitor_id
+	request.session.flush()
+#	if visitor_id:
+#		request.session['visitor_id'] = visitor_id
 
 	if TEMP_DEBUG_LOGGING:
 		TEMP_DEBUG_FILE.write("Logout results is user_authenticated?" + str(request.user.is_authenticated()))
