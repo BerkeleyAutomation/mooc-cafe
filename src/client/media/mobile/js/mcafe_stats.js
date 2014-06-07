@@ -462,7 +462,7 @@ function college()
            .call(yAxis)
            .append("text")
            .attr("transform", "rotate(-90)")
-           .attr("y", 6)
+           .attr("y", -60)
            .attr("dy", ".71em")
            .style("font-size","18px")
            .style("text-anchor", "end")
@@ -536,7 +536,7 @@ function age()
            .call(yAxis)
            .append("text")
            .attr("transform", "rotate(-90)")
-           .attr("y", 6)
+           .attr("y", -60)
            .attr("dy", ".91em")
            .style("text-anchor", "end")
            .style("font-size","18px")
@@ -568,12 +568,14 @@ function map(){
                 projection: 'mercator',
                 fills: {
                 defaultFill: '#C0C0C0',
+                '0': '#C0C0C0',
                 '1-50': '#feedde',
                 '51-100': '#fdd0a2',
                 '101-500': '#fdae6b',
                 '501-1000': '#fd8d3c',
-                '1001-5000': '#e6550d',
-                '5001-10000': '#a63603'
+                '1001-5000': '#f16913',
+                '5001-10000': '#d94801',
+                '>10000': '#8c2d04'
                 },
                 data:{},
                            geographyConfig: {
@@ -597,6 +599,7 @@ function map(){
            delete  globalcsvdata1[i].ISO;
            delete  globalcsvdata1[i] ;
            }
+           console.log(window.url_root);
            map.updateChoropleth(globalcsvdata1);
            
            }
