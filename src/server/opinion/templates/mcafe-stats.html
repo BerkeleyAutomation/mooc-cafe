@@ -14,6 +14,8 @@
     <link href="{{url_root}}/media/mobile/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="{{url_root}}/media/mobile/css/freelancer.css" rel="stylesheet" type="text/css">
     <link href="{{url_root}}/media/mobile/css/mcafe_stats.css" rel="stylesheet" type="text/css">
+    <link href="{{url_root}}/media/mobile/css/jquery.dynatable.css" rel="stylesheet" type="text/css">
+    
     <!-- Fonts -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -44,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">MCAFE CS169.2x DASHBOARD</a>
+                <a class="navbar-brand" href="#page-top">CS 169.2X M-CAFE Summary</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,7 +62,7 @@
                         <a href="#about">GRADE</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">IDEAS</a>
+                        <a href="#contact">TOP IDEAS</a>
                     </li>
                 </ul>
             </div>
@@ -73,7 +75,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" src="{{url_root}}/media/mobile/img/cafe/cafe-title-cropped-2.png" alt="">
+                    <!--<img class="img-responsive" src="{{url_root}}/media/mobile/img/cafe/cafe-title-cropped-2.png" alt="">-->
                     <div class="intro-text">
                         <span class="skills">Examine how your classmates grade the course and find interesting ideas</span><br>
                         <span class="skills">As of {{date}} : {{num_participants}} students have graded the course</span>
@@ -82,52 +84,32 @@
             </div>
         </div>
     </header>
-
+    
     <section id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>DEMOGRAPHICS STATS</h2>
+                    <h2>DEMOGRAPHICS</h2><br>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-3 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal" style="text-decoration:underline;">
                         <h3>Country of Residence</h3>
                     </a>
                 </div>
                 <div class="col-sm-3 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal" style="text-decoration:underline;">
                         <h3>Gender</h3>
                     </a>
                 </div>
                 <div class="col-sm-3 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal" style="text-decoration:underline;">
                         <h3>Age</h3>
                     </a>
                 </div>
                 <div class="col-sm-3 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
+                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal" style="text-decoration:underline;">
                         <h3>Prior Years of College-Level Training</h3>
                     </a>
                 </div>
@@ -139,23 +121,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Grade Distribution</h2>
+                    <h2>Grade Distribution</h2><br>
                 </div>
             </div>
             <ul class="list-group">
-                <a href="#issue1" class="portfolio-link" data-toggle="modal">
+                <a href="#issue1" class="portfolio-link" data-toggle="modal" style="text-decoration:underline;">
                     <li class="list-group-item list-group-item-info">1. How would you grade this course so far in terms of technical difficulty?</li>
                 </a>
-                <a href="#issue2" class="portfolio-link" data-toggle="modal">
+                <a href="#issue2" class="portfolio-link" data-toggle="modal" style="text-decoration:underline;">
                     <li class="list-group-item list-group-item-info">2. How would you grade this course so far in terms of usefulness to your career?</li>
                 </a>
-                <a href="#issue3" class="portfolio-link" data-toggle="modal">
+                <a href="#issue3" class="portfolio-link" data-toggle="modal" style="text-decoration:underline;">
                     <li class="list-group-item list-group-item-info">3. How would you grade your enthusiasm so far for this course?</li>
                 </a>
-                <a href="#issue4" class="portfolio-link" data-toggle="modal">
+                <a href="#issue4" class="portfolio-link" data-toggle="modal" style="text-decoration:underline;">
                     <li class="list-group-item list-group-item-info">4. How would you grade your performance in this course so far?</li>
                 </a>
-                <a href="#issue5" class="portfolio-link" data-toggle="modal">
+                <a href="#issue5" class="portfolio-link" data-toggle="modal" style="text-decoration:underline;">
                     <li class="list-group-item list-group-item-info">5. How would you grade the effectiveness of course assignments to help you develop your skills?</li>
                 </a>
             </ul>
@@ -167,72 +149,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>SUGGESTED IDEAS</h2>
+                    <h2>TOP IDEAS</h2><br>
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="ideas">
                     <thead>
-                        <tr>
                             <th>Ranking</th>
                             <th>Ideas</th>
-                            <th>Post Date</th>
-                        </tr>
+                            <th>Date</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>More materials on ruby and rails</td>
-                            <td>6/1</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Smita</td>
-                            <td>Pallod</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Smita</td>
-                            <td>Pallod</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Smita</td>
-                            <td>Pallod</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Smita</td>
-                            <td>Pallod</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Smita</td>
-                            <td>Pallod</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Smita</td>
-                            <td>Pallod</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Smita</td>
-                            <td>Pallod</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Smita</td>
-                            <td>Pallod</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Smita</td>
-                            <td>Pallod</td>
-                        </tr>
-                    </tbody>
+                                            </tbody>
                 </table>
-                *The ranking is based on the lower bound of 95% confidence interval of mean rating estimation of each idea.
+                *We rank ideas by the lower bound of the 95% confidence interval of the sample mean. This score incorporates an idea's average rating, how many people have rated it, and how much raters disagreed.
             </div>
         </div>
     </section>
@@ -447,6 +377,7 @@
     <script src="{{url_root}}/media/mobile/js/classie.js"></script>
     <script src="{{url_root}}/media/mobile/js/cbpAnimatedHeader.js"></script>
     <script src="{{url_root}}/media/mobile/js/freelancer.js"></script>
+    <script src="{{url_root}}/media/mobile/js/jquery.dynatable.js"></script>
     <script src="{{url_root}}/media/mobile/js/mcafe_stats.js"></script>
 
 </body>
