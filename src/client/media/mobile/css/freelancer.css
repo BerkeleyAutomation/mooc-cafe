@@ -16,7 +16,7 @@ a:focus,
 a:active,
 a.active {
     outline: 0;
-    color: #18bc9c;
+    color: #3a444f;
 }
 
 h1,
@@ -76,7 +76,7 @@ hr.star-primary:after {
 header {
     text-align: center;
     color: #fff;
-    background: #18bc9c;
+    background: #152334;
 }
 
 header .container {
@@ -146,6 +146,10 @@ header .intro-text .skills {
     font-weight: 700;
 }
 
+.navbar-deafult{
+    background-color: #4F2E1C;
+}
+
 .navbar a:focus {
     outline: 0;
 }
@@ -174,7 +178,7 @@ section h2 {
 
 section.success {
     color: #fff;
-    background: #18bc9c;
+    background: #152334;
 }
 
 @media(max-width:767px) {
@@ -440,3 +444,8 @@ svg{
     display: block;
     margin: auto;
     }
+    
+    
+.list-group-item-info{
+background-color: #4F2E1C
+}
