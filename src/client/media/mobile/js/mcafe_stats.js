@@ -23,7 +23,7 @@ function gender(){
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + Math.min(width,height) / 2 + ")");
 
-    d3.csv(window.url_root+"/media/mobile/stats_data/gender.csv", function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/gender_r.csv", function(error, data) {
        var total= d3.sum(data, function(d){return d.number;});
        
        data.forEach(function(d) {
@@ -77,7 +77,7 @@ function issue1()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv(window.url_root+"/media/mobile/stats_data/issue1.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue1_r.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -441,7 +441,7 @@ function college()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv(window.url_root+"/media/mobile/stats_data/college.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/college_r.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.year; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -514,7 +514,7 @@ function age()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv(window.url_root+"/media/mobile/stats_data/age.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/age_r.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.age; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -588,7 +588,7 @@ function map(){
                            }
                 });
     
-    d3.csv(window.url_root+"/media/mobile/stats_data/country_student.csv", function(error, csvdata1) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/country_student_r.csv", function(error, csvdata1) {
            
            globalcsvdata1 = csvdata1;
            
@@ -599,7 +599,6 @@ function map(){
            delete  globalcsvdata1[i].ISO;
            delete  globalcsvdata1[i] ;
            }
-           console.log(window.url_root);
            map.updateChoropleth(globalcsvdata1);
            
            }
@@ -609,7 +608,42 @@ function map(){
 
 }
 
+function intSort(a, b , attr, direction) {
+    
+    var inta = parseInt(a.ranking);
+    var intb = parseInt(b.ranking);
+    var ret = (inta < intb) ? -1 : ((inta > intb) ?  1 : 0);
+    return ret;
+}
 
+function ideas(){
+    $.getJSON(window.url_root+"/media/mobile/js/mcafe-ideas-r.json", function(data){
+
+    $('#ideas').dynatable({
+                          features: {
+                          paginate: false,
+                          sort: false,
+                          pushState: true,
+                          search: false,
+                          recordCount: false,
+                          perPageSelect: false
+                          },
+                dataset: {
+                        records: data
+                },
+                readers:{
+                    'ranking' : function(el, record) {
+                    return Number(el.innerHTML) || 0;
+                          }
+                }
+                    
+    });
+              })
+
+    /*console.log(record);
+    myRecords = JSON.parse(record);
+    console.log(myRecords);*/
+}
 issue1();
 issue2();
 issue3();
@@ -619,3 +653,7 @@ gender();
 college();
 age();
 map();
+ideas();
+
+
+
