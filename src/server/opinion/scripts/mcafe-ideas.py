@@ -21,7 +21,7 @@ for i in range(len(comments)):
     if len(ratings)==1:
         commentratings[i]=ratings[0]
     if len(ratings)>1:
-        commentratings[i]=np.mean(ratings)-1.96*np.sqrt((np.var(ratings,ddof=1)+float(1)/13)/len(ratings))
+        commentratings[i]=np.mean(ratings)-1.96*np.sqrt((np.var(ratings)+float(1)/13)/len(ratings))
 
 index=np.argsort(commentratings)
 index=index[::-1] # from highest to lowest
@@ -32,4 +32,3 @@ for i in range(10):
 fout = open("datapath", "wt")
 json.dump(data,fout)
 fout.close()
-
