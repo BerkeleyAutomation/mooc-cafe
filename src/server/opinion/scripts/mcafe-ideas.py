@@ -28,7 +28,7 @@ index=index[::-1] # from highest to lowest
 data=[]
 for i in range(10):
     data.append({"ranking":str(i+1),"ideas":comments[index[i]].comment,"date":str(comments[index[i]].created.month)+"/"+str(comments[index[i]].created.day)})
-
+    print comments[index[i]].comment
 fout = open("datapath", "wt")
 json.dump(data,fout)
 fout.close()
