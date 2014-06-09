@@ -87,11 +87,27 @@ function issue1()
            .call(xAxis)
            .append("text")
            .attr("x",width-10)
-           .attr("y", 30)
+           .attr("y", 50)
            .attr("dy", "0.7em")
            .style("font-size","18px")
            .style("text-anchor", "end")
            .text("Grade");
+           
+           svg.append("text")
+           .attr("x",85)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very low)");
+           
+           svg.append("text")
+           .attr("x",width-10)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very high)");
            
            svg.append("g")
            .attr("class", "y axis")
@@ -150,7 +166,7 @@ function issue2()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv(window.url_root+"/media/mobile/stats_data/issue2.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue2_r.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -160,11 +176,27 @@ function issue2()
            .call(xAxis)
            .append("text")
            .attr("x",width-10)
-           .attr("y", 30)
+           .attr("y", 50)
            .attr("dy", "0.7em")
            .style("font-size","18px")
            .style("text-anchor", "end")
            .text("Grade");
+           
+           svg.append("text")
+           .attr("x",85)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very low)");
+           
+           svg.append("text")
+           .attr("x",width-10)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very high)");
            
            svg.append("g")
            .attr("class", "y axis")
@@ -223,7 +255,7 @@ function issue3()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv(window.url_root+"/media/mobile/stats_data/issue3.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue3_r.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -233,11 +265,28 @@ function issue3()
            .call(xAxis)
            .append("text")
            .attr("x",width-10)
-           .attr("y", 30)
+           .attr("y", 50)
            .attr("dy", "0.7em")
            .style("font-size","18px")
            .style("text-anchor", "end")
            .text("Grade");
+           
+           svg.append("text")
+           .attr("x",85)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very low)");
+           
+           svg.append("text")
+           .attr("x",width-10)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very high)");
+
            
            svg.append("g")
            .attr("class", "y axis")
@@ -296,7 +345,7 @@ function issue4()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv(window.url_root+"/media/mobile/stats_data/issue4.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue4_r.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -306,11 +355,27 @@ function issue4()
            .call(xAxis)
            .append("text")
            .attr("x",width-10)
-           .attr("y", 30)
+           .attr("y", 50)
            .attr("dy", "0.7em")
            .style("font-size","18px")
            .style("text-anchor", "end")
            .text("Grade");
+           
+           svg.append("text")
+           .attr("x",85)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very low)");
+           
+           svg.append("text")
+           .attr("x",width-10)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very high)");
            
            svg.append("g")
            .attr("class", "y axis")
@@ -369,7 +434,7 @@ function issue5()
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    d3.csv(window.url_root+"/media/mobile/stats_data/issue5.csv", type, function(error, data) {
+    d3.csv(window.url_root+"/media/mobile/stats_data/issue5_r.csv", type, function(error, data) {
            x.domain(data.map(function(d) { return d.score; }));
            y.domain([0, d3.max(data, function(d) { return d.total; })]);
            
@@ -379,11 +444,27 @@ function issue5()
            .call(xAxis)
            .append("text")
            .attr("x",width-10)
-           .attr("y", 30)
+           .attr("y", 50)
            .attr("dy", "0.7em")
            .style("font-size","18px")
            .style("text-anchor", "end")
            .text("Grade");
+           
+           svg.append("text")
+           .attr("x",85)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very low)");
+           
+           svg.append("text")
+           .attr("x",width-10)
+           .attr("y", 418)
+           .attr("dy", "0.7em")
+           .style("font-size","16px")
+           .style("text-anchor", "end")
+           .text("(very high)");
            
            svg.append("g")
            .attr("class", "y axis")
