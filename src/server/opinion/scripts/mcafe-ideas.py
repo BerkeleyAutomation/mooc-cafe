@@ -10,7 +10,6 @@ import numpy as np
 from opinion.includes.queryutils import *
 import csv
 datapath= settings.MEDIA_ROOT + "/mobile/js/mcafe-ideas-r.json"
-from collections import OrderedDict
 
 comments=DiscussionComment.objects.all()
 commentratings=np.zeros(len(comments))
@@ -28,7 +27,7 @@ index=np.argsort(commentratings)
 index=index[::-1] # from highest to lowest
 data=[]
 for i in range(10):
-    data.append(OrderedDict([("ranking",str(i+1)),("ideas",comments[index[i]].comment),("date",str(comments[index[i]].created.month)+"/"+str(comments[index[i]].created.day))]))
+    data.append({"ranking":str(i+1),"ideas":comments[index[i]].comment,"date":str(comments[index[i]].created.month)+"/"+str(comments[index[i]].created.day)})
 
 fout = open("datapath", "wt")
 json.dump(data,fout)
