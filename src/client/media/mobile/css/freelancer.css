@@ -76,7 +76,7 @@ hr.star-primary:after {
 header {
     text-align: center;
     color: #fff;
-    background: #152334;
+    background: #3A444F;
 }
 
 header .container {
@@ -178,7 +178,7 @@ section h2 {
 
 section.success {
     color: #fff;
-    background: #152334;
+    background: #3A444F;
 }
 
 @media(max-width:767px) {
@@ -341,7 +341,7 @@ footer .footer-col {
 
 footer .footer-below {
     padding: 25px 0;
-    background-color: #233140;
+    background-color: #3A444F;
 }
 
 .btn-social {
@@ -447,5 +447,5 @@ svg{
     
     
 .list-group-item-info{
-background-color: #4F2E1C
+background-color: #5C452C;
 }
