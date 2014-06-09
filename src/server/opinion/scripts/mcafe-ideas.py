@@ -30,6 +30,7 @@ data=[]
 for i in range(10):
     data.append(OrderedDict([("ranking",str(i+1)),("ideas",comments[index[i]].comment),("date",str(comments[index[i]].created.month)+"/"+str(comments[index[i]].created.day))]))
 
-with open(datapath,'w') as outfile:
-    json.dump(data,outfile)
+fout = open("datapath", "wt")
+json.dump(data,fout)
+fout.close()
 
