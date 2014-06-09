@@ -11,7 +11,7 @@ from opinion.includes.queryutils import *
 import csv
 datapath= settings.MEDIA_ROOT + "/mobile/stats_data/"
 
-#calculate grade distribution for each question and output csv for stats page
+#calculate grade distribution for each question
 
 statements = OpinionSpaceStatement.objects.all().order_by('id')
 active_users = User.objects.filter(is_active=True)
@@ -69,7 +69,7 @@ for s in statements:
         value = np.median(s_rating_list)
         skip=np.array([s_skip])
         hist=np.concatenate((hist,skip), axis=1)
-        print hist
+        
         for i in range(len(hist)-1):
             row=[i,hist[i]]
             writer.writerow(row)
