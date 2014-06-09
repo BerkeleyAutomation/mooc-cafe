@@ -65,11 +65,12 @@ for s in statements:
         title=['score','total']
         writer.writerow(title)
 
-        hist,bin_edges = np.histogram(s_rating_list,bins,normed=False)
+        hist,bin_edges = np.histogram(s_rating_list,bins=11,range=(0,1),normed=False)
         value = np.median(s_rating_list)
         skip=np.array([s_skip])
         hist=np.concatenate((hist,skip), axis=1)
-        
+        print hist
+        print bin_edges
         for i in range(len(hist)-1):
             row=[i,hist[i]]
             writer.writerow(row)
