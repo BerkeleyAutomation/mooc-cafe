@@ -263,7 +263,12 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
           <img width="45px;" class='logout-btn entry-logout' style="display: none;" src="{{url_root}}/media/mobile/img/cafe/CRC_logout_bttn.png">-->
       </div>
 
+      {% if loggedIn %}
+      <div class="basic-header">Welcome Back!</div>
+      {% else %}
       <div class="basic-header">{{client_settings.REPORT_CARD_HEADER}}</div>
+     {% endif %}
+      
 
       <center>
         <div class="rc-sub-header">

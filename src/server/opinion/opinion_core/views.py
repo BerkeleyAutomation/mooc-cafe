@@ -176,7 +176,7 @@ def mobile(request,entry_code=None):
                                                                                          'return_user_first_time':str(return_user_first_time(request,entry_code)).lower(),
                                                                                          'zipcode': str(return_zipcode(request)),
                                                                                          'visit_time': str(return_visit_time(request,entry_code)),
-											 'loggedIn' : str(request.user.is_authenticated()).lower(),
+											 'loggedIn' : request.user.is_authenticated(),
 											 'change_prompt' : str(request.user.is_authenticated()).lower(),
 											 'client_data': mobile_client_data(request),
 											 'entry_code': str(entry_code!=None).lower(),
