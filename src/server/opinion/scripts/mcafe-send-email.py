@@ -22,7 +22,7 @@ for user in user_today:
                                     })
         try:
            #send_mail(subject, message, Settings.objects.string('DEFAULT_FROM_EMAIL'), email_list)
-           
+           print message
            time.sleep(0.3)
         except:
            pass
