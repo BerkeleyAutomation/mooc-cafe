@@ -4,7 +4,7 @@ import os
 from opinion.opinion_core.models import *
 import datetime
 from django.template.loader import render_to_string
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 import time
 
 today_date=datetime.datetime.today()-datetime.timedelta(days=1)
@@ -20,10 +20,11 @@ for user in user_today:
         message = render_to_string('registration/mcafe-confirmation.txt',
                                   {'entrycode': entrycode[0].code,
                                     })
-        print message
-        print user.username
+        email = EmailMessage(subject, message, Settings.objects.string('DEFAULT_FROM_EMAIL'),
+                            email_list,
+                            headers = {'Reply-To': 'cafe.mooc@gmail.com'})
         try:
-           #send_mail(subject, message, Settings.objects.string('DEFAULT_FROM_EMAIL'), email_list)
+           #email.send()
            time.sleep(0.3)
         except:
            pass
