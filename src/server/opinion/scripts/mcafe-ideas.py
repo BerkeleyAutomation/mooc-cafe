@@ -20,7 +20,11 @@ for i in range(len(comments)):
     if len(ratings)==1:
         commentratings[i]=ratings[0]
     if len(ratings)>1:
-        commentratings[i]=np.mean(ratings)-1.96*np.sqrt((np.var(ratings)+float(1)/13)/len(ratings))
+        sum=0
+        for j in range(len(ratings)):
+            sum=sum+(ratings[j]-np.mean(ratings))*(ratings[j]-np.mean(ratings))
+        var=float(sum)/(len(ratings)-1)
+        commentratings[i]=np.mean(ratings)-1.96*np.sqrt((var+float(1)/13)/len(ratings))
 
 index=np.argsort(commentratings)
 index=index[::-1] # from highest to lowest
