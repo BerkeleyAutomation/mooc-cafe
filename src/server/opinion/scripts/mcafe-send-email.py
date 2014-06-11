@@ -23,7 +23,7 @@ for user in user_today:
         email = EmailMessage(subject, message, Settings.objects.string('DEFAULT_FROM_EMAIL'),
                     email_list, headers = {'Reply-To': 'cafe.mooc@gmail.com'})
     try:
-        #email.send()
+        email.send()
         print user.username
         time.sleep(0.3)
     except:
