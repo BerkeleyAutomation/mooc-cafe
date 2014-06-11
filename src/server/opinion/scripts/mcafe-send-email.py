@@ -24,7 +24,7 @@ if len(entrycode)>0:
                             email_list,
                             headers = {'Reply-To': 'cafe.mooc@gmail.com'})
     try:
-          #email.send()
+        email.send()
         print email
         time.sleep(0.3)
     except:
