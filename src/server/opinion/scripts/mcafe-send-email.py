@@ -16,14 +16,14 @@ for user in user_today:
     
     if len(entrycode)>0:
         subject = "Your unique link to the CS169.2x MCAFE"
-        email_list = [user.email]
+        email_list = [user.username]
         message = render_to_string('registration/mcafe-confirmation.txt',
                                   {'entrycode': entrycode[0].code,
                                     })
+        print message
+        print user.username
         try:
            #send_mail(subject, message, Settings.objects.string('DEFAULT_FROM_EMAIL'), email_list)
-           print message
-           print user.email
            time.sleep(0.3)
         except:
            pass
