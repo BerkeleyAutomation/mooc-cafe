@@ -12,11 +12,11 @@ user_today=User.objects.filter(date_joined__gte=today_date)
 
 
 #for user in user_today:
-    entrycode=EntryCode.objects.filter(username=sanjay@eecs.berkeley.edu)
+    entrycode=EntryCode.objects.filter(username='sanjay@eecs.berkeley.edu')
     
     if len(entrycode)>0:
         subject = "Your unique link to the CS169.2x MCAFE"
-        email_list = [sanjay@eecs.berkeley.edu]
+        email_list = ['sanjay@eecs.berkeley.edu']
         message = render_to_string('registration/mcafe-confirmation.txt',
                                   {'entrycode': entrycode[0].code,
                                     })
@@ -24,7 +24,8 @@ user_today=User.objects.filter(date_joined__gte=today_date)
                             email_list,
                             headers = {'Reply-To': 'cafe.mooc@gmail.com'})
         try:
-           email.send()
+           #email.send()
+           print email
            time.sleep(0.3)
         except:
            pass
