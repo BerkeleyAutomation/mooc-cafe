@@ -271,11 +271,18 @@ Students' names will not be displayed through M-CAFE. For any questions, comment
       
 
       <center>
-        <div class="rc-sub-header">
+
+     {% if loggedIn %}
+	 <div class="rc-sub-header">
+            At any time during the course, you can return and assign new grades:
+        </div>
+      {% else %}
+	<div class="rc-sub-header">
             Adjust the sliders to grade the following aspects of the course:
         </div>
-      
+     {% endif %}
 
+      
       <div class='reportcard'>
 
 
