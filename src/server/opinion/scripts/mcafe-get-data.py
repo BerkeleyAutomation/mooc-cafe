@@ -342,16 +342,16 @@ for i in range(len(visitors)):
             participation[i,4]=1
 
 #country map and region map
-countrymap = np.chararray(len(user))
+countrymap = []
 regionmap=-1*np.ones(len(user))
 for i in range(len(user)):
     country=UserData.objects.filter(user=user[i],key='country')
     if len(country)>0:
-        countrymap[i]=country[0].value
+        countrymap.append(country[0].value)
         if country[0].value in region_dict:
             regionmap[i]=int(region_dict[country[0].value])
     else:
-        countrymap[i]='-1'
+        countrymap.append('-1')
 
 #gender 1: male 2: female -1: NA
 gendermap=-1*np.ones(len(user))
