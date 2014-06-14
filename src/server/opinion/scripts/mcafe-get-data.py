@@ -22,7 +22,7 @@ useridmap = np.zeros(len(visitors))
 for i in range(len(visitors)):
     if visitors[i].user== None:
         useridmap[i]=-1
-    else
+    else:
         useridmap[i]=visitors[i].user.id
 
 
