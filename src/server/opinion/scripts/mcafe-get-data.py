@@ -15,7 +15,7 @@ exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkele
 user=User.objects.exclude(username__in=exclude_list)
 user_exclude=User.objects.filter(username__in=exclude_list)
 
-visitors=Visitor.objects.exclude(user__in=user_exclude).order_by(id)
+visitors=Visitor.objects.exclude(user__in=user_exclude).order_by('id')
 
 #produce visitor id map to user
 useridmap = np.zeros(len(visitors))
