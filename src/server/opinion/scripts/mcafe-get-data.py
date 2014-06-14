@@ -12,7 +12,11 @@ import csv
 import scipy.io
 
 exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
-user=User.objects.exclude(username__in=exclude_list)
+user=User.objects.exclude(username__in=exclude_list).order_by('id')
+userid=[]
+for u in user:
+    userid.append(u.id)
+
 user_exclude=User.objects.filter(username__in=exclude_list)
 
 visitors=Visitor.objects.exclude(user__in=user_exclude).order_by('id')
@@ -53,6 +57,40 @@ for s in statements:
                         baseline_issues[i,s.id-1]=float(s_log_rating[0].details[-1:])
                     else:
                         baseline_issues[i,s.id-1]=float(s_log_rating[0].details[-3:])
-scipy.io.savemat('mcafe_data.mat', dict(useridmap=useridmap, baseline_issues=baseline_issues))
+
+#produce comment rating
+comments=DiscussionComment.objects.all().order_by('id')
+comment_ratings=-1*np.ones((len(user),len(comments)))
+for comment in comments:
+    ratings=CommentAgreement.objects.filter(comment=comment)
+    for rating in ratings:
+        if rating.rater.id in userid:
+            comment_ratings[userid.index(rating.rater.id),rating.agreement]
+
+
+#participation level
+#   1 : 'visited the site, pressed "Begin"',
+#	2 : 'submitted grades',
+#	3 : 'registration',
+#	4 : 'rated at least 2 other participant\'s ideas',
+#	5 : 'submitted a valid idea',
+#	6 : 'returns using unique URL',
+
+participation=np.zeros((len(visitors),6))
+for i in range(len(visitors)):
+    participation[i,0]=1
+    level2=LogUserEvents.objects.filter(details='sliders finished',log_type=5, logger_id=visitors[i].id,is_visitor=True)
+    if len(level2)>0:
+        participation[i,1]=1
+    if visitors[i].user != None:
+        participation[i,2]=1
+        if CommentAgreement.objects.filter(rater = visitors[i].user).count() >= 2:
+            participation[i,3]=1
+        if DiscussionComment.objects.filter(user = visitors[i].user).count()>0:
+            participation[i,4]=1
+
+
+
+scipy.io.savemat('mcafe_data.mat', dict(useridmap=useridmap, baseline_issues=baseline_issues,comment_ratings=comment_ratings,participation=participation))
 
 
