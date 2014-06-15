@@ -289,25 +289,28 @@ baseline_issues=np.zeros((len(user),5))
 for s in statements:
     for i in range(len(user)):
         user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i]).order_by('-created')
-        visitor=Visitor.objects.filter(user=user[i])
-        if len(visitor)>0:
-            s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
-            s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
-            if len(s_log_skip)==0: #no skip
-                if len(s_log_rating)>0:
-                    baseline_issues[i,s.id-1]=user_s_rating[0].rating
-                else: #not click on skip, not move slider s, => skip
-                    baseline_issues[i,s.id-1]=-1
-            else:
-                if len(s_log_rating)==0:  #click skip, not move slider s => skip
-                    baseline_issues[i,s.id-1]=-1
+        if len(user_s_rating)>0:
+            visitor=Visitor.objects.filter(user=user[i])
+            if len(visitor)>0:
+                s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
+                s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
+                if len(s_log_skip)==0: #no skip
+                    if len(s_log_rating)>0:
+                        baseline_issues[i,s.id-1]=user_s_rating[0].rating
+                    else: #not click on skip, not move slider s, => skip
+                        baseline_issues[i,s.id-1]=-1
                 else:
-                    if s_log_skip[0].created>s_log_rating[0].created: #final decision is skip
+                    if len(s_log_rating)==0:  #click skip, not move slider s => skip
                         baseline_issues[i,s.id-1]=-1
                     else:
-                        baseline_issues[i,s.id-1]=user_s_rating[0].rating
+                        if s_log_skip[0].created>s_log_rating[0].created: #final decision is skip
+                            baseline_issues[i,s.id-1]=-1
+                        else:
+                            baseline_issues[i,s.id-1]=user_s_rating[0].rating
+            else:
+                baseline_issues[i,s.id-1]=user_s_rating[0].rating
         else:
-            baseline_issues[i,s.id-1]=user_s_rating[0].rating
+            baseline_issues[i,s.id-1]=-1
 
 
 
