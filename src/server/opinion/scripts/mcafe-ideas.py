@@ -43,6 +43,6 @@ writer=csv.writer(ofile,delimiter=',')
 title=['Rank','Comment','Number of rating','Score']
 writer.writerow(title)
 for i in range(len(comments)):
-    rating_c=CommentAgreement.objects.filter(comment=comments[i])
-    writer.writerow([str(i+1),comments[index[i]].comment,str(len(rating_c)),str(commentratings[i])])
+    rating_c=CommentAgreement.objects.filter(comment=comments[index[i]])
+    writer.writerow([str(i),comments[index[i]].comment,str(len(rating_c)),str(commentratings[i])])
 
