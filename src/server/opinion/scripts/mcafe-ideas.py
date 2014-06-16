@@ -9,7 +9,7 @@ import numpy as np
 from opinion.includes.queryutils import *
 import csv
 datapath= settings.MEDIA_ROOT + "/mobile/js/mcafe-ideas-r.json"
-
+testpath= settings.MEDIA_ROOT + "/mobile/js/mcafe-ideas-detail.csv"
 comments=DiscussionComment.objects.all()
 commentratings=np.zeros(len(comments))
 
@@ -27,6 +27,8 @@ for i in range(len(comments)):
         commentratings[i]=np.mean(ratings)-1.96*np.sqrt((var+float(1)/13)/len(ratings))
 
 index=np.argsort(commentratings)
+commentratings=np.sort(commentratings)
+commentratings=commentratings[::-1]
 index=index[::-1] # from highest to lowest
 data=[]
 for i in range(10):
@@ -35,4 +37,12 @@ for i in range(10):
 outfile = open(datapath, "w")
 json.dump(data,outfile)
 outfile.close()
+
+ofile  = open(testpath, "wb")
+writer=csv.writer(ofile,delimiter=',')
+title=['Rank','Comment','Number of rating','Score']
+writer.writerow(title)
+for i in range(len(comments)):
+    rating_c=CommentAgreement.objects.filter(comment=comments[i])
+    writer.writerow([str(index[i]),comments[index[i]].comment,str(len(rating_c)),str(commentratings[i]))
 
