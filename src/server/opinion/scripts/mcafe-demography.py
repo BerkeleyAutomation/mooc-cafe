@@ -11,7 +11,7 @@ from opinion.includes.queryutils import *
 import csv
 datapath= settings.MEDIA_ROOT + "/mobile/stats_data/"
 
-
+region_list={"
 country_list={"USA":0,
 "AFG":0,
 "ALA":0,
@@ -267,7 +267,11 @@ gender_dict={"m":0,"f":0,"NA":0}
 age_list=[0,0,0,0,0,0,0,0,0,0,0,0,0] #follow the order above
 year_list=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] #total 17 categories
 
-alluser=User.objects.filter(is_active=True)
+
+exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
+user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).order_by('id')
+alluser=user[11:]
+user_exclude=User.objects.filter(username__in=exclude_list)
 
 #calculate number of students in each country
 for user in alluser:
