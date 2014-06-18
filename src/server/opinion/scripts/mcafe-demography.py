@@ -11,7 +11,6 @@ from opinion.includes.queryutils import *
 import csv
 datapath= settings.MEDIA_ROOT + "/mobile/stats_data/"
 
-region_list={"
 country_list={"USA":0,
 "AFG":0,
 "ALA":0,
