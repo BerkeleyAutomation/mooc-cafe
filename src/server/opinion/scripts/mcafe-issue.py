@@ -14,7 +14,11 @@ datapath= settings.MEDIA_ROOT + "/mobile/stats_data/"
 #calculate grade distribution for each question
 
 statements = OpinionSpaceStatement.objects.all().order_by('id')
-active_users = User.objects.filter(is_active=True)
+exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
+user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).order_by('id')
+
+
+active_users = user[11:]
 bins=[0,0.05,0.15,0.25,0.35,0.45,0.55,0.65,0.75,0.85,0.95,1]
 
 for s in statements:
