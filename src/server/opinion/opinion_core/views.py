@@ -344,8 +344,9 @@ def mcafe_stats(request):
     
     os = get_os(1)
     disc_stmt = get_disc_stmt(os, 1)
-    
-    active_users = list(User.objects.filter(is_active = True))
+    exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
+    user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).order_by('id')
+    active_users = user[11:]
     
     statements = OpinionSpaceStatement.objects.all().order_by('id')
     medians = []
