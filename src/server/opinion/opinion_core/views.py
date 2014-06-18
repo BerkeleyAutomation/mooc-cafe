@@ -344,16 +344,14 @@ def mcafe_stats(request):
     
     os = get_os(1)
     disc_stmt = get_disc_stmt(os, 1)
-    exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
-    user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).order_by('id')
-    active_users = user[11:]
+    active_users = list(User.objects.filter(is_active = True))
     
     statements = OpinionSpaceStatement.objects.all().order_by('id')
     medians = []
     for s in statements:
         medians.append({'statement': s.statement, 'id':s.id})
     
-    return render_to_response('mcafe-stats.html', context_instance = RequestContext(request, {'num_participants': len(active_users),
+    return render_to_response('mcafe-stats.html', context_instance = RequestContext(request, {'num_participants': len(active_users)-24,
                                                                                           'date':datetime.date.today(),
                                                                                           'num_ratings': CommentAgreement.objects.filter(rater__in = active_users, is_current=True).count()*2,
                                                                                           'url_root' : settings.URL_ROOT,
