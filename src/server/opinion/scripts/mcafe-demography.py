@@ -288,20 +288,20 @@ for country in country_list:
     fillcolor=""
     if country_list[country]==0:
         fillcolor="0"
-    elif (country_list[country]>0 and country_list[country]<=10):
-        fillcolor="1-10"
-    elif (country_list[country]>10 and country_list[country]<=20):
-        fillcolor="11-20"
-    elif (country_list[country]>20 and country_list[country]<=30):
-        fillcolor="21-30"
-    elif (country_list[country]>30 and country_list[country]<=40):
-        fillcolor="31-40"
-    elif (country_list[country]>40 and country_list[country]<=50):
-        fillcolor="41-50"
-    elif (country_list[country]>50 and country_list[country]<=60):
-        fillcolor="51-60"
+    elif (country_list[country]>0 and country_list[country]<=5):
+        fillcolor="1-5"
+    elif (country_list[country]>5 and country_list[country]<=10):
+        fillcolor="6-10"
+    elif (country_list[country]>10 and country_list[country]<=15):
+        fillcolor="11-15"
+    elif (country_list[country]>15 and country_list[country]<=20):
+        fillcolor="16-20"
+    elif (country_list[country]>20 and country_list[country]<=25):
+        fillcolor="21-25"
+    elif (country_list[country]>25 and country_list[country]<=30):
+        fillcolor="26-30"
     else:
-        fillcolor=">60"
+        fillcolor=">30"
     row=[country,fillcolor,country_list[country]]
     writer.writerow(row)
 
