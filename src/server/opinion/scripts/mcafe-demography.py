@@ -288,22 +288,23 @@ for country in country_list:
     fillcolor=""
     if country_list[country]==0:
         fillcolor="0"
-    elif (country_list[country]>0 and country_list[country]<=50):
-        fillcolor="1-50"
-    elif (country_list[country]>50 and country_list[country]<=100):
-        fillcolor="51-100"
-    elif (country_list[country]>100 and country_list[country]<=500):
-        fillcolor="101-500"
-    elif (country_list[country]>500 and country_list[country]<=1000):
-        fillcolor="501-1000"
-    elif (country_list[country]>1000 and country_list[country]<=5000):
-        fillcolor="1001-5000"
-    elif (country_list[country]>5000 and country_list[country]<=10000):
-        fillcolor="5001-10000"
+    elif (country_list[country]>0 and country_list[country]<=10):
+        fillcolor="1-10"
+    elif (country_list[country]>10 and country_list[country]<=20):
+        fillcolor="11-20"
+    elif (country_list[country]>20 and country_list[country]<=30):
+        fillcolor="21-30"
+    elif (country_list[country]>30 and country_list[country]<=40):
+        fillcolor="31-40"
+    elif (country_list[country]>40 and country_list[country]<=50):
+        fillcolor="41-50"
+    elif (country_list[country]>50 and country_list[country]<=60):
+        fillcolor="51-60"
     else:
-        fillcolor=">10000"
+        fillcolor=">60"
     row=[country,fillcolor,country_list[country]]
     writer.writerow(row)
+
 
 #calculate gender distribution
 ofile_gender=open(settings.MEDIA_ROOT + "/mobile/stats_data/"+"gender_r.csv", "wb")
