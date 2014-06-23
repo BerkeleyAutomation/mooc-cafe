@@ -265,6 +265,7 @@ region_dict={"AGO":"1",
 
 exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
 user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).order_by('id')
+user=user[11:]
 userid=[]
 for u in user:
     userid.append(u.id)
@@ -283,7 +284,7 @@ for i in range(len(visitors)):
 
 
 
-#1st time rating baseline issues visitor's grade
+#1st time rating baseline issues user's grade
 statements = OpinionSpaceStatement.objects.all().order_by('id')
 baseline_issues=np.zeros((len(user),5))
 for s in statements:
@@ -296,7 +297,7 @@ for s in statements:
                 s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
                 if len(s_log_skip)==0: #no skip
                     if len(s_log_rating)>0:
-                        baseline_issues[i,s.id-1]=user_s_rating[0].rating
+                        baseline_issues[i,s.id-1]=user_s_rating[len(user_s_rating)-1].rating
                     else: #not click on skip, not move slider s, => skip
                         baseline_issues[i,s.id-1]=-1
                 else:
@@ -306,11 +307,37 @@ for s in statements:
                         if s_log_skip[0].created>s_log_rating[0].created: #final decision is skip
                             baseline_issues[i,s.id-1]=-1
                         else:
-                            baseline_issues[i,s.id-1]=user_s_rating[0].rating
+                            baseline_issues[i,s.id-1]=user_s_rating[len(user_s_rating)-1].rating
             else:
-                baseline_issues[i,s.id-1]=user_s_rating[0].rating
+                baseline_issues[i,s.id-1]=user_s_rating[len(user_s_rating)-1].rating
         else:
             baseline_issues[i,s.id-1]=-1
+
+
+#2nd time rating user's grade
+baseline_issues_2nd=np.zeros((len(user),5))
+for s in statements:
+    for i in range(len(user)):
+        user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i]).order_by('-created')
+        if len(user_s_rating)<=1:
+            baseline_issues_2nd[i,s.id-1]=-1
+        else:
+            s_log_skip=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).filter(details__contains='2 visit').order_by('-created')
+            s_log_rating=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).filter(details__contains='2 visit').order_by('-created')
+            if len(s_log_skip)==0: #no skip
+                if len(s_log_rating)>0:
+                    baseline_issues_2nd[i,s.id-1]=user_s_rating[len(user_s_rating)-2].rating
+                else: #not click on skip, not move slider s, => skip
+                    baseline_issues_2nd[i,s.id-1]=-1
+            else:
+                if len(s_log_rating)==0:  #click skip, not move slider s => skip
+                    baseline_issues_2nd[i,s.id-1]=-1
+                else:
+                    if s_log_skip[0].created>s_log_rating[0].created: #final decision is skip
+                        baseline_issues_2nd[i,s.id-1]=-1
+                    else:
+                        baseline_issues_2nd[i,s.id-1]=user_s_rating[len(user_s_rating)-2].rating
+
 
 
 
@@ -332,7 +359,7 @@ for i in range(len(comments)):
 #	5 : 'submitted a valid idea',
 #	6 : 'returns using unique URL',
 
-participation=np.zeros((len(visitors),6))
+participation=np.zeros((len(visitors),5))
 for i in range(len(visitors)):
     participation[i,0]=1
     level2=LogUserEvents.objects.filter(details='sliders finished',log_type=5, logger_id=visitors[i].id,is_visitor=True)
@@ -378,9 +405,14 @@ for i in range(len(user)):
             agemap[i]=int(age[0].value)
 
 
+#visitTimes
+visitTimes=np.zeros(len(user))
+for i in range(len(user)):
+    visit=UserData.objects.filter(user=user[i],key='visitTimes')
+    if len(visit)>0:
+        visitTimes[i]=int(visit[0].value)
 
 
-
-scipy.io.savemat('mcafe_data.mat', dict(useridmap=useridmap, baseline_issues=baseline_issues,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap))
+scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes))
 
 
