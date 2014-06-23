@@ -301,6 +301,7 @@ for s in statements:
                 if len(s_log_skip)==0: #no skip
                     if len(s_log_rating)>0:
                         rating=s_log_rating[0].details.split()
+                        print rating
                         baseline_issues[i,s.id-1]=float(rating[4])
                     else: #not click on skip, not move slider s, => skip
                         baseline_issues[i,s.id-1]=-1
