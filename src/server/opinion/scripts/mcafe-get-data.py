@@ -453,7 +453,7 @@ for i in range(len(user)):
 #join or return 2nd week
 join_return_week2=np.zeros(len(user))
 for i in range(len(user)):
-    if user.date_joined>=rate_2nd_date:
+    if user[i].date_joined>=rate_2nd_date:
         join_return_week2[i]=1
     else:
         s_log=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11).filter(created__gte=rate_2nd_date)
