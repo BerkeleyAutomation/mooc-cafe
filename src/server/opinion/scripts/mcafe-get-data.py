@@ -447,7 +447,7 @@ college=-1*np.ones(len(user))
 for i in range(len(user)):
     year=UserData.objects.filter(user=user[i],key='trainingYears')
     if len(year)>0:
-        if year[0].value!='-1':
+        if year[0].value!='':
             college[i]=int(year[0].value)
 
 
