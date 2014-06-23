@@ -447,7 +447,8 @@ college=-1*np.ones(len(user))
 for i in ragne(len(user)):
     year=UserData.objects.filter(user=user[i],key='trainingYears')
     if len(year)>0:
-        college[i]=int(year[0].value)
+        if year[0].value!='-1':
+            college[i]=int(year[0].value)
 
 
 scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college))
