@@ -301,8 +301,7 @@ for s in statements:
                 if len(s_log_skip)==0: #no skip
                     if len(s_log_rating)>0:
                         rating=s_log_rating[0].details.split()
-                        print rating
-                        baseline_issues[i,s.id-1]=float(rating[4])
+                        baseline_issues[i,s.id-1]=float(rating[len(rating)-1])
                     else: #not click on skip, not move slider s, => skip
                         baseline_issues[i,s.id-1]=-1
                 else:
@@ -313,7 +312,7 @@ for s in statements:
                             baseline_issues[i,s.id-1]=-1
                         else:
                             rating=s_log_rating[0].details.split()
-                            baseline_issues[i,s.id-1]=float(rating[4])
+                            baseline_issues[i,s.id-1]=float(rating[len(rating)-1])
             else:
                 baseline_issues[i,s.id-1]=user_s_rating[0].rating
         else:
@@ -334,7 +333,7 @@ for s in statements:
                     if len(s_log_skip)==0: #no skip
                         if len(s_log_rating)>0:
                             rating=s_log_rating[0].details.split()
-                            baseline_issues_2nd[i,s.id-1]=float(rating[4])
+                            baseline_issues_2nd[i,s.id-1]=float(rating[len(rating)-1])
                         else: #not click on skip, not move slider s, => skip
                             baseline_issues_2nd[i,s.id-1]=-1
                     else:
@@ -345,7 +344,7 @@ for s in statements:
                                 baseline_issues_2nd[i,s.id-1]=-1
                             else:
                                 rating=s_log_rating[0].details.split()
-                                baseline_issues_2nd[i,s.id-1]=float(rating[4])
+                                baseline_issues_2nd[i,s.id-1]=float(rating[len(rating)-1])
                 else:
                     baseline_issues_2nd[i,s.id-1]=user_s_rating[0].rating
             else:
@@ -357,7 +356,7 @@ for s in statements:
             if len(s_log_skip)==0: #no skip
                 if len(s_log_rating)>0:
                     rating=s_log_rating[0].details.split()
-                    baseline_issues_2nd[i,s.id-1]=float(rating[4])
+                    baseline_issues_2nd[i,s.id-1]=float(rating[len(rating)-1])
                 else: #not click on skip, not move slider s, => skip
                     baseline_issues_2nd[i,s.id-1]=-1
             else:
@@ -368,7 +367,7 @@ for s in statements:
                         baseline_issues_2nd[i,s.id-1]=-1
                     else:
                         rating=s_log_rating[0].details.split()
-                        baseline_issues_2nd[i,s.id-1]=float(rating[4])
+                        baseline_issues_2nd[i,s.id-1]=float(rating[len(rating)-1])
 
 
 
