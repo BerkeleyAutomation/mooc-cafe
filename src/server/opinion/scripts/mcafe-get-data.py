@@ -450,7 +450,18 @@ for i in range(len(user)):
         if year[0].value!='':
             college[i]=int(year[0].value)
 
+#join or return 2nd week
+join_return_week2=np.zeros(len(user))
+for i in range(len(user)):
+    if user.date_joined>=rate_2nd_date:
+        join_return_week2[i]=1
+    else:
+        s_log=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11).filter(created__gte=rate_2nd_date)
+        if len(s_log)>0:
+            join_return_week2[i]=1
 
-scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college))
+
+
+scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,join_return_week2=join_return_week2))
 
 
