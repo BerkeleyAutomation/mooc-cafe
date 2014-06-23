@@ -264,7 +264,7 @@ region_dict={"AGO":"1",
 "URY":"6",
 "VEN":"6"}
 
-exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
+exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
 user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).order_by('id')
 user=user[11:]
 userid=[]
@@ -442,7 +442,14 @@ for i in range(len(user)):
     if len(visit)>0:
         visitTimes[i]=int(visit[0].value)
 
+#college training
+college=-1*np.ones(len(user))
+for i in ragne(len(user)):
+    year=UserData.objects.filter(user=user[i],key='trainingYears')
+    if len(year)>0:
+        college[i]=int(year[0].value)
 
-scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes))
+
+scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college))
 
 
