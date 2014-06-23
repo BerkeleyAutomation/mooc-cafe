@@ -444,7 +444,7 @@ for i in range(len(user)):
 
 #college training
 college=-1*np.ones(len(user))
-for i in ragne(len(user)):
+for i in range(len(user)):
     year=UserData.objects.filter(user=user[i],key='trainingYears')
     if len(year)>0:
         if year[0].value!='-1':
