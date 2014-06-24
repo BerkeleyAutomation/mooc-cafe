@@ -309,7 +309,8 @@ for s in statements:
                         rating=s_log_rating[0].details.split()
                         baseline_issues_todate[i,s.id-1]=float(rating[len(rating)-1])
         else:
-            baseline_issues_todate[i,s.id-1]=user_s_rating[0].rating
+            if len(user_s_rating)>0:
+                baseline_issues_todate[i,s.id-1]=user_s_rating[0].rating
         
         if len(user_s_rating)>1: #rate more than 1 time, get user log info and most uptodate grade
             s_log_skip=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
