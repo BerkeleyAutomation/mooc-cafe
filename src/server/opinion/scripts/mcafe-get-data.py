@@ -283,12 +283,10 @@ for i in range(len(visitors)):
     else:
         useridmap[i]=visitors[i].user.id
 
-
+statements = OpinionSpaceStatement.objects.all().order_by('id')
 #up to date grade
-baseline_issues_todate=np.zeros((len(user),5))
+baseline_issues_todate=-1*np.ones((len(user),5))
 for s in statements:
-    s_rating_list=[]
-    s_skip=0
     for i in range(len(user)):
         user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i]).order_by('created')
         visitor=Visitor.objects.filter(user=user[i])
@@ -336,7 +334,7 @@ for s in statements:
 rate_2nd_date=datetime.datetime(2014,6,19,7,0,0)
 
 #1st week and 1st time rating baseline issues user's grade
-statements = OpinionSpaceStatement.objects.all().order_by('id')
+
 baseline_issues=-1*np.ones((len(user),5))
 for s in statements:
     for i in range(len(user)):
