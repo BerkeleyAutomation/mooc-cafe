@@ -73,9 +73,7 @@ for s in statements:
         value = np.median(s_rating_list)
         skip=np.array([s_skip])
         hist=np.concatenate((hist,skip), axis=1)
-        print s_rating_list
-        print hist
-        print bin_edges
+
         for i in range(len(hist)-1):
             row=[i,hist[i]]
             writer.writerow(row)
