@@ -79,6 +79,7 @@ for s in statements:
         skip=np.array([s_skip])
         hist=np.concatenate((hist,skip), axis=1)
         
+        print hist
         for i in range(len(hist)-1):
             row=[i,hist[i]]
             writer.writerow(row)
