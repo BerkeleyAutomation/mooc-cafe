@@ -289,27 +289,27 @@ baseline_issues_todate=-1*np.ones((len(user),5))
 for s in statements:
     for i in range(len(user)):
         user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i]).order_by('created')
-        visitor=Visitor.objects.filter(user=user[i])
-        if len(visitor)>0:
-            s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
-            s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
-            if len(s_log_skip)==0: #no skip
-                if len(s_log_rating)>0:
-                    rating=s_log_rating[0].details.split()
-                    baseline_issues_todate[i,s.id-1]=float(rating[len(rating)-1])
-                else: #not click on skip, not move slider s, => skip
-                    baseline_issues_todate[i,s.id-1]=-1
-            else:
-                if len(s_log_rating)==0:  #click skip, not move slider s => skip
-                    baseline_issues_todate[i,s.id-1]=-1
-                else:
-                    if s_log_skip[0].created>s_log_rating[0].created: #final decision is skip
-                        baseline_issues_todate[i,s.id-1]=-1
-                    else:
+        if len(user_s_rating)==1: #only rate 1 time, get visitor info
+            visitor=Visitor.objects.filter(user=user[i])
+            if len(visitor)>0:
+                s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
+                s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
+                if len(s_log_skip)==0: #no skip
+                    if len(s_log_rating)>0:
                         rating=s_log_rating[0].details.split()
                         baseline_issues_todate[i,s.id-1]=float(rating[len(rating)-1])
-        else:
-            if len(user_s_rating)>0:
+                    else: #not click on skip, not move slider s, => skip
+                        baseline_issues_todate[i,s.id-1]=-1
+                else:
+                    if len(s_log_rating)==0:  #click skip, not move slider s => skip
+                        baseline_issues_todate[i,s.id-1]=-1
+                    else:
+                        if s_log_skip[0].created>s_log_rating[0].created: #final decision is skip
+                            baseline_issues_todate[i,s.id-1]=-1
+                        else:
+                            rating=s_log_rating[0].details.split()
+                            baseline_issues_todate[i,s.id-1]=float(rating[len(rating)-1])
+            else:
                 baseline_issues_todate[i,s.id-1]=user_s_rating[0].rating
         
         if len(user_s_rating)>1: #rate more than 1 time, get user log info and most uptodate grade
