@@ -22,8 +22,6 @@ active_users = user[11:]
 bins=[0,0.05,0.15,0.25,0.35,0.45,0.55,0.65,0.75,0.85,0.95,1]
 
 for s in statements:
-    s_rating_list=[]
-    s_skip=0
     for user in active_users:
         user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user).order_by('created')
         if len(user_s_rating)==1: #only rate 1 time, get visitor info
@@ -64,6 +62,9 @@ for s in statements:
                     else:
                         rating=s_log_rating[0].details.split()
                         s_rating_list.append(float(rating[len(rating)-1]))
+        if len(user_s_rating)==0:
+            s_skip=s_skip+1
+
     
     if len(s_rating_list)>0:
         ofile  = open(settings.MEDIA_ROOT + "/mobile/stats_data/"+"issue"+str(s.id)+"_r.csv", "wb")
