@@ -58,16 +58,23 @@ for s in statements:
             if len(s_log_skip)==0: #no skip
                 if len(s_log_rating)>0:
                     rating=s_log_rating[0].details.split()
+                    if s_rating_list[i]==-1:
+                        s_skip=s_skip-1
                     s_rating_list[i]=float(rating[len(rating)-1])
+
             else:
                 if len(s_log_rating)==0:  #click skip, not move slider s => skip
-                    s_skip=s_skip+1
+                    if s_rating_list[i]!=-1:
+                        s_skip=s_skip+1
                     s_rating_list[i]=-1
                 else:
                     if s_log_skip[0].created>s_log_rating[0].created: #final decision is skip
-                        s_skip=s_skip+1
+                        if s_rating_list[i]!=-1:
+                            s_skip=s_skip+1
                         s_rating_list[i]=-1
                     else:
+                        if s_rating_list[i]==-1:
+                            s_skip=s_skip-1
                         rating=s_log_rating[0].details.split()
                         s_rating_list[i]=float(rating[len(rating)-1])
                 
