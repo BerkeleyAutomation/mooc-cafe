@@ -40,9 +40,9 @@ outfile.close()
 
 ofile  = open(testpath, "wb")
 writer=csv.writer(ofile,delimiter=',')
-title=['Rank','Comment','Number of rating','Score']
+title=['Rank','Comment','Number of rating','Score','Date']
 writer.writerow(title)
 for i in range(len(comments)):
     rating_c=CommentAgreement.objects.filter(comment=comments[index[i]])
-    writer.writerow([str(i),comments[index[i]].comment,str(len(rating_c)),str(commentratings[i])])
+    writer.writerow([str(i),comments[index[i]].comment,str(len(rating_c)),str(commentratings[i]),str(comments[index[i]].created.month)+"/"+str(comments[index[i]].created.day)])
 
