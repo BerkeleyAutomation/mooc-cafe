@@ -52,7 +52,7 @@ for s in statements:
             if len(s_log_skip)==0: #no skip
                 if len(s_log_rating)>0:
                     rating=s_log_rating[0].details.split()
-                    s_rating_list.append(rating[len(rating)-1])
+                    s_rating_list.append(float(rating[len(rating)-1]))
             else:
                 if len(s_log_rating)==0:  #click skip, not move slider s => skip
                     s_skip=s_skip+1
@@ -61,7 +61,7 @@ for s in statements:
                         s_skip=s_skip+1
                     else:
                         rating=s_log_rating[0].details.split()
-                        s_rating_list.append(rating[len(rating)-1])
+                        s_rating_list.append(float(rating[len(rating)-1]))
 
     if len(s_rating_list)>0:
         ofile  = open(settings.MEDIA_ROOT + "/mobile/stats_data/"+"issue"+str(s.id)+"_r.csv", "wb")
