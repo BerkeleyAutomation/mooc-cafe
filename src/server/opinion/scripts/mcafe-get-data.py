@@ -502,6 +502,30 @@ for i in range(len(user)):
         if len(s_log)>0:
             join_return_week2[i]=1
 
+#join or return 2nd week but not necessarily grade
+appear_week2=np.zeros(len(user))
+for i in range(len(user)):
+    if user[i].date_joined>=rate_2nd_date:
+        appear_week2[i]=1
+    else:
+        s_log=UserData.objects.filter(user=user[i],key='visitTimes',updated__gte=rate_2nd_date)
+        if len(s_log)>0:
+            appear_week2[i]=1
+
+#submit ideas in the 2nd week
+submit_week2=np.zeros(len(user))
+for i in range(len(user)):
+    comments=DiscussionComment.objects.filter(user=user[i],created__gte=rate_2nd_date)
+    submit_week2[i]=len(comments)
+
+#rate ideas in the 2nd week
+rate_week2=np.zeros(len(user))
+for i in range(len(user)):
+    ratings=CommentAgreement.objects.filter(rater=user[i],created__gte=rate_2nd_date)
+    rate_week2[i]=len(ratings)
+
+
+
 #number of rating ideas
 number_rating_ideas=np.zeros(len(user))
 for i in range(len(user)):
@@ -515,6 +539,6 @@ for i in range(len(user)):
     number_submit_ideas=len(ideas)
 
 
-scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,join_return_week2=join_return_week2,baseline_issues_todate=baseline_issues_todate,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas))
+scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,join_return_week2=join_return_week2,baseline_issues_todate=baseline_issues_todate,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2))
 
 
