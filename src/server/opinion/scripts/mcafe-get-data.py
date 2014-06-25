@@ -502,13 +502,13 @@ for i in range(len(user)):
         if len(s_log)>0:
             join_return_week2[i]=1
 
-#join or return 2nd week but not necessarily grade
+#appear
 appear_week2=np.zeros(len(user))
 for i in range(len(user)):
     if user[i].date_joined>=rate_2nd_date:
         appear_week2[i]=1
     else:
-        s_log=UserData.objects.filter(user=user[i],key='visitTimes',updated__gte=rate_2nd_date)
+        s_log=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id).filter(created__gte=rate_2nd_date)
         if len(s_log)>0:
             appear_week2[i]=1
 
