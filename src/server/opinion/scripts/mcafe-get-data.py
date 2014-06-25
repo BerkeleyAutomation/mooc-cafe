@@ -530,13 +530,13 @@ for i in range(len(user)):
 number_rating_ideas=np.zeros(len(user))
 for i in range(len(user)):
     ratings=CommentAgreement.objects.filter(rater=user[i])
-    number_rating_ideas=len(ratings)
+    number_rating_ideas[i]=len(ratings)
 
 #number of submitted ideas
 number_submit_ideas=np.zeros(len(user))
 for i in range(len(user)):
     ideas=DiscussionComment.objects.filter(user=user[i])
-    number_submit_ideas=len(ideas)
+    number_submit_ideas[i]=len(ideas)
 
 
 scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,join_return_week2=join_return_week2,baseline_issues_todate=baseline_issues_todate,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2))
