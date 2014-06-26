@@ -336,7 +336,7 @@ rate_2nd_date=datetime.datetime(2014,6,19,7,0,0)
 
 #1st week and 1st time rating baseline issues user's grade
 
-baseline_issues=-1*np.ones((len(user),5))
+baseline_issues_1st=-1*np.ones((len(user),5))
 for s in statements:
     for i in range(len(user)):
         user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i],created__lte=rate_2nd_date).order_by('created')
@@ -347,21 +347,21 @@ for s in statements:
             if len(s_log_skip)==0: #no skip
                 if len(s_log_rating)>0:
                     rating=s_log_rating[0].details.split()
-                    baseline_issues[i,s.id-1]=float(rating[len(rating)-1])
+                    baseline_issues_1st[i,s.id-1]=float(rating[len(rating)-1])
                 else: #not click on skip, not move slider s, => skip
-                    baseline_issues[i,s.id-1]=-1
+                    baseline_issues_1st[i,s.id-1]=-1
             else:
                 if len(s_log_rating)==0:  #click skip, not move slider s => skip
-                    baseline_issues[i,s.id-1]=-1
+                    baseline_issues_1st[i,s.id-1]=-1
                 else:
                     if s_log_skip[0].created>s_log_rating[0].created: #final decision is skip
-                        baseline_issues[i,s.id-1]=-1
+                        baseline_issues_1st[i,s.id-1]=-1
                     else:
                         rating=s_log_rating[0].details.split()
-                        baseline_issues[i,s.id-1]=float(rating[len(rating)-1])
+                        baseline_issues_1st[i,s.id-1]=float(rating[len(rating)-1])
         else:
             if len(user_s_rating)>0:
-                baseline_issues[i,s.id-1]=user_s_rating[0].rating
+                baseline_issues_1st[i,s.id-1]=user_s_rating[0].rating
 
 
 
@@ -492,17 +492,17 @@ for i in range(len(user)):
         if year[0].value!='':
             college[i]=int(year[0].value)
 
-#join or return and grade 2nd week
-join_return_week2=np.zeros(len(user))
+#grade 2nd week
+grade_week2=np.zeros(len(user))
 for i in range(len(user)):
     if user[i].date_joined>=rate_2nd_date:
-        join_return_week2[i]=1
+        grade_week2[i]=1
     else:
         s_log=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11).filter(created__gte=rate_2nd_date)
         if len(s_log)>0:
-            join_return_week2[i]=1
+            grade_week2[i]=1
 
-#appear
+#appear 2nd week
 appear_week2=np.zeros(len(user))
 for i in range(len(user)):
     if user[i].date_joined>=rate_2nd_date:
@@ -512,33 +512,44 @@ for i in range(len(user)):
         if len(s_log)>0:
             appear_week2[i]=1
 
-#submit ideas in the 2nd week
+#number of submit ideas in the 2nd week
 submit_week2=np.zeros(len(user))
 for i in range(len(user)):
     comments=DiscussionComment.objects.filter(user=user[i],created__gte=rate_2nd_date)
     submit_week2[i]=len(comments)
 
-#rate ideas in the 2nd week
+#number of rated ideas in the 2nd week
 rate_week2=np.zeros(len(user))
 for i in range(len(user)):
     ratings=CommentAgreement.objects.filter(rater=user[i],created__gte=rate_2nd_date)
     rate_week2[i]=len(ratings)
 
+#number of submit ideas in the 1st week
+submit_week1=np.zeros(len(user))
+for i in range(len(user)):
+    comments=DiscussionComment.objects.filter(user=user[i],created__lte=rate_2nd_date)
+    submit_week1[i]=len(comments)
+
+rate_week1=np.zeros(len(user))
+for i in range(len(user)):
+    ratings=CommentAgreement.objects.filter(rater=user[i],created__lte=rate_2nd_date)
+    rate_week1[i]=len(ratings)
 
 
-#number of rating ideas
+
+#number of total rating ideas
 number_rating_ideas=np.zeros(len(user))
 for i in range(len(user)):
     ratings=CommentAgreement.objects.filter(rater=user[i])
     number_rating_ideas[i]=len(ratings)
 
-#number of submitted ideas
+#number of total submitted ideas
 number_submit_ideas=np.zeros(len(user))
 for i in range(len(user)):
     ideas=DiscussionComment.objects.filter(user=user[i])
     number_submit_ideas[i]=len(ideas)
 
 
-scipy.io.savemat('mcafe_data.mat', dict(baseline_issues=baseline_issues,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,join_return_week2=join_return_week2,baseline_issues_todate=baseline_issues_todate,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2))
+scipy.io.savemat('mcafe_data.mat', dict(baseline_issues_1st=baseline_issues_1st,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,grade_week2=grade_week2,baseline_issues_todate=baseline_issues_todate,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2,submit_week1=submit_week1,rate_week1=rate_week1))
 
 
