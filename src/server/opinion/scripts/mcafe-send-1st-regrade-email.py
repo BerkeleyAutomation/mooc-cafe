@@ -9,7 +9,7 @@ import time
 
 exclude_list=['nonnecke@berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','alisoncliff@berkeley.edu','hunallen@berkeley.edu']
 all_user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).order_by('id')
-alluser=all_user[11:]
+alluser=User.objects.filter(username='hunallen@gmail.com')
 
 for user in alluser:
     entrycode=EntryCode.objects.filter(username=user.username)
@@ -17,7 +17,7 @@ for user in alluser:
     if len(entrycode)>0:
         subject = "Help improve the CS 169.2x course !"
         email_list = [user.username]
-        message = render_to_string('registration/mcafe-2nd-regrade.txt',
+        message = render_to_string('registration/mcafe-3rd-regrade.txt',
                                    {'entrycode': entrycode[0].code,
                                    })
         email = EmailMessage(subject, message, Settings.objects.string('DEFAULT_FROM_EMAIL'),email_list, headers = {'Reply-To': 'cafe.mooc@gmail.com'})
