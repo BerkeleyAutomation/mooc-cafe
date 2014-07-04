@@ -334,12 +334,16 @@ for s in statements:
 #rating date
 rate_2nd_date=datetime.datetime(2014,6,19,7,0,0)
 rate_3rd_date=datetime.datetime(2014,6,26,9,0,0)
+rate_4th_date=datetime.datetime(2014,7,3,10,0,0)
+rate_5th_date=datetime.datetime(2014,7,10,10,0,0)
+rate_6th_date=datetime.datetime(2014,7,17,10,0,0)
+rate_7th_date=datetime.datetime(2014,7,24,10,0,0)
 #1st week and 1st time rating baseline issues user's grade
 
 baseline_issues_1st=-1*np.ones((len(user),5))
 for s in statements:
     for i in range(len(user)):
-        user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i],created__lte=rate_2nd_date).order_by('created')
+        user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i],created__lt=rate_2nd_date).order_by('created')
         visitor=Visitor.objects.filter(user=user[i])
         if len(visitor)>0:
             s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).filter(created__lt=rate_2nd_date).order_by('-created')
@@ -373,8 +377,8 @@ for s in statements:
             user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i],created__gte=rate_2nd_date,created__lt=rate_3rd_date).order_by('created')
             visitor=Visitor.objects.filter(user=user[i])
             if len(visitor)>0:
-                s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
-                s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
+                s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_2nd_date,created__lt=rate_3rd_date).order_by('-created')
+                s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_2nd_date,created__lt=rate_3rd_date).order_by('-created')
                 if len(s_log_skip)==0: #no skip
                     if len(s_log_rating)>0:
                         rating=s_log_rating[0].details.split()
@@ -416,12 +420,12 @@ for s in statements:
 baseline_issues_3rd=-1*np.ones((len(user),5))
 for s in statements:
     for i in range(len(user)):
-        if user[i].date_joined>=rate_3rd_date: #user join 3rd week, get their first rating
-            user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i],created__gte=rate_3rd_date).order_by('created')
+        if user[i].date_joined>=rate_3rd_date and user[i].date_joined<rate_4th_date: #user join 3rd week, get their first rating
+            user_s_rating=UserRating.objects.filter(opinion_space_statement=s,user=user[i],created__gte=rate_3rd_date,created__lt=rate_4th_date).order_by('created')
             visitor=Visitor.objects.filter(user=user[i])
             if len(visitor)>0:
-                s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
-                s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).order_by('-created')
+                s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_3rd_date,created__lt=rate_4th_date).order_by('-created')
+                s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitor[0].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_3rd_date,created__lt=rate_4th_date)order_by('-created')
                 if len(s_log_skip)==0: #no skip
                     if len(s_log_rating)>0:
                         rating=s_log_rating[0].details.split()
@@ -442,8 +446,8 @@ for s in statements:
                     baseline_issues_3rd[i,s.id-1]=user_s_rating[0].rating
         
         else: #user join before 3rd week, check if they regrade
-            s_log_skip=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_3rd_date).order_by('-created')
-            s_log_rating=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_3rd_date).order_by('-created')
+            s_log_skip=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_3rd_date,created__lt=rate_4th_date).order_by('-created')
+            s_log_rating=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_3rd_date,created__lt=rate_4th_date).order_by('-created')
             if len(s_log_skip)==0: #no skip
                 if len(s_log_rating)>0:
                     rating=s_log_rating[0].details.split()
@@ -588,7 +592,7 @@ for i in range(len(user)):
     if user[i].date_joined>=rate_3rd_date:
         appear_week3[i]=1
     else:
-        s_log=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id).filter(created__gte=rate_3rd_date)
+        s_log=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id).filter(created__gte=rate_3rd_date,created__lt=rate_4th_date)
         if len(s_log)>0:
             appear_week3[i]=1
 
@@ -598,7 +602,7 @@ for i in range(len(user)):
     if user[i].date_joined>=rate_3rd_date:
         grade_week3[i]=1
     else:
-        s_log=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11).filter(created__gte=rate_3rd_date)
+        s_log=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id,log_type=11).filter(created__gte=rate_3rd_date,created__lt=rate_4th_date)
         if len(s_log)>0:
             grade_week3[i]=1
 
@@ -606,13 +610,13 @@ for i in range(len(user)):
 #number of submit ideas in the 3rd week
 submit_week3=np.zeros(len(user))
 for i in range(len(user)):
-    comments=DiscussionComment.objects.filter(user=user[i],created__gte=rate_3rd_date)
+    comments=DiscussionComment.objects.filter(user=user[i],created__gte=rate_3rd_date,created__lt=rate_4th_date)
     submit_week3[i]=len(comments)
 
 #number of rated ideas in the 3rd week
 rate_week3=np.zeros(len(user))
 for i in range(len(user)):
-    ratings=CommentAgreement.objects.filter(rater=user[i],created__gte=rate_3rd_date)
+    ratings=CommentAgreement.objects.filter(rater=user[i],created__gte=rate_3rd_date,created__lt=rate_4th_date)
     rate_week3[i]=len(ratings)
 
 
@@ -629,7 +633,24 @@ for i in range(len(user)):
     ideas=DiscussionComment.objects.filter(user=user[i])
     number_submit_ideas[i]=len(ideas)
 
+#join week
+join_week=np.zeros(len(user))
+for i in range(len(user)):
+    if user[i].date_joined<rate_2nd_date:
+        join_week[i]=1
+    elif user[i].date_joined>=rate_2nd_date and user[i].date_joined<rate_3rd_date:
+        join_week[i]=2
+    elif user[i].date_joined>=rate_3rd_date and user[i].date_joined<rate_4th_date:
+        join_week[i]=3
+    elif user[i].date_joined>=rate_4th_date and user[i].date_joined<rate_5th_date:
+        join_week[i]=4
+    elif user[i].date_joined>=rate_5th_date and user[i].date_joined<rate_6th_date:
+        join_week[i]=5
+    elif user[i].date_joined>=rate_6th_date and user[i].date_joined<rate_7th_date:
+        join_week[i]=6
+    else:
+        join_week[i]=7
 
-scipy.io.savemat('mcafe_data.mat', dict(baseline_issues_1st=baseline_issues_1st,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,grade_week2=grade_week2,baseline_issues_todate=baseline_issues_todate,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2,submit_week1=submit_week1,rate_week1=rate_week1,baseline_issues_3rd=baseline_issues_3rd,appear_week3=appear_week3,grade_week3=grade_week3,submit_week3=submit_week3,rate_week3=rate_week3))
+scipy.io.savemat('mcafe_data.mat', dict(baseline_issues_1st=baseline_issues_1st,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,grade_week2=grade_week2,baseline_issues_todate=baseline_issues_todate,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2,submit_week1=submit_week1,rate_week1=rate_week1,baseline_issues_3rd=baseline_issues_3rd,appear_week3=appear_week3,grade_week3=grade_week3,submit_week3=submit_week3,rate_week3=rate_week3,join_week=join_week))
 
 
