@@ -732,6 +732,8 @@ for i in range(len(user)):
     else:
         join_week[i]=7
 
-scipy.io.savemat('mcafe_data.mat', dict(baseline_issues_1st=baseline_issues_1st,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,grade_week2=grade_week2,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2,submit_week1=submit_week1,rate_week1=rate_week1,baseline_issues_3rd=baseline_issues_3rd,appear_week3=appear_week3,grade_week3=grade_week3,submit_week3=submit_week3,rate_week3=rate_week3,join_week=join_week,baseline_issues_4th=baseline_issues_4th,appear_week4=appear_week4,grade_week4=grade_week4,rate_week4=rate_week4,submit_week4=submit_week4))
+scipy.io.savemat('mcafe_data_1.mat', dict(baseline_issues_1st=baseline_issues_1st,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,grade_week2=grade_week2,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2,submit_week1=submit_week1,rate_week1=rate_week1,baseline_issues_3rd=baseline_issues_3rd,appear_week3=appear_week3,grade_week3=grade_week3,submit_week3=submit_week3,rate_week3=rate_week3,join_week=join_week))
+
+scipy.io.savemat('mcafe_data_2.mat',dict(baseline_issues_4th=baseline_issues_4th,appear_week4=appear_week4,grade_week4=grade_week4,rate_week4=rate_week4,submit_week4=submit_week4))
 
 
