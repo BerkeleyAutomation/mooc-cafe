@@ -313,4 +313,4 @@ for i in range(len(user)):
     else:
         join_week[i]=7
 
-scipy.io.savemat('mcafe_data_2.mat',dict(baseline_issues_4th=baseline_issues_4th,appear_week4=appear_week4,grade_week4=grade_week4,rate_week4=rate_week4,submit_week4=submit_week4,baseline_issues_3rd=baseline_issues_3rd,appear_week3=appear_week3,grade_week3=grade_week3,submit_week3=submit_week3,rate_week3=rate_week3,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2,baseline_issues_2nd=baseline_issues_2nd,baseline_issues_1st=baseline_issues_1st,join_week=join_week))
+scipy.io.savemat('mcafe_data_2.mat',dict(baseline_issues_4th=baseline_issues_4th,appear_week4=appear_week4,grade_week4=grade_week4,rate_week4=rate_week4,submit_week4=submit_week4,baseline_issues_3rd=baseline_issues_3rd,appear_week3=appear_week3,grade_week3=grade_week3,submit_week3=submit_week3,rate_week3=rate_week3,appear_week2=appear_week2,rate_week2=rate_week2,submit_week2=submit_week2,grade_week2=grade_week2,baseline_issues_2nd=baseline_issues_2nd,baseline_issues_1st=baseline_issues_1st,join_week=join_week))
