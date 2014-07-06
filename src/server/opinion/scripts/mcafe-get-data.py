@@ -602,7 +602,7 @@ for i in range(len(user)):
 #appear 2nd week
 appear_week2=np.zeros(len(user))
 for i in range(len(user)):
-    if if user[i].date_joined>=rate_2nd_date and user[i].date_joined<rate_3rd_date:
+    if user[i].date_joined>=rate_2nd_date and user[i].date_joined<rate_3rd_date:
         appear_week2[i]=1
     else:
         s_log=LogUserEvents.objects.filter(is_visitor=False, logger_id=user[i].id).filter(created__gte=rate_2nd_date,created__lt=rate_3rd_date)
