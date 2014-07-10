@@ -398,7 +398,7 @@ for i in range(len(user)):
 
 
 
-scipy.io.savemat('mcafe_data_1.mat', dict(comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas))
+scipy.io.savemat('mcafe_data_1.mat', dict(comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas))
 
 
 
