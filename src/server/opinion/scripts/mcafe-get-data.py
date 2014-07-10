@@ -396,10 +396,13 @@ for i in range(len(user)):
     ideas=DiscussionComment.objects.filter(user=user[i])
     number_submit_ideas[i]=len(ideas)
 
+user_comment_map={}
+for i in range(len(user)):
+    ideas=DiscussionComment.objects.filter(user=user[i],created__lt=rate_3rd_date).order_by('id')
+    for j in range(len(ideas)):
+        user_comment_map.setdefault(i,[]).append(ideas[j].id)
 
-
-scipy.io.savemat('mcafe_data_1.mat', dict(comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas))
-
+scipy.io.savemat('mcafe_data_1.mat', dict(baseline_issues_1st=baseline_issues_1st,baseline_issues_2nd=baseline_issues_2nd,comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,grade_week2=grade_week2,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,submit_week1=submit_week1,rate_week1=rate_week1,join_week=join_week,user_comment_map=user_comment_map))
 
 
 
