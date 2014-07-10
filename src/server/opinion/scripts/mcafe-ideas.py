@@ -40,7 +40,7 @@ outfile.close()
 
 ofile  = open(testpath, "wb")
 writer=csv.writer(ofile,delimiter=',')
-title=['ID',''Rank','Comment','Number of rating','Score','Date']
+title=['ID','Rank','Comment','Number of rating','Score','Date']
 writer.writerow(title)
 for i in range(len(comments)):
     rating_c=CommentAgreement.objects.filter(comment=comments[index[i]])
