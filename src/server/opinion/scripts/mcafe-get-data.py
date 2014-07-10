@@ -266,7 +266,7 @@ region_dict={"AGO":"1",
 
 exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
 user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).order_by('id')
-user=user[11:]
+user=user[51:]
 userid=[]
 for u in user:
     userid.append(u.id)
