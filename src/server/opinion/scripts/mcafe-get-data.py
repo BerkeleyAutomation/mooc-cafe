@@ -303,7 +303,7 @@ rate_7th_date=datetime.datetime(2014,7,24,10,0,0)
 
 #produce comment rating
 comments=DiscussionComment.objects.all().order_by('id')
-comment_ratings=-1*np.ones((len(user),int(comment[-1].id)))
+comment_ratings=-1*np.ones((len(user),int(comments[-1].id)))
 for i in range(len(comments)):
     ratings=CommentAgreement.objects.filter(comment=comments[i])
     for rating in ratings:
@@ -397,7 +397,7 @@ for i in range(len(user)):
     number_submit_ideas[i]=len(ideas)
 
 
-user_comment_map=np.zeros((len(user),int(comment[-1].id)))
+user_comment_map=np.zeros((len(user),int(comments[-1].id)))
 for i in range(len(user)):
     ideas=DiscussionComment.objects.filter(user=user[i]).order_by('id')
     for j in range(len(ideas)):
