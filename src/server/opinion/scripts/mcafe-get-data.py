@@ -399,7 +399,7 @@ for i in range(len(user)):
 
 user_comment_map=np.zeros((len(user),len(comments)))
 for i in range(len(user)):
-    ideas=DiscussionComment.objects.filter(user=user[i],created__lt=rate_3rd_date).order_by('id')
+    ideas=DiscussionComment.objects.filter(user=user[i]).order_by('id')
     for j in range(len(ideas)):
         user_comment_map[i,ideas[j].id]=1
 
