@@ -308,7 +308,7 @@ for i in range(len(comments)):
     ratings=CommentAgreement.objects.filter(comment=comments[i])
     for rating in ratings:
         if rating.rater.id in userid:
-            comment_ratings[userid.index(rating.rater.id),int(comments[i].id)]=rating.agreement
+            comment_ratings[userid.index(rating.rater.id),int(comments[i].id)-1]=rating.agreement
 
 
 #participation level
@@ -401,7 +401,7 @@ user_comment_map=np.zeros((len(user),int(comments[len(comments)-1].id)))
 for i in range(len(user)):
     ideas=DiscussionComment.objects.filter(user=user[i]).order_by('id')
     for j in range(len(ideas)):
-        user_comment_map[i,ideas[j].id]=1
+        user_comment_map[i,ideas[j].id-1]=1
 
 
 scipy.io.savemat('mcafe_data_1.mat', dict(comment_ratings=comment_ratings,participation=participation,userid=userid,countrymap=countrymap,regionmap=regionmap,gendermap=gendermap,agemap=agemap,visitTimes=visitTimes,college=college,number_rating_ideas=number_rating_ideas,number_submit_ideas=number_submit_ideas,user_comment_map=user_comment_map))
