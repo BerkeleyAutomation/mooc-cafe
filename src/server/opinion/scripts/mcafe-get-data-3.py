@@ -28,7 +28,13 @@ rate_6th_date=datetime.datetime(2014,7,17,10,0,0)
 rate_7th_date=datetime.datetime(2014,7,24,10,0,0)
 
 visitors_1=Visitor.objects.filter(created__gte=rate_1st_date,created__lt=rate_2nd_date)
-grade_week1_v=np.ones(len(visitors_1))
+grade_week1_v=np.zeros(len(visitors_1))
+for i in range(len(grade_week1_v)):
+    s_log=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitors_1[i].id,log_type=11).filter(created__gte=rate_1th_date,created__lt=rate_2nd_date)
+    if len(s_log)>0:
+        grade_week1_v[i]=1
+
+
 #get 1st week visitor grades(not registed as user)
 baseline_issues_1st_v=-1*np.ones((len(visitors_1),5))
 for s in statements:
@@ -41,7 +47,6 @@ for s in statements:
                 baseline_issues_1st_v[i,s.id-1]=float(rating[len(rating)-1])
             else: #not click on skip, not move slider s, => skip
                 baseline_issues_1st_v[i,s.id-1]=-1
-                grade_week1_v[i]=0
         else:
             if len(s_log_rating)==0:  #click skip, not move slider s => skip
                 baseline_issues_1st_v[i,s.id-1]=-1
@@ -54,7 +59,13 @@ for s in statements:
 
 
 visitors_2=Visitor.objects.filter(created__gte=rate_2nd_date,created__lt=rate_3rd_date)
-grade_week2_v=np.ones(len(visitors_2))
+
+grade_week2_v=np.zeros(len(visitors_2))
+for i in range(len(grade_week2_v)):
+    s_log=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitors_2[i].id,log_type=11).filter(created__gte=rate_2nd_date,created__lt=rate_3rd_date)
+    if len(s_log)>0:
+        grade_week2_v[i]=1
+
 #get 2nd week visitor grades(not registed as user)
 baseline_issues_2nd_v=-1*np.ones((len(visitors_2),5))
 for s in statements:
@@ -67,7 +78,6 @@ for s in statements:
                 baseline_issues_2nd_v[i,s.id-1]=float(rating[len(rating)-1])
             else: #not click on skip, not move slider s, => skip
                 baseline_issues_2nd_v[i,s.id-1]=-1
-                grade_week2_v[i]=0
         else:
             if len(s_log_rating)==0:  #click skip, not move slider s => skip
                 baseline_issues_2nd_v[i,s.id-1]=-1
@@ -80,7 +90,12 @@ for s in statements:
 
 
 visitors_3=Visitor.objects.filter(created__gte=rate_3rd_date,created__lt=rate_4th_date)
-grade_week3_v=np.ones(len(visitors_3))
+grade_week3_v=np.zeros(len(visitors_3))
+for i in range(len(grade_week3_v)):
+    s_log=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitors_3[i].id,log_type=11).filter(created__gte=rate_3rd_date,created__lt=rate_4th_date)
+    if len(s_log)>0:
+        grade_week3_v[i]=1
+
 #get 3rd week visitor grades(not registed as user)
 baseline_issues_3rd_v=-1*np.ones((len(visitors_3),5))
 for s in statements:
@@ -93,7 +108,6 @@ for s in statements:
                 baseline_issues_3rd_v[i,s.id-1]=float(rating[len(rating)-1])
             else: #not click on skip, not move slider s, => skip
                 baseline_issues_2nd_v[i,s.id-1]=-1
-                grade_week3_v[i]=0
         else:
             if len(s_log_rating)==0:  #click skip, not move slider s => skip
                 baseline_issues_3rd_v[i,s.id-1]=-1
@@ -106,7 +120,12 @@ for s in statements:
 
 visitors_4=Visitor.objects.filter(created__gte=rate_4th_date,created__lt=rate_5th_date)
 #get 4th week visitor grades(not registed as user)
-grade_week4_v=np.ones(len(visitors_4))
+grade_week4_v=np.zeros(len(visitors_4))
+for i in range(len(grade_week4_v)):
+    s_log=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitors_4[i].id,log_type=11).filter(created__gte=rate_4th_date,created__lt=rate_5th_date)
+    if len(s_log)>0:
+        grade_week4_v[i]=1
+
 baseline_issues_4th_v=-1*np.ones((len(visitors_4),5))
 for s in statements:
     for i in range(len(visitors_4)):
@@ -118,7 +137,6 @@ for s in statements:
                 baseline_issues_4th_v[i,s.id-1]=float(rating[len(rating)-1])
             else: #not click on skip, not move slider s, => skip
                 baseline_issues_4th_v[i,s.id-1]=-1
-                grade_week4_v[i]=0
         else:
             if len(s_log_rating)==0:  #click skip, not move slider s => skip
                 baseline_issues_4th_v[i,s.id-1]=-1
