@@ -30,7 +30,7 @@ rate_7th_date=datetime.datetime(2014,7,24,10,0,0)
 visitors_1=Visitor.objects.filter(created__gte=rate_1st_date,created__lt=rate_2nd_date)
 grade_week1_v=np.zeros(len(visitors_1))
 for i in range(len(grade_week1_v)):
-    s_log=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitors_1[i].id,log_type=11).filter(created__gte=rate_1th_date,created__lt=rate_2nd_date)
+    s_log=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitors_1[i].id,log_type=11).filter(created__gte=rate_1st_date,created__lt=rate_2nd_date)
     if len(s_log)>0:
         grade_week1_v[i]=1
 
