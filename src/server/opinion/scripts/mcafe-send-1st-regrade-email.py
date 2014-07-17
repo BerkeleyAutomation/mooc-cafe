@@ -17,7 +17,7 @@ for user in alluser:
     if len(entrycode)>0:
         subject = "Help improve the CS 169.2x course !"
         email_list = [user.username]
-        message = render_to_string('registration/mcafe-4th-regrade.txt',
+        message = render_to_string('registration/mcafe-5th-regrade.txt',
                                    {'entrycode': entrycode[0].code,
                                    })
         email = EmailMessage(subject, message, Settings.objects.string('DEFAULT_FROM_EMAIL'),email_list, headers = {'Reply-To': 'cafe.mooc@gmail.com'})
