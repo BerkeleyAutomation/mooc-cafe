@@ -9,7 +9,7 @@ import time
 
 exclude_list=['nonnecke@berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','alisoncliff@berkeley.edu','hunallen@berkeley.edu']
 all_user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).order_by('id')
-alluser=all_user[11:]
+alluser=User.objects.filter(username='hunallen@gmail.com')
 
 for user in alluser:
     entrycode=EntryCode.objects.filter(username=user.username)
