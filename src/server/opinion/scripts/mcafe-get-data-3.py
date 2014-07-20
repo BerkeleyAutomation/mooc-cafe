@@ -147,7 +147,37 @@ for s in statements:
                     rating=s_log_rating[0].details.split()
                     baseline_issues_4th_v[i,s.id-1]=float(rating[len(rating)-1])
 
-visitor_number=[len(visitors_1),len(visitors_2),len(visitors_3),len(visitors_4)]
+#get 5th week visitor grades(not registed as user)
+visitors_5=Visitor.objects.filter(created__gte=rate_5th_date,created__lt=rate_6th_date)
+grade_week5_v=np.zeros(len(visitors_5))
+for i in range(len(grade_week5_v)):
+    s_log=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitors_5[i].id,log_type=11).filter(created__gte=rate_5th_date,created__lt=rate_6th_date)
+    if len(s_log)>0:
+        grade_week5_v[i]=1
 
-scipy.io.savemat('mcafe_data_3.mat', dict(baseline_issues_1st_v=baseline_issues_1st_v,baseline_issues_2nd_v=baseline_issues_2nd_v,baseline_issues_3rd_v=baseline_issues_3rd_v,baseline_issues_4th_v=baseline_issues_4th_v,visitor_number=visitor_number,grade_week1_v=grade_week1_v,grade_week2_v=grade_week2_v,grade_week3_v=grade_week3_v,grade_week4_v=grade_week4_v))
+baseline_issues_5th_v=-1*np.ones((len(visitors_5),5))
+for s in statements:
+    for i in range(len(visitors_5)):
+        s_log_skip=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitors_5[i].id,log_type=11,details__contains='skip').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_5th_date,created__lt=rate_6th_date).order_by('-created')
+        s_log_rating=LogUserEvents.objects.filter(is_visitor=True, logger_id=visitors_5[i].id,log_type=11).exclude(details__contains='skip').exclude(details__contains='grade').filter(details__contains='slider_set '+str(s.id)).filter(created__gte=rate_5th_date,created__lt=rate_6th_date).order_by('-created')
+        if len(s_log_skip)==0: #no skip
+            if len(s_log_rating)>0:
+                rating=s_log_rating[0].details.split()
+                baseline_issues_5th_v[i,s.id-1]=float(rating[len(rating)-1])
+            else: #not click on skip, not move slider s, => skip
+                baseline_issues_5th_v[i,s.id-1]=-1
+        else:
+            if len(s_log_rating)==0:  #click skip, not move slider s => skip
+                baseline_issues_5th_v[i,s.id-1]=-1
+            else:
+                if s_log_skip[0].created>s_log_rating[0].created: #final decision is skip
+                    baseline_issues_5th_v[i,s.id-1]=-1
+                else:
+                    rating=s_log_rating[0].details.split()
+                    baseline_issues_5th_v[i,s.id-1]=float(rating[len(rating)-1])
+
+
+visitor_number=[len(visitors_1),len(visitors_2),len(visitors_3),len(visitors_4),len(visitors_5)]
+
+scipy.io.savemat('mcafe_data_3.mat', dict(baseline_issues_1st_v=baseline_issues_1st_v,baseline_issues_2nd_v=baseline_issues_2nd_v,baseline_issues_3rd_v=baseline_issues_3rd_v,baseline_issues_4th_v=baseline_issues_4th_v,baseline_issues_5th_v=baseline_issues_5th_v,visitor_number=visitor_number,grade_week1_v=grade_week1_v,grade_week2_v=grade_week2_v,grade_week3_v=grade_week3_v,grade_week4_v=grade_week4_v,grade_week5_v=grade_week5_v))
 
