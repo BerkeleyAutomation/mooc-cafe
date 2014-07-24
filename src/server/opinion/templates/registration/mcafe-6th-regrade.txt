@@ -1,0 +1,12 @@
+Dear CS169.2x student,
+
+Whether you completed CS169.2x or not, please return to the M-CAFE site one more time using this unique link to share your perspectives and help us improve the course for future students:
+
+http://opinion.berkeley.edu/mooc/mobile/{{entrycode}}/
+
+Thank you again for your valuable input!
+
+- The M-CAFE Team at UC Berkeley
+
+ps. for more on the M-CAFE project:
+http://opinion.berkeley.edu/mooc/mcafe_stats/
