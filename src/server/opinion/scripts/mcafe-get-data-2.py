@@ -12,12 +12,6 @@ import csv
 import scipy.io
 import datetime
 
-exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
-user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).filter(date_joined__lt=rate_end_date).order_by('id')
-user=user[51:]
-
-statements = OpinionSpaceStatement.objects.all().order_by('id')
-
 #rating date
 rate_2nd_date=datetime.datetime(2014,6,19,7,0,0)
 rate_3rd_date=datetime.datetime(2014,6,26,9,0,0)
@@ -26,6 +20,13 @@ rate_5th_date=datetime.datetime(2014,7,10,10,0,0)
 rate_6th_date=datetime.datetime(2014,7,17,10,0,0)
 rate_7th_date=datetime.datetime(2014,7,24,10,0,0)
 rate_end_date=datetime.datetime(2014,7,31,0,0,0)
+
+exclude_list=['goldberg@berkeley.edu','nonnecke@citris-uc.org','nonnecke@berkeley.edu','sanjay@eecs.berkeley.edu','goldberg@eecs.berkeley.edu','angelaslin@berkeley.edu','matti@example.com','patel24jay@gmail.com','ccrittenden@berkeley.edu','alisoncliff@berkeley.edu','hunallen@gmail.com','hunallen@berkeley.edu']
+user=User.objects.exclude(username__in=exclude_list).filter(is_active=True).filter(date_joined__lt=rate_end_date).order_by('id')
+user=user[51:]
+
+statements = OpinionSpaceStatement.objects.all().order_by('id')
+
 #1st week and 1st time rating baseline issues user's grade
 
 baseline_issues_1st=-1*np.ones((len(user),5))
