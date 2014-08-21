@@ -26,7 +26,7 @@ rate_4th_date=datetime.datetime(2014,7,3,10,0,0)
 rate_5th_date=datetime.datetime(2014,7,10,10,0,0)
 rate_6th_date=datetime.datetime(2014,7,17,10,0,0)
 rate_7th_date=datetime.datetime(2014,7,24,10,0,0)
-rate_end_date=datetime.datetime(2014,7,31,0,0,0)
+rate_end_date=datetime.datetime(2014,8,21,0,0,0)
 
 
 visitors_1=Visitor.objects.filter(created__gte=rate_1st_date,created__lt=rate_2nd_date)
