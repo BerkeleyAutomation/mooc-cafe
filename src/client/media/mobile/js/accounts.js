@@ -376,12 +376,12 @@ $(document).ready(function() {
             "password2": $('#regpassword1').val(),
             "email": $('#regemail').val(),
             "zipcode" : ($('#regzip').val() == '')?'-1':$('#regzip').val(),
-            "country": ($('#regcountry').val()=='')?'-1':$('#regcountry').val(),
-            "gender": ($('#reggender').val()=='')?'-1':$('#reggender').val(),
-            "age" : ($('#regage').val()== '')?'-1':$('#regage').val(),
-            "trainingYears" : ($('#regtrain').val()=='')?'-1':$('#regtrain').val(),
+            "major": ($('#regmajor').val()=='')?'-1':$('#regmajor').val(),
+            "year": ($('#regyear').val()=='')?'-1':$('#regyear').val(),
+            "regdesign" : ($('#redesign').val()== '')?'-1':$('#regdesign').val(),
+            "interests" : ($('#reginterests').val()=='')?'-1':$('#reginterests').val(),
+            "interesth" : ($('#reginteresth').val()=='')?'-1':$('#reginteresth').val(),
             "reason": ($('#regreason').val()=='')?'-1':$('#regreason').val()
-            
         };
 
         var loginData = {
