@@ -110,10 +110,11 @@ def return_visit_time(request,entrycode):
 
 def checkemail(request):
     username=request.REQUEST.get('username','')
-    user=User.objects.filter(username=username)
+    username=username.lower()[0:30]
+    user=User.objects.filter(username__icontains=username)
     
     if len(user)>0:
-       entrycode=EntryCode.objects.filter(username=username)
+       entrycode=EntryCode.objects.filter(username__icontains=username)
        if len(entrycode)>0:
           data={}
           data['entrycode']=entrycode[0].code
@@ -351,7 +352,7 @@ def mcafe_stats(request):
     for s in statements:
         medians.append({'statement': s.statement, 'id':s.id})
     
-    return render_to_response('mcafe-stats.html', context_instance = RequestContext(request, {'num_participants': len(active_users)-24,
+    return render_to_response('mcafe-stats.html', context_instance = RequestContext(request, {'num_participants': len(active_users),
                                                                                           'date':datetime.date.today(),
                                                                                           'num_ratings': CommentAgreement.objects.filter(rater__in = active_users, is_current=True).count()*2,
                                                                                           'url_root' : settings.URL_ROOT,
@@ -1198,7 +1199,9 @@ def search(request, os_id, username=''):
 
     comments = []
     for u in user:
-        comments.extend(list(DiscussionComment.objects.filter(user=u, is_current=True, blacklisted=False)))
+	c = DiscussionComment.objects.filter(user=u, is_current=True, blacklisted=False).order_by('-created')
+	if len(c) != 0:
+        	comments.append(c[0])
 	
     #return json_result({'success':True, 
     #                    'data':[format_user_object(u, os_id) for u in user]})

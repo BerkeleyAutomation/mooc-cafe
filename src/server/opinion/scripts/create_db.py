@@ -43,11 +43,11 @@ os_election.save()
 # Create the OS statements
 os_election_stmts = {}
 os_election_stmt_strings = {}
-os_election_stmt_strings[0] = 'Google Docs can help students learn math by enabling them to work together to solve problems.'
-os_election_stmt_strings[1] = 'Social Media games like "Words with Friends" can teach students about collective problem solving.'
-os_election_stmt_strings[2] = 'Twitter can expose students to new perspectives on topics they are studying.'
-os_election_stmt_strings[3] = 'Facebook can improve student\'s social skills.'
-os_election_stmt_strings[4] = 'A degree from an on-line school like Khan Academy is equivalent to a high-school diploma.'
+os_election_stmt_strings[0] = 'How would you rate this course so far in terms of technical difficulty? (if you haven\'t started the course yet, how difficult technically do you think this course will be?)'
+os_election_stmt_strings[1] = 'How would you rate this course so far in terms of usefulness to your career? (if you haven\'t started the course yet, how useful do you think this course will be?)'
+os_election_stmt_strings[2] = 'How would you rate your enthusiasm so far for this course?'
+os_election_stmt_strings[3] = 'How would you rate your performance in this course so far? (Please press the skip button if you haven\'t started the course yet.)'
+os_election_stmt_strings[4] = 'How would you rate the effectiveness of course assignments to help you develop your skills? (Please press the skip button if you haven\'t started the course yet.)'
 os_election_stmt_strings[5] = 'Nothing can replace a pencil and paper for learning.'
 os_election_stmt_strings[6] = 'Facebook causes distraction for primary and secondary students.'
 os_election_stmt_strings[7] = 'Video lectures are better than traditional lectures as they free up class time for group discussions.'
@@ -78,7 +78,7 @@ for i in range(0, numStatements):
                                                  short_version = os_election_stmt_shorts.get(i))
     os_election_stmts[i].save()
 
-disc = DiscussionStatement(opinion_space = os_election, statement = 'How can social media be used to benefit primary and secondary learning?', short_version='How can social media be used to benefit primary and secondary learning?', is_current = True)
+disc = DiscussionStatement(opinion_space = os_election, statement = 'In what specific way could this course be enhanced to make it more valuable for you?', short_version='In what specific way could this course be enhanced to make it more valuable for you?', is_current = True)
 disc.save()
 
 # These are the initial eigenvectors

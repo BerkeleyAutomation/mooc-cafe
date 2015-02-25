@@ -513,14 +513,14 @@ table.pretty caption {
 	
 	@media (max-width: 767px) {
 	.regforminput{
-		font-size: 24px !important;
+		font-size: 19px !important;
 		color: #CCCCCC;
 		margin: 0px;
 		padding-top: 0px;
 	}
 }
 	.regforminput{
-		font-size: 24px !important;
+		font-size: 19px !important;
 		color: #CCCCCC;
 	}
 
