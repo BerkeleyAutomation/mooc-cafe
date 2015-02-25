@@ -110,10 +110,11 @@ def return_visit_time(request,entrycode):
 
 def checkemail(request):
     username=request.REQUEST.get('username','')
-    user=User.objects.filter(username=username)
+    username=username.lower()[0:30]
+    user=User.objects.filter(username__icontains=username)
     
     if len(user)>0:
-       entrycode=EntryCode.objects.filter(username=username)
+       entrycode=EntryCode.objects.filter(username__icontains=username)
        if len(entrycode)>0:
           data={}
           data['entrycode']=entrycode[0].code
