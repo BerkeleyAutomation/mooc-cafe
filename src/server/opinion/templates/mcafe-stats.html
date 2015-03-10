@@ -64,6 +64,9 @@
                     <li class="page-scroll">
                         <a href="#contact">TOP IDEAS</a>
                     </li>
+                    <li class="page-scroll">
+                        <a href="#recent">RECENT IDEAS</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -214,6 +217,35 @@
             </div>
         </div>
     </section>
+
+    <section id="recent">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>RECENT IDEAS</h2><br>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="ideas">
+                    <thead>
+                        <th>Date</th>
+                        <th>Ideas</th>
+                        <th>Num. Ratings</th>
+                    </thead>
+                    <tbody>
+                        {% for c in recent_comments %}
+
+                      <tr>
+                         <td>{{c.created}}</td>
+                         <td>{{c.comment}}</td>
+                         <td>{{c.ratings.count}}</td>
+                     </tr>
+                     {% endfor %}
+                 </tbody>
+             </table>
+         </div>
+     </div>
+ </section>
 
     <footer class="text-center">
         <div class="footer-below">

@@ -351,12 +351,15 @@ def mcafe_stats(request):
     medians = []
     for s in statements:
         medians.append({'statement': s.statement, 'id':s.id})
-    
+
+    recent_comments = DiscussionComment.objects.filter(user__in=active_users, is_current=True).order_by('-created')[:15]
+
     return render_to_response('mcafe-stats.html', context_instance = RequestContext(request, {'num_participants': len(active_users),
                                                                                           'date':datetime.date.today(),
                                                                                           'num_ratings': CommentAgreement.objects.filter(rater__in = active_users, is_current=True).count()*2,
                                                                                           'url_root' : settings.URL_ROOT,
                                                                                           'medians': medians,
+                                                                                          'recent_comments': recent_comments,
                                                                                           }))
 def app(request, username=None):
 	if request.mobile:
