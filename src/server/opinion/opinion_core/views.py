@@ -342,7 +342,6 @@ def crc_generic_stats(request):
                                                                                             }))
 
 def mcafe_stats(request):
-    
     os = get_os(1)
     disc_stmt = get_disc_stmt(os, 1)
     active_users = list(User.objects.filter(is_active = True))
@@ -354,13 +353,35 @@ def mcafe_stats(request):
 
     recent_comments = DiscussionComment.objects.filter(user__in=active_users, is_current=True).order_by('-created')[:15]
 
-    return render_to_response('mcafe-stats.html', context_instance = RequestContext(request, {'num_participants': len(active_users),
-                                                                                          'date':datetime.date.today(),
-                                                                                          'num_ratings': CommentAgreement.objects.filter(rater__in = active_users, is_current=True).count()*2,
-                                                                                          'url_root' : settings.URL_ROOT,
-                                                                                          'medians': medians,
-                                                                                          'recent_comments': recent_comments,
-                                                                                          }))
+    try:
+      start_date = opinion.settings_local.START_DATE
+      end_date = opinion.settings_local.END_DATE
+    except:
+      start_date = os.created
+      end_date = os.created + datetime.timedelta(weeks=17)
+
+    as_of_date = min(datetime.datetime.today().date(), end_date)
+    week_num = ((as_of_date - start_date).days / 7) + 1
+
+    from opinion.includes.wilson_scores import *
+    wilson = wilson_scores()[:10]
+
+    context = {
+    'wilson' : wilson,
+    'as_of_date': as_of_date,
+    'week_num': week_num,
+    'num_participants': len(active_users),
+    'num_comments': DiscussionComment.objects.all().count(),
+    'num_peer_ratings': CommentAgreement.objects.all().count(),
+    'num_qat_ratings': UserRating.objects.all().count(),
+    'date':datetime.date.today(),
+    'num_ratings': CommentAgreement.objects.filter(rater__in = active_users, is_current=True).count()*2,
+    'url_root' : settings.URL_ROOT,
+    'medians': medians,
+    'recent_comments': recent_comments,
+    }
+    return render_to_response('mcafe-stats.html', context_instance = RequestContext(request, context))
+    
 def app(request, username=None):
 	if request.mobile:
 		#return HttpResponseRedirect(URL_ROOT + "/mobile/")

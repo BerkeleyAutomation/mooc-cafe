@@ -97,7 +97,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="intro-text">
-		      <span class="skills">As of March. 9th, 2015 (week 7): 90 students have graded the course with 1075 quantitative analysis topic grades (Course Difficulty, Course Usefulness, Self-Enthusiasm, Self-Performance and HW Effectiveness), 109 comments and 1230 peer-to-peer ratings.</span><br>
+		      <span class="skills">As of {{as_of_date}} (week {{week_num}}): {{num_participants}} students have graded the course with {{num_qat_ratings}} quantitative analysis topic grades (Course Difficulty, Course Usefulness, Self-Enthusiasm, Self-Performance and HW Effectiveness), {{num_comments}} comments and {{num_peer_ratings}} peer-to-peer ratings.</span><br>
 		      </div>
                   
                 </div>
@@ -115,30 +115,30 @@
 	    <div class="row">
 	        <div class="col-lg-12 text-center">
 		    <div class="intro-text">
-		        <span class="skills">Plot based on the mean ratings each week for the entire class. Error bars indicate 2 SEs above and below average.</span><br>
+		        <span class="skills">Plot based on the mean ratings each week for the entire class.</span><br>
 		    </div>
 		</div>
 	    </div>
             <ul class="list-group">
                 <a class="portfolio-link">
                     <li class="list-group-item list-group-item-info">1. How would you rate this course so far in terms of technical difficulty? </li>
-		    <img src="https://github.com/mozhou/Public/blob/master/img/QAT1.png?raw=true" alt="image" align="middle">
+		            <div style="text-align:center"><img src="https://github.com/mozhou/Public/blob/master/img/QAT1.png?raw=true" alt="image" align="middle"></div>
                 </a>
                 <a class="portfolio-link">
                     <li class="list-group-item list-group-item-info">2. How would you rate this course so far in terms of usefulness to your career?</li>
-		    <img src="https://github.com/mozhou/Public/blob/master/img/QAT2.png?raw=true" alt="image" align="middle">
+		            <div style="text-align:center"><img src="https://github.com/mozhou/Public/blob/master/img/QAT2.png?raw=true" alt="image" align="middle"></div>
                 </a>
                 <a class="portfolio-link">
                     <li class="list-group-item list-group-item-info">3. How would you rate your enthusiasm so far for this course?</li>
-		    <img src="https://github.com/mozhou/Public/blob/master/img/QAT3.png?raw=true" alt="image" align="middle">
+		          <div style="text-align:center"><img src="https://github.com/mozhou/Public/blob/master/img/QAT3.png?raw=true" alt="image" align="middle"></div>
                 </a>
                 <a class="portfolio-link">
                     <li class="list-group-item list-group-item-info">4. How would you rate your performance in this course so far?</li>
-		    <img src="https://github.com/mozhou/Public/blob/master/img/QAT4.png?raw=true" alt="image" align="middle">
+		            <div style="text-align:center"><img src="https://github.com/mozhou/Public/blob/master/img/QAT4.png?raw=true" alt="image" align="middle"></div>
                 </a>
                 <a class="portfolio-link">
                     <li class="list-group-item list-group-item-info">5. How would you rate the effectiveness of course assignments to help you develop your skills?</li>
-		    <img src="https://github.com/mozhou/Public/blob/master/img/QAT5.png?raw=true" alt="image" align="middle">
+		          <div style="text-align:center"><img src="https://github.com/mozhou/Public/blob/master/img/QAT5.png?raw=true" alt="image" align="middle"></div>
                 </a>
             </ul>
             
@@ -153,66 +153,26 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered" id="ideas">
+                                <table class="table table-bordered table-striped" id="top-ideas">
                     <thead>
-                            <th>Ranking</th>
-                            <th>Ideas</th>
-                            <th>Date</th>
+                        <th class="col-sm-1">Ranking</th>
+                        <th class="col-sm-2">Date</th>
+                        <th class="col-sm-8">Idea</th>
+                        <th class="col-sm-1"># Peer Ratings</th>
                     </thead>
                     <tbody>
-		      <tr>
-		       <td>1</td>
-		       <td>If possible to even have just a vocal note on bcourses for feedback on your assignment as the nature of their grading is so subjective.</td>
-		       <td>02/25</td>
-		      </tr>
-		      <tr>
-		       <td>2</td>
-		       <td>Some more direction on the project would be useful. I'm not entirely sure what my group is supposed to be doing at this time.</td>
-		       <td>02/05</td>
-		      </tr>
-		      <tr>
-		       <td>3</td>
-		       <td>Hands on group activities seem to have no sense of direction. I understand the reason behind vague prompts, but there needs to be more guidance/clarity. Take for example, the hands on that was supposed to be focused on the UI of a making a robot out of cardboard. My group was all over the place spitting out crazy ideas of making a robot without even focusing on the prompt that was given (or at least what I think the focus was supposed to be on), which leads to another issue: working in such large groups within small time frames is extremely hard i.e. you guys have 20 min to create a robot UI within your group of 8-10.  1) Prompts for hands-ons need to be more emphasized and clarified;2) Logistics during hands-on activities needs to be improved; 3) Prompts for homework are also vague and with no feedback, I have no idea what to even improve on or critically look at. I feel very narrow-minded.</td>
-		       <td>02/25</td>
-		      </tr>
-		      <tr>
-		       <td>4</td>
-		       <td>eceive the grades of the assignments: At this point of the semester I have not received any feedback on how I can improve my design skills. Each class I do my part doing the required assignment, but without feed back I don't know if what I have done is good or bad.</td>
-		       <td>02/25</td>
-		      </tr>
-		      <tr>
-		       <td>5</td>
-		       <td>Im finding it difficult to determine how I'm doing in the class right now I think a more specific rubric or expectations for our assignments would be helpful.</td>
-		       <td>02/17</td>
-		      </tr>
-		      <tr>
-		       <td>6</td>
-		       <td>Going over specific case studies would be useful in the beginning of the course so we can get a better idea of what the course is about.</td>
-		       <td>02/03</td>
-		      </tr>
-		      <tr>
-		       <td>7</td>
-		       <td>More clarity on creativity vs practicality for assignments. It's very different to explore wouldn't it be crazy if type of ideas as opposed to this could actually make an improvement ideas, and while both have their place, it's unclear which we should focus on for the assignments.</td>
-		       <td>02/20</td>
-		      </tr>
-		      <tr>
-		       <td>8</td>
-		       <td>More instruction on how to design, for example, how to conduct the interviews that shape personas, and methods to synthesize research findings.</td>
-		       <td>02/11</td>
-		      </tr>
-		      <tr>
-		       <td>9</td>
-		       <td>I think evaluation and sharing of other student's homework will help me learn better (more exposure to how others think and increase creativity). It's really interesting how a broad topic for homework can lead to so many different variations of answers. *Mind blown*</td>
-		       <td>02/28</td>
-		      </tr>
-		      <tr>
-		       <td>10</td>
-		       <td>Feedback on what we did well or not so well on the homeworks would be great.</td>
-		       <td>02/25</td>
-		      </tr>
+                        {% for c in wilson %}
 
-                                            </tbody>
-                </table>
+                      <tr>
+                         <td>{{forloop.counter}}</td>
+                         <td>{{c.created}}</td>
+                         <td>{{c.comment}}</td>
+                         <td>{{c.ratings.count}}</td>
+                     </tr>
+                     {% endfor %}
+                 </tbody>
+             </table>
+
                 *We rank ideas by the lower bound of the 95% confidence interval of the sample mean. This score incorporates an idea's average rating, how many people have rated it, and how much raters disagreed.
             </div>
         </div>
@@ -226,11 +186,11 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered" id="ideas">
+                <table class="table table-bordered table-striped" id="recent-ideas">
                     <thead>
-                        <th>Date</th>
-                        <th>Ideas</th>
-                        <th>Num. Ratings</th>
+                        <th class="col-sm-2">Date</th>
+                        <th class="col-sm-8">Idea</th>
+                        <th class="col-sm-1"># Peer Ratings</th>
                     </thead>
                     <tbody>
                         {% for c in recent_comments %}
@@ -274,7 +234,19 @@
     <script src="{{url_root}}/media/mobile/js/classie.js"></script>
     <script src="{{url_root}}/media/mobile/js/cbpAnimatedHeader.js"></script>
     <script src="{{url_root}}/media/mobile/js/freelancer.js"></script>
-    <!--script src="{{url_root}}/media/mobile/js/jquery.dynatable.js"></script-->
+    <script src="{{url_root}}/media/mobile/js/jquery.dynatable.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#top-ideas,#recent-ideas").dynatable({
+                features: {
+                    paginate: false,
+                    search: false,
+                    sorting: true,
+                    recordCount: false,
+                }            
+            });
+        });
+    </script>
     <!--script src="{{url_root}}/media/mobile/js/mcafe_stats.js"></script-->
 
 </body>
