@@ -1,10 +1,7 @@
 import numpy as np
 from opinion.opinion_core.models import *
 
-def wilson_scores():
-        disc_stmt = DiscussionStatement.objects.get(is_current=True)
-        comments = DiscussionComment.objects.filter(discussion_statement=disc_stmt)
-
+def wilson_scores(comments):
         wilson = []
         for c in comments:
                 ca = CommentAgreement.objects.filter(comment=c)

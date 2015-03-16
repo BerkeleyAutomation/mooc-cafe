@@ -17,6 +17,7 @@ from opinion.includes.queryutils import *
 from opinion.includes.smsutils import *
 from opinion.includes.accountutils import *
 from opinion.includes.socialutils import manual_login
+from opinion.includes.wilson_scores import *
 from opinion.settings import *
 from opinion.settings_local import DATABASE_ENGINE
 from opinion.settings_local import ASSETS_LOCAL
@@ -351,7 +352,8 @@ def mcafe_stats(request):
     for s in statements:
         medians.append({'statement': s.statement, 'id':s.id})
 
-    recent_comments = DiscussionComment.objects.filter(user__in=active_users, is_current=True).order_by('-created')[:15]
+    limit = 15
+    recent_comments = DiscussionComment.objects.filter(user__in=active_users, is_current=True).order_by('-created')[:limit]
 
     try:
       start_date = opinion.settings_local.START_DATE
@@ -363,8 +365,13 @@ def mcafe_stats(request):
     as_of_date = min(datetime.datetime.today().date(), end_date)
     week_num = ((as_of_date - start_date).days / 7) + 1
 
-    from opinion.includes.wilson_scores import *
-    wilson = wilson_scores()[:10]
+    date_threshold = datetime.datetime.today() - datetime.timedelta(days=10)
+    comments = DiscussionComment.objects.filter(discussion_statement=disc_stmt, created__gte=date_threshold)
+    wilson = wilson_scores(comments)
+    if len(wilson) < limit:
+      comments = DiscussionComment.objects.filter(discussion_statement=disc_stmt)
+      wilson = wilson_scores(comments)
+    wilson = wilson[:limit]
 
     context = {
     'wilson' : wilson,
