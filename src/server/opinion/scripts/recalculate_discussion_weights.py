@@ -2,6 +2,7 @@
 import sys
 import environ
 import numpy
+import datetime
 from opinion.opinion_core.models import *
 from opinion.includes.queryutils import *
 from math import *
@@ -21,7 +22,7 @@ def main():
 
 	print "Calculating weights for os_id = " + os_id + " and disc_stmt = " + str(disc_stmt)
 
-	comments = DiscussionComment.objects.filter(is_current = True, opinion_space = os_id, discussion_statement = disc_stmt)
+	comments = DiscussionComment.objects.filter(opinion_space = os_id, discussion_statement = disc_stmt)
 
 	# If we're using comments to position users
 	if Settings.objects.boolean('NO_STATEMENTS'):
@@ -43,15 +44,25 @@ def main():
 			max_weight = num_ratings
 
 	for comment in comments:
-	    disaster_boost = 0
+		
+		#this is the decay rate
+		k = 6
 
-	    if 'earthquake' in comment.comment or 'safety' in comment.comment or 'nuclear' in comment.comment or 'sea level' in comment.comment or 'climate' in comment.comment:
-	        disaster_boost = 500
+		#this is the time lag
+		t = 6
 
-		num_ratings = comment_id_to_num_ratings_map[comment.id]
-		weight = max_weight - num_ratings + disaster_boost
-		print "Comment %s has %s ratings => query_weight = %s" % (comment.id,num_ratings, weight)
-		comment.query_weight = weight
+		#this is todays date
+		current_time = datetime.datetime.now()
+
+		#this is the difference in days
+		difference = (current_time - comment.created).days + 0.0
+		if difference < t:
+			difference = 0
+
+		print comment.i, difference, "Original Weight: ", comment.query_weight, "Final Weight: ", comment.query_weight*numpy.exp(-difference/k)
+
+		comment.query_weight = comment.query_weight*numpy.exp(-difference/k)
 		comment.save()
+
 	print "Done."
 main()
