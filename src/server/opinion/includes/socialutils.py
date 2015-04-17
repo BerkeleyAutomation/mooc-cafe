@@ -1,5 +1,8 @@
-import oauth2
-import twitter
+try:
+    import oauth2
+    import twitter
+except:
+    pass
 import urlparse
 import urllib
 try:
