@@ -1,0 +1,71 @@
+{% extends "instructor_base.html" %}
+
+{% block mainContent %}
+<div style='padding:15px'>
+
+    <h1>Quantitative Analysis Topic Rating Statistics</h1>
+*Plots are based on the mean ratings each week for the entire class and the error bars indicate 2SEs above and below the mean.
+    <p>
+    <span id='disc_block'></span>
+    <table id="todo" class="overviewTable">
+        	<thead>
+            	<tr>
+                <th>1. How would you rate this course so far in terms of technical difficulty?</th>
+                </tr>
+            </thead>
+		</table>
+ <a class="portfolio-link">
+		  <div style="text-align:left"><img src="https://github.com/mozhou/Public/blob/master/img/QAT1.png?raw=true" alt="image" align="middle"></div>
+                </a>
+
+    <table id="todo" class="overviewTable">
+        	<thead>
+            	<tr>
+                <th>2. How would you rate this course so far in terms of usefulness to your career?</th>
+                </tr>
+            </thead>
+		</table>
+ <a class="portfolio-link">
+		  <div style="text-align:left"><img src="https://github.com/mozhou/Public/blob/master/img/QAT2.png?raw=true" alt="image" align="middle"></div>
+                </a>
+
+    <table id="todo" class="overviewTable">
+        	<thead>
+            	<tr>
+                <th>3. How would you rate your enthusiasm so far for this course?</th>
+                </tr>
+            </thead>
+		</table>
+ <a class="portfolio-link">
+		  <div style="text-align:left"><img src="https://github.com/mozhou/Public/blob/master/img/QAT3.png?raw=true" alt="image" align="middle"></div>
+                </a>
+
+    <table id="todo" class="overviewTable">
+        	<thead>
+            	<tr>
+                <th>4. How would you rate your performance in this course so far?</th>
+                </tr>
+            </thead>
+		</table>
+ <a class="portfolio-link">
+		  <div style="text-align:left"><img src="https://github.com/mozhou/Public/blob/master/img/QAT4.png?raw=true" alt="image" align="middle"></div>
+                </a>
+
+    <table id="todo" class="overviewTable">
+        	<thead>
+            	<tr>
+                <th>5.How would you rate the effectiveness of course assignments to help you develop your skills?</th>
+                </tr>
+            </thead>
+		</table>
+ <a class="portfolio-link">
+		  <div style="text-align:left"><img src="https://github.com/mozhou/Public/blob/master/img/QAT5.png?raw=true" alt="image" align="left"></div>
+                </a>
+
+</p>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "instructor_base.html" %}
+
+
+
+{% block mainContent %}
+    <h1> Flagged Comments </h1>
+   
+{% endblock %}

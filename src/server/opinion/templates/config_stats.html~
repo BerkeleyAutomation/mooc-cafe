@@ -1,0 +1,10 @@
+{% extends "instructor_base.html" %}
+
+{% block mainContent %}
+<div style='padding:15px'>
+  <h1>Configure public statistics page display</h1>
+  <a href="http://opinion.berkeley.edu/m-cafe-3/mcafe_stats/">Visit statistics page</a>
+
+
+</div>
+{% end mainContent %}

@@ -1,0 +1,161 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+
+
+<<setup, include=FALSE>>=
+library(knitr)
+library(ggplot2)
+library(xtable)
+opts_chunk$set(fig.path='figure/latex-', cache.path='cache/latex-',fig.width=6, fig.height=4)
+opts_chunk$set(results='asis',tide = TRUE)
+start_date = as.Date("2015-01-14")
+today_date = as.Date("2015-04-25")
+date_diff <- as.Date(as.character(today_date), format="%Y-%m-%d")-
+                  as.Date(as.character(start_date), format="%Y-%m-%d")
+this_week = as.numeric(ceiling(date_diff / 7))
+@
+
+\begin{document}
+\title{M-CAFE Week \Sexpr{this_week} Update}
+\author{M-CAFE Team}
+\maketitle
+
+
+
+\noindent
+\textbf{Participation Summary:}\par
+\bigskip
+<<Part, include = FALSE>>=
+ # Import the three datasets
+ QATrating <- read.table("~/Desktop/autoUpdate/QATrating.csv", sep=";", quote="\"")
+ COMMrating <- read.table("~/Desktop/autoUpdate/COMMrating.csv", sep=";", quote="\"")
+ comm <- read.table("~/Desktop/autoUpdate/comm.csv", sep=";", quote="\"")
+ #Compute this week's stats
+ week_QAT = ceiling((as.Date(QATrating$V7, format="%Y-%m-%d")-start_date)/7)
+ QATrating = cbind(QATrating,week_QAT)
+ uniqueWeek = unique(week_QAT)[which(unique(week_QAT)>0)]
+ score = matrix(data = NA, nrow = max(uniqueWeek), ncol = 5)
+ score_sd = matrix(data = NA, nrow = max(uniqueWeek), ncol = 5)
+ score_se = matrix(data = NA, nrow = max(uniqueWeek), ncol = 5)
+ count = matrix(data = NA, nrow = max(uniqueWeek), ncol = 5)
+ for (i in uniqueWeek){
+   sub = QATrating[which(QATrating$week_QAT == i),]
+   score[i,] <- tapply(sub$V5, sub$V4, mean)
+   score_sd[i,] <- tapply(sub$V5, sub$V4, sd)
+   count[i,] <- tapply(sub$V5, sub$V4, length)
+   score_se[i,] <- score_sd[i,] / sqrt(count[i,])
+ }
+ # plot the results
+ p1 = ggplot(, aes(x=1:max(uniqueWeek), y=10*score[,1])) + 
+   geom_errorbar(aes(ymin=10*(score[,1]-2 * score_se[,1]), ymax=10*(score[,1]+2*score_se[,1])), width=.1) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,1]-score_sd[,1]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,1]+score_sd[,1]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*score[,1])) +
+   geom_point() +
+   ylim(0,10) +
+   xlab('Week') +
+   ylab('Mean Rating') +
+   ggtitle('Course Difficulty Rating')
+
+ p2 = ggplot(, aes(x=1:max(uniqueWeek), y=10*score[,2])) + 
+   geom_errorbar(aes(ymin=10*(score[,2]-2 * score_se[,2]), ymax=10*(score[,2]+2*score_se[,2])), width=.1) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,2]-score_sd[,2]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,2]+score_sd[,2]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*score[,2])) +
+   geom_point() +
+   ylim(0,10) +
+   xlab('Week') +
+   ylab('Mean Rating') +
+   ggtitle('Course Usefulness Rating')
+
+ p3 = ggplot(, aes(x=1:max(uniqueWeek), y=10*score[,3])) + 
+   geom_errorbar(aes(ymin=10*(score[,3]-2 * score_se[,3]), ymax=10*(score[,3]+2*score_se[,3])), width=.1) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,3]-score_sd[,3]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,3]+score_sd[,3]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*score[,3])) +
+   geom_point() +
+   ylim(0,10) +
+   xlab('Week') +
+   ylab('Mean Rating') +
+   ggtitle('Self-enthusiasm Rating')
+ 
+ p4 = ggplot(, aes(x=1:max(uniqueWeek), y=10*score[,4])) + 
+   geom_errorbar(aes(ymin=10*(score[,4]-2 * score_se[,4]), ymax=10*(score[,4]+2*score_se[,4])), width=.1) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,4]-score_sd[,4]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,4]+score_sd[,4]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*score[,4])) +
+   geom_point() +
+   ylim(0,10) +
+   xlab('Week') +
+   ylab('Mean Rating') +
+   ggtitle('Self-Performance Rating')
+
+ p5 = ggplot(, aes(x=1:max(uniqueWeek), y=10*score[,5])) + 
+   geom_errorbar(aes(ymin=10*(score[,5]-2 * score_se[,5]), ymax=10*(score[,5]+2*score_se[,5])), width=.1) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,5]-score_sd[,5]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*(score[,5]+score_sd[,5]))) +
+   geom_line(aes(x=1:max(uniqueWeek),y=10*score[,5])) +
+   geom_point() +
+   ylim(0,10) +
+   xlab('Week') +
+   ylab('Mean Rating') +
+   ggtitle('HW Effectiveness Rating')
+ 
+ # New comments and new comment ratings
+ week_comm = ceiling((as.Date(comm$V15, format="%Y-%m-%d")-start_date)/7)
+ new_comm = which(week_comm == this_week)
+ new_comm_cont = comm$V5[new_comm]
+ new_comm_id = comm$V1[new_comm]
+ 
+ # Compute Wilson score
+ comm_score = tapply(COMMrating$V4, COMMrating$V2, mean)
+ comm_score_sd = tapply(COMMrating$V4, COMMrating$V2, sd)
+ comm_score_sd[which(is.na(comm_score_sd))] = 0
+ comm_count = tapply(COMMrating$V4, COMMrating$V2, length)
+ wilson = comm_score-2*comm_score_sd
+ new_comm_id_rated = as.numeric(intersect(new_comm_id, names(wilson)))
+ new_score = rep(NA,length(new_comm_id))
+ new_count = rep(NA,length(new_comm_id))
+ new_comment = character()
+ new_time = character()
+ for (i in 1:length(new_comm_id)){
+   try(new_score[i] <- wilson[which(names(wilson)==new_comm_id[i])])
+   try(new_count[i] <- comm_count[which(names(wilson)==new_comm_id[i])])
+   new_comment <- c(new_comment,as.character(comm$V5[which(comm$V1==new_comm_id[i])]))
+   new_time <- c(new_time,as.character(comm$V15[which(comm$V1==new_comm_id[i])]))  
+ }
+ output = as.data.frame(cbind(new_time,new_score,new_count,new_comment))
+ output_sorted = output[order(output$new_score,decreasing = T),]
+@
+\Sexpr{count[this_week,1]} students responded the QATs this week.\par
+\Sexpr{length(new_comm_id)} new ideas with \Sexpr{length(new_comm_id_rated)} rated.\par
+\Sexpr{length(comm$V1)} total ideas with \Sexpr{length(COMMrating$V1)} total peer-to-peer ratings.\par
+\bigskip
+\noindent
+\textbf{Mean values of QATs up to this week:}\par
+\bigskip
+*Plots are based on the mean ratings each week for the entire class. The error bars indicate 2 SEs above and below the mean. The upper and lower lines indicate 1 SD above and below the mean rating.\par
+\bigskip
+<<plots,echo=FALSE,warning=FALSE>>=
+  plot(p1)
+plot(p2)
+plot(p3)
+plot(p4)
+plot(p5)
+@
+\noindent
+\textbf{New ideas}\par
+\bigskip
+*Ideas are ranked by their Wilson scores. Ideas with no ratings so far are displayed at the end.\par
+\bigskip
+<<table, echo=FALSE, warning=FALSE>>=
+  output_sorted$new_score = round(as.numeric(as.character(output_sorted$new_score)), digits = 2)
+  colnames(output_sorted) <- c('Time','Score','# Rating','Idea')
+  temp <- xtable(output_sorted, align = "c|c|c|c|p{8cm}|")
+  print(temp,include.rownames=FALSE, tabular.environment = 'longtable')
+@
+
+\end{document}

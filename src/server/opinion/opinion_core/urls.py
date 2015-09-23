@@ -15,6 +15,24 @@ urlpatterns = patterns('',
                        (r'^stats/$', 'opinion.opinion_core.views.mcafe_stats'),
                        (r'^checkemail/$','opinion.opinion_core.views.checkemail'),
                        (r'^mcafe_stats/$','opinion.opinion_core.views.mcafe_stats'),
+                       
+                       # Instructor dashboard methods
+                       # (r'^instructor/$','opinion.opinion_core.views.instructor'),
+                       (r'^instructor/summary/$','opinion.opinion_core.views.get_summary'),
+                       (r'^instructor/participation/$','opinion.opinion_core.views.get_participation'),
+                       (r'^instructor/rating/$','opinion.opinion_core.views.get_rating'),
+                       (r'^instructor/comment/$','opinion.opinion_core.views.get_comment'),
+                       (r'^instructor/demographic/$','opinion.opinion_core.views.get_demographic'),
+                       (r'^instructor/genreport/$','opinion.opinion_core.views.get_report'),
+                       (r'^instructor/cafe_configure/$','opinion.opinion_core.views.config_cafe'),
+(r'^instructor/dis_configure/$','opinion.opinion_core.views.config_dis'),
+                       (r'^instructor/stats_configure/$','opinion.opinion_core.views.config_stats'),
+                       (r'^instructor/account/$','opinion.opinion_core.views.account'),
+                       (r'^instructor/help/$','opinion.opinion_core.views.get_help'),
+                       (r'^instructor/M-CAFEWeek(\d+)Update.pdf/$', 'opinion.opinion_core.views.open_report'),
+                       (r'^instructor/password/$', 'opinion.opinion_core.views.change_password'),
+
+
                        #(r'^about/$', 'opinion.opinion_core.views.about'),
                        #(r'^feedback/$', 'opinion.opinion_core.views.feedback'),
                        #(r'^suggestion/$', 'opinion.opinion_core.views.suggestion'),
@@ -27,6 +45,7 @@ urlpatterns = patterns('',
                        #(r'^solid_nofilter/$', 'opinion.opinion_core.views.solid_nofilter'),
                        #(r'^contact/$', 'opinion.opinion_core.views.contact'),
                        
+
                        # Admin panel methods
                        (r'^adminpanel/overview/$', 'opinion.opinion_core.views.get_overview'),
                        (r'^adminpanel/flaggedcomments/$', 'opinion.opinion_core.views.get_flaggedcomments'),

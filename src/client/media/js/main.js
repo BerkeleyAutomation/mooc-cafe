@@ -45,10 +45,11 @@ $(document).ready(function()
 										alert("Operation successful!");									
 									}
 									report = "1";
-								}	
+								}
 							},
 							error:function(data)
 							{ // This happens on a 500 error or alikes.
+								alert(data)
 								alert('Error: failed sending data');
 							}
 						});				
